@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.saem.domain.tour">
+	<select id="selectMain" resultType="com.saem.domain.TourVO">
+		SELECT * FROM the_sight_tourdata ORDER BY div_area_count DESC LIMIT 9
+	</select>
+	
+	<select id="selectSeg" resultType="com.saem.domain.TourVO">
+		SELECT * FROM the_sight_tourdata WHERE div_seg_name like#{seg_name} ORDER BY tour_name
+	</select>
+	
+	<select id="selectBusan" resultType="com.saem.domain.TourVO">
+		SELECT * FROM the_sight_tourdata WHERE div_seg_name like'%경상%' or div_seg_name like'%부산%' ORDER BY tour_name
+	</select>
+	
+	<select id="selectAll" resultType="com.saem.domain.TourVO">
+		SELECT * FROM the_sight_tourdata
+	</select>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.saem.domain.psboard">
+	<select id="select_list" resultType="com.saem.domain.PSBoardVO">
+		SELECT * FROM the_sight_board WHERE b_used != 0 ORDER BY b_num DESC limit #{pageNum}, 7;
+	</select>
+	
+	<select id="select" resultType="com.saem.domain.PSBoardVO">
+		SELECT * FROM the_sight_board WHERE b_num = #{b_num}
+	</select>
+	
+	<update id="delete">
+		UPDATE the_sight_board SET b_used = 0 WHERE b_num = #{b_num}
+	</update>
+	
+	<update id="update">
+		UPDATE the_sight_board SET b_title = #{b_title}, b_content = #{b_content}, b_updatedate = now() WHERE b_num = #{b_num}
+	</update>
+	
+	<insert id="insert">
+      	INSERT INTO the_sight_board(b_title, b_content, b_writedate, b_updatedate, m_userid) VALUES(#{b_title},#{b_content},now(),now(),#{m_userid});
+   	</insert>
+	
+	<update id="uphit">
+		UPDATE the_sight_board SET b_readcount = b_readcount + 1 WHERE b_num = #{b_num}
+	</update>
+	
+</mapper>

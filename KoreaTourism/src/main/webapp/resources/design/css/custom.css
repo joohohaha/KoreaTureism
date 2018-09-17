@@ -1,0 +1,26 @@
+#mainNav .navbar-nav .nav-item .nav-link {
+   -webkit-appearance: initial;
+   padding: 0px;
+   margin: 0px;
+}
+
+.container.top-section {
+    padding: 30px 10px;
+}
+.top-section{
+	
+}
+.top-section #map{
+	width:40%;
+	height:380px;
+}
+.top-section #carouselExampleIndicators2{
+	width:58%;
+	margin-left:2%;
+}
+.top-section #map,
+.top-section #carouselExampleIndicators2{
+	float:left;
+}
+
+
