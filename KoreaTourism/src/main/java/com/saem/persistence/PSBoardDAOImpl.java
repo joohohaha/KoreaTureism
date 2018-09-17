@@ -9,15 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import com.saem.domain.PSBoardVO;
 
-
-
 @Repository
 public class PSBoardDAOImpl implements PSBoardDAO {
 
    @Inject
    private SqlSession session;
 
-   private static String namespace = "com.saem.domain.psboard";
+   private static final String namespace = "com.saem.domain.psboard";
 
    @Override
    public List<PSBoardVO> select_list(int pageNum) throws Exception {

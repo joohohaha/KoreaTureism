@@ -30,6 +30,7 @@ public class PSBoardController {
 		if (pageNum == 0) {
 			prev = false;
 		}
+		
 		if (service.select_list(pageNum + 5).size() == 0) {
 			next = false;
 		}

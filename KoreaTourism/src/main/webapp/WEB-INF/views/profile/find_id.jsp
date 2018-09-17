@@ -12,7 +12,7 @@
 
    	<!-- Profile styles for this template -->
 	<link href="resources/memberDesign/css/member.css" rel="stylesheet" type="text/css">
-<jsp:include page="../include/linkFile.jsp"/>
+<jsp:include page="../include/mainLink.jsp"/>
 <link href="/favicon.ico?v=2" rel="shortcut icon">
 </head>
 <body id="layout_body">

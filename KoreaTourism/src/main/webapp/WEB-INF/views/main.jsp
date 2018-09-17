@@ -16,7 +16,7 @@
 
     <title>Agency - Start Bootstrap Theme</title>
     
-    <jsp:include page="include/linkFile.jsp"/>
+    <jsp:include page="include/mainLink.jsp"/>
 
   </head>
 
@@ -24,7 +24,8 @@
     <!-- 여백 -->
 	<!--<div class="top-bar"></div>-->
 	<jsp:include page="include/header.jsp"/>
-	
+    <jsp:include page="loginForm.jsp"/>
+    <jsp:include page="joinForm.jsp"/>
 	<!-- 메인 배경과 버튼 사이의 공간 -->
 	<div class="container top-section">
 		
@@ -444,8 +445,6 @@
 	<jsp:include page="local/jeonla.jsp"/>
     <jsp:include page="local/seoul.jsp"/>
     <jsp:include page="local/gyeonggi.jsp"/>
-    <jsp:include page="loginForm.jsp"/>
-    <jsp:include page="joinForm.jsp"/>
     <jsp:include page="hotLocal.jsp"/>
     
 	<!-- ============================================================= -->

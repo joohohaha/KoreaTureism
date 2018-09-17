@@ -19,7 +19,6 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 
 	@Override
 	public List<FreeBoardVO> select_list(int pageNum) throws Exception {
-
 		return dao.select_list(pageNum);
 	}
 	

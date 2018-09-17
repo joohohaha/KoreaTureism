@@ -7,10 +7,31 @@ public class MemberVO {
 	private String m_birth;
 	private String m_email;
 	private String m_road_addr;
-	private String m_phone;
 	private String m_salt;
 	private String m_joindate;
 	private boolean m_emailcheck;
+	private String m_gender;
+	private String m_confirm;
+	private int m_count;
+	
+	public int getM_count() {
+		return m_count;
+	}
+	public void setM_count(int m_count) {
+		this.m_count = m_count;
+	}
+	public String getM_confirm() {
+		return m_confirm;
+	}
+	public void setM_confirm(String m_confirm) {
+		this.m_confirm = m_confirm;
+	}
+	public String getM_gender() {
+		return m_gender;
+	}
+	public void setM_gender(String m_gender) {
+		this.m_gender = m_gender;
+	}
 	public String getM_userid() {
 		return m_userid;
 	}
@@ -46,12 +67,6 @@ public class MemberVO {
 	}
 	public void setM_road_addr(String m_road_addr) {
 		this.m_road_addr = m_road_addr;
-	}
-	public String getM_phone() {
-		return m_phone;
-	}
-	public void setM_phone(String m_phone) {
-		this.m_phone = m_phone;
 	}
 	public String getM_salt() {
 		return m_salt;

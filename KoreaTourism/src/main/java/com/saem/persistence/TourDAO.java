@@ -9,6 +9,4 @@ public interface TourDAO {
 	public List<TourVO> selectMain() throws Exception;
 	public List<TourVO> selectBusan() throws Exception;
 	public List<TourVO> selectSeg(String seg_name) throws Exception;
-	
-	
 }

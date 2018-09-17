@@ -8,6 +8,11 @@
 <div class="portfolio-modal modal fade" id="joinForm" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
 	<div class="modal-dialog">
 		<div class="modal-content" style="background: transparent; border: 0;">
+			<div class="close-modal" data-dismiss="modal">
+				<div class="lr">
+					<div class="rl"></div>
+				</div>
+			</div>
 			<div class="skip_navi">
 				<a href="#container">본문 바로 가기</a>
 			</div>
@@ -20,11 +25,13 @@
 							<img src="resources/memberDesign/images/img_logo_join.png?_LM=1530147020000" alt="#">
 						</a>
 					</h1>
+					<div class="close-modal" data-dismiss="modal">
+						<div class="lr"><div class="rl"></div></div>
+					</div>
 
 				</div>
 				<div id="container">					
-					<form id="frmInJoin" action="#" onsubmit="return false"
-						novalidate="novalidate">
+					<form id="frmInJoin" action="user_join" method="POST" novalidate="novalidate"><!-- onsubmit="return false"  -->
 						<input type="hidden" id="sendEmailCheck" class="m_check"
 							value="false" checked="checked">
 						<div class="join_step_2">

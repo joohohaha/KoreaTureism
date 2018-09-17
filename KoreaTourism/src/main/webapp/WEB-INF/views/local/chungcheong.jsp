@@ -81,6 +81,14 @@
 										<a class="btn btn-success" data-toggle="modal" href="#chungcheong${i}" type="submit" >
 											<i class="fa fa-times"></i>Close Project
 										</a>
+										<h5 class="card-header">댓글달기:</h5>
+										<hr>
+										<div class="card-body">
+											<div class="form-group">
+												<textarea class="form-control" id="replyData" rows="3"></textarea>
+											</div>
+											<input type="button" class="btn btn-primary" onclick="alert('로그인 후 이용가능합니다.');" value="Submit">
+										</div>
 									</div>
 								</div>
 							</div>

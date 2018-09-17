@@ -16,7 +16,6 @@ public class TourDAOImpl implements TourDAO{
 	private SqlSession session;
 	
 	private static final String namespace="com.saem.domain.tour";
-	private static final String sight="TourDAOImpl";
 	
 	@Override
 	public List<TourVO> selectAll() throws Exception {
@@ -25,7 +24,6 @@ public class TourDAOImpl implements TourDAO{
 	
 	@Override
 	public List<TourVO> selectMain() throws Exception {
-		System.out.println(sight+"_selectMain");
 		return session.selectList(namespace+".selectMain");
 	}
 

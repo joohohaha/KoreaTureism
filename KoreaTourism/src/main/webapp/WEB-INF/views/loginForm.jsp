@@ -4,10 +4,33 @@
 <link rel="stylesheet" type="text/css" href="resources/memberDesign/css/loginform.css">
 
 <script src="https://www.google.com/recaptcha/api.js"></script>
-
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+<html>
+  <head>
+    <title>네이버로그인</title>
+  </head>
+  <body>
+  <%
+    String clientId = "xHnGDEiESs7O3i28j1Wl";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://localhost:8000/tour/naver_login", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    //session.setAttribute("state", state);
+ %>
 <div class="portfolio-modal modal fade" id="loginForm" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
 	<div class="modal-dialog">
 		<div class="modal-content" style="background: transparent; border: 0;">
+			<div class="close-modal" data-dismiss="modal">
+				<div class="lr">
+					<div class="rl"></div>
+				</div>
+			</div>
 			<div class="skip_navigation blind">
 				<a href="#container">본문 바로가기</a>
 			</div>
@@ -23,8 +46,7 @@
 					<div class="login_page">
 						<h2>로그인 하기</h2>
 						<div class="login_box">
-							<form id="frm_in_login" name="frm_in_login" method="post"
-								action="#">
+							<form id="frm_in_login" name="frm_in_login" method="post" action="user_login">
 								<fieldset>
 									<dl>
 										<dt class="blind">아이디</dt>
@@ -48,21 +70,23 @@
 										</dd>
 									</dl>
 									<div class="check_keep_login">
-										<input type="checkbox" id="rmm_check" name="rmm"> <label
-											for="rmm_check">로그인 상태 유지</label>
+										<input type="checkbox" id="login_check" name="rmm">
+										<label for="login_check">로그인 상태 유지</label>
 									</div>
 									<div class="check_ip_security">
 										<input type="checkbox" id="btn_ip">
-										<label for="btn_ip" class="checked" id="btn_ip_on"> <!-- checked : IP 보안 ON 상태 -->
-											IP보안 <strong>ON</strong> <!--
-                            <strong>OFF</strong>
-                            <strong>ON</strong>
-                        -->
+										<label for="btn_ip" class="checked" id="btn_ip_on"><!-- checked : IP 보안 ON 상태 -->
+											IP보안 <strong>ON</strong> 
+											<!--
+					                            <strong>OFF</strong>
+					                            <strong>ON</strong>
+					                        -->
 										</label>
 									</div>
 									<div class="btn_login">
 										<button type="submit">로그인</button>
 										<input id="loginTargetUrl" name="targetUrl" type="hidden" value="#">
+  										<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
 									</div>
 								</fieldset>
 							</form>

@@ -14,7 +14,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 		<!-- this in the linkFile -->
-<jsp:include page="../include/linkFile.jsp" />
+<jsp:include page="../include/mainLink.jsp" />
    	<!-- Profile styles for this template -->
 	<link href="resources/memberDesign/css/member.css" rel="stylesheet" type="text/css">
 <link href="/favicon.ico?v=2" rel="shortcut icon">
