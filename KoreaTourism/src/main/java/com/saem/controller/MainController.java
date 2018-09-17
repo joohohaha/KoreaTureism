@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.saem.domain.MemberVO;
+import com.saem.service.MemberService;
 import com.saem.service.TourService;
 import com.saem.util.NaverCallback;
+import com.saem.util.NaverProfileJoin;
 
 @Controller
 @SessionAttributes({"SessionNaver","SessionUser"})
@@ -23,6 +26,8 @@ public class MainController {
 	
 	@Inject
 	private TourService tService;
+	@Inject
+	private MemberService mService;
 	
 	
 	@RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
@@ -49,12 +54,21 @@ public class MainController {
 	
 	@RequestMapping(value = "naver_login", method = RequestMethod.GET)
 	public String naver_login(Model model, @RequestParam("code") String code, @RequestParam("state") String state) throws Exception{
-		final String naver_id; 
-		if(new NaverCallback().CallBack(code, state)!= null) {
-			naver_id = new NaverCallback().CallBack(code, state);
-			System.out.println(naver_id);
-			model.addAttribute("SessionNaver",naver_id);
+		final MemberVO member; 
+		final String access_token = new NaverCallback().CallBack(code, state);
+		if(access_token != null) {
+	    	member = new NaverProfileJoin().NaverSign_in(access_token);
+			if(member != null) {
+				mService.naver_join(member);
+			}
+			model.addAttribute("SessionNaver", member.getM_userid());
 		}
+		return "redirect:index";
+	}
+	
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(SessionStatus session) throws Exception{
+		session.setComplete();
 		return "redirect:index";
 	}
 	

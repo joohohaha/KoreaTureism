@@ -20,7 +20,7 @@
 		UPDATE the_sight_member SET f_title = #{f_title}, f_content = #{f_content} WHERE f_id = #{f_id}
 	</update>
 	
-	<insert id="naver_Join">
+	<insert id="naver_join">
       	INSERT INTO the_sight_member(m_userid, m_email, m_name, m_gender, m_birth, m_emailcheck, m_confirm) VALUES(#{m_userid}, #{m_email}, #{m_name}, #{m_gender}, #{m_birth}, true, #{m_confirm})
    	</insert>
 	

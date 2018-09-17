@@ -9,6 +9,8 @@ import java.net.URLEncoder;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.saem.domain.MemberVO;
+
 public class NaverCallback {
 	public String CallBack(String code, String state) throws Exception {
 		String clientId = "xHnGDEiESs7O3i28j1Wl";//애플리케이션 클라이언트 아이디값";
@@ -25,31 +27,30 @@ public class NaverCallback {
 	    String refresh_token = "";
 	    System.out.println("apiURL="+apiURL);
 	    try {
-	      URL url = new URL(apiURL);
-	      HttpURLConnection con = (HttpURLConnection)url.openConnection();
-	      con.setRequestMethod("GET");
-	      int responseCode = con.getResponseCode();
-	      BufferedReader br;
-	      System.out.print("responseCode="+responseCode);
-	      if(responseCode==200) { // 정상 호출
-	        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-	      } else {  // 에러 발생
-	        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-	      }
-	      String inputLine;
-	      StringBuffer res = new StringBuffer();
-	      while ((inputLine = br.readLine()) != null) {
-	        res.append(inputLine);
-	      }
-	      br.close();
-	      if(responseCode==200) {
-		    	JSONParser parser = new JSONParser();
-				JSONObject jsonData = (JSONObject)parser.parse(res.toString());
-				access_token = jsonData.get("access_token").toString();
-		    	final String naver_id = new NaverProfileJoin().NaverSign_in(access_token);
-		    	System.out.println("id : " + naver_id);
-		    	return naver_id;
-	      }
+		      URL url = new URL(apiURL);
+		      HttpURLConnection con = (HttpURLConnection)url.openConnection();
+		      con.setRequestMethod("GET");
+		      int responseCode = con.getResponseCode();
+		      BufferedReader br;
+		      System.out.println("responseCode="+responseCode);
+		      if(responseCode==200) { // 정상 호출
+		        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		      } else {  // 에러 발생
+		        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+		      }
+		      String inputLine;
+		      StringBuffer res = new StringBuffer();
+		      while ((inputLine = br.readLine()) != null) {
+		        res.append(inputLine);
+		      }
+		      br.close();
+		      if(responseCode==200) {
+			    	JSONParser parser = new JSONParser();
+					JSONObject jsonData = (JSONObject)parser.parse(res.toString());
+					access_token = jsonData.get("access_token").toString();
+
+			    	return access_token;
+		      }
 	    } catch (Exception e) {
 	      System.out.println(e);
 	    }

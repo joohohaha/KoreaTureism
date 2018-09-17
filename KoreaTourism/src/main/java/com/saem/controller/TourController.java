@@ -16,13 +16,12 @@ public class TourController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TourController.class);
 	
-	int[] a;
 	@Inject
 	private TourService tService;
 	
 	@RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
 	public String home(Model model) throws Exception{
-
+		
 		model.addAttribute("selectAll", tService.selectAll());
 		model.addAttribute("mainlist", tService.selectMain());
 		model.addAttribute("gyeongsang", tService.selectBusan());

@@ -30,8 +30,7 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	@Override
 	public void naver_join(MemberVO mvo) throws Exception {
-		System.out.println("join 실행");
-		session.insert(namespace+".naver_Join", mvo);
+		session.insert(namespace+".naver_join", mvo);
 	}
 	
 }

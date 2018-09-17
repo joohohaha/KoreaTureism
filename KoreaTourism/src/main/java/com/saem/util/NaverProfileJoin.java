@@ -13,11 +13,12 @@ import org.springframework.stereotype.Component;
 import com.saem.domain.MemberVO;
 import com.saem.persistence.MemberDAOImpl;
 import com.saem.service.MemberService;
+import com.saem.service.MemberServiceImpl;
 
 public class NaverProfileJoin {
-
 	
-	public String NaverSign_in(String access_token) {
+	public MemberVO NaverSign_in(String access_token) {
+		System.out.println("NaverSign_in 호출");
 		String token = access_token;// 네이버 로그인 접근 토큰;
         String header = "Bearer " + token; // Bearer 다음에 공백 추가
         final String confirm = "Naver_user"; 
@@ -40,36 +41,27 @@ public class NaverProfileJoin {
                 response.append(inputLine);
             }
             br.close();
-			
+            
+			System.out.println("response : " + response);
             JSONParser parser = new JSONParser();
 			JSONObject jsonData = (JSONObject)parser.parse(response.toString());
 			System.out.println("Data : " + jsonData.toString());
+			
 			JSONObject res = (JSONObject) jsonData.get("response");
+			String m_userid = res.get("email").toString().split("@")[0];
+			System.out.println(m_userid);
 			
-			System.out.println("email : " + res.get("email").toString());
-			String m_userid = "aa";
+			MemberVO member = new MemberVO();
 			
-			MemberVO m_set = new MemberVO();
-			m_set.setM_userid(m_userid);
-			m_set.setM_confirm(confirm);
-			System.out.println("user_id : " + m_set.getM_userid());
-			System.out.println("confirm : " + m_set.getM_confirm());
-			MemberVO check = new MemberDAOImpl().select_User(m_set);
-			if(check == null) {
-				System.out.println(0);
-				MemberVO m = new MemberVO();
-				m.setM_userid(m_userid);
-				m.setM_email(res.get("email").toString());
-				m.setM_name(res.get("name").toString());
-				m.setM_birth(res.get("birthday").toString());
-				m.setM_gender(res.get("gender").toString());
-				m.setM_confirm(confirm);
-				new MemberDAOImpl().naver_join(m);
-				return m_userid;
-			} else {
-				System.out.println("null 아니다");
-				return m_userid;
-			}
+			member.setM_userid(m_userid);
+			member.setM_email(res.get("email").toString());
+			member.setM_name(res.get("name").toString());
+			member.setM_birth(res.get("birthday").toString());
+			member.setM_gender(res.get("gender").toString());
+			member.setM_confirm(confirm);
+			
+			return member;
+			
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();

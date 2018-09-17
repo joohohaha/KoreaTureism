@@ -12,13 +12,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a href="f_board" class="nav-link">자유 게시판 가자</a>
+              <a href="f_board" class="nav-link">${SessionNaver}자유 게시판 가자</a>
             </li>
             <li class="nav-item">
-              <a href="ps_board" class="nav-link">후기 게시판 가자${SessionNaver}</a>
+              <a href="ps_board" class="nav-link">후기 게시판 가자</a>
             </li>
        		<c:choose>
-       			<c:when test="${empty SessionNaver}">
+       			<c:when test="${empty SessionNaver and empty SessionUser}">
 		            <li class="nav-item">
 		              <a class="nav-link" data-toggle="modal" href="#loginForm" role="button" type="submit">로그인</a>
 		            </li>
@@ -28,11 +28,13 @@
 		    	</c:when>
 		    	<c:otherwise>
 		    		<li class="nav-item">
-		              <a class="nav-link" href="index">메인가자</a>
+		              <a class="nav-link" href="logout" >로그아웃</a>
 		            </li>
-		            <li class="nav-item">
-		              <a class="nav-link" href="user_info">회원관리 가즈아</a>
-		            </li>
+		            <c:if test="${empty SessionNaver}"><!-- 네이버 아이디로 로그인하지 않았을때 표시 -->
+			            <li class="nav-item">
+			              <a class="nav-link" href="user_info">회원관리 가즈아</a>
+			            </li>
+		            </c:if>
 		    	</c:otherwise>
             </c:choose>
           </ul>
