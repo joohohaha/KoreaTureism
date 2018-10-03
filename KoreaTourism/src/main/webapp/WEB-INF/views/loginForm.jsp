@@ -26,11 +26,6 @@
 <div class="portfolio-modal modal fade" id="loginForm" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
 	<div class="modal-dialog">
 		<div class="modal-content" style="background: transparent; border: 0;">
-			<div class="close-modal" data-dismiss="modal">
-				<div class="lr">
-					<div class="rl"></div>
-				</div>
-			</div>
 			<div class="skip_navigation blind">
 				<a href="#container">본문 바로가기</a>
 			</div>
@@ -41,6 +36,9 @@
 							<img src="resources/memberDesign/images/img_logo_zum_login.png?_LM=1530147020000" alt="KOREA" width="222" height="41">
 						</a>
 					</h1>
+					<div class="close-modal" data-dismiss="modal">
+						<div class="lr"><div class="rl"></div></div>
+					</div>
 				</div>
 				<div id="container">
 					<div class="login_page">
@@ -52,10 +50,9 @@
 										<dt class="blind">아이디</dt>
 										<dd>
 											<span class="text_box d_input_area"> <!-- on : 입력창 활성화 , warning : 입력 사항에 문제 있음 -->
-												<label for="id">아이디 입력</label> <input type="text" id="id"
-												name="id" maxlength="30" value="">
-												<button type="button" class="btn_clear d_clear"
-													style="display: none" tabindex="-1">입력창 비우기</button>
+												<label for="id">아이디 입력</label>
+												<input type="text" id="id" name="id" maxlength="30" value="">
+												<button type="button" class="btn_clear d_clear" style="display: none" tabindex="-1">입력창 비우기</button>
 											</span>
 											<div class="text_alert" style="display: none;">
 												<p>오류 메세지</p>
@@ -64,7 +61,8 @@
 										<dt class="blind">비밀번호</dt>
 										<dd>
 											<span class="text_box d_input_area"> 
-												<label for="password">비밀번호 입력</label> <input type="password" id="password" maxlength="30">
+												<label for="password">비밀번호 입력</label>
+												<input type="password" id="password" maxlength="30">
 												<button type="button" class="btn_clear d_clear" style="display: none" tabindex="-1">입력창 비우기</button>
 											</span>
 										</dd>

@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a href="f_board" class="nav-link">${SessionNaver}자유 게시판 가자</a>
+              <a href="fboard" class="nav-link">${SessionNaver}자유 게시판 가자</a>
             </li>
             <li class="nav-item">
               <a href="ps_board" class="nav-link">후기 게시판 가자</a>
@@ -48,7 +48,7 @@
         <div class="intro-text">
           <div class="intro-lead-in">Welcome To Our Web!</div>
           <div class="intro-heading text-uppercase">골라골라 싸게 골라</div>
-          <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="#portfolio">Tell Me More</a>
+          <a class="btn btn-warning btn-xl text-uppercase js-scroll-trigger">Tell Me More</a>
         </div>
       </div>
     </header>

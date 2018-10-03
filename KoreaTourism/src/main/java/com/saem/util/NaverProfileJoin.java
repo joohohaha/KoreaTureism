@@ -18,7 +18,6 @@ import com.saem.service.MemberServiceImpl;
 public class NaverProfileJoin {
 	
 	public MemberVO NaverSign_in(String access_token) {
-		System.out.println("NaverSign_in 호출");
 		String token = access_token;// 네이버 로그인 접근 토큰;
         String header = "Bearer " + token; // Bearer 다음에 공백 추가
         final String confirm = "Naver_user"; 
@@ -42,10 +41,8 @@ public class NaverProfileJoin {
             }
             br.close();
             
-			System.out.println("response : " + response);
             JSONParser parser = new JSONParser();
 			JSONObject jsonData = (JSONObject)parser.parse(response.toString());
-			System.out.println("Data : " + jsonData.toString());
 			
 			JSONObject res = (JSONObject) jsonData.get("response");
 			String m_userid = res.get("email").toString().split("@")[0];

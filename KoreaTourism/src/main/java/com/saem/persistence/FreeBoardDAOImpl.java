@@ -31,8 +31,8 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
    }
 
    @Override
-   public void insert(FreeBoardVO sboard) throws Exception {
-      session.insert(namespace + ".insert", sboard);
+   public void insert(FreeBoardVO fboard) throws Exception {
+      session.insert(namespace + ".insert", fboard);
 
    }
 
@@ -43,8 +43,8 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
    }
 
    @Override
-   public void update(FreeBoardVO sboard) throws Exception {
-      session.update(namespace + ".update", sboard);
+   public void update(FreeBoardVO fboard) throws Exception {
+      session.update(namespace + ".update", fboard);
    }
    
    @Override

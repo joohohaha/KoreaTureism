@@ -23,7 +23,7 @@ public class FreeBoardController {
 	private static final Logger logger = LoggerFactory.getLogger(FreeBoardController.class);
 
 	// select_list
-	@RequestMapping(value = "/f_board", method = RequestMethod.GET)
+	@RequestMapping(value = "/fboard", method = RequestMethod.GET)
 	public String list(Model model, @RequestParam(value="pageNum", required=false, defaultValue="0") int pageNum) throws Exception {
 		
 		boolean prev = true, next = true;
@@ -31,7 +31,7 @@ public class FreeBoardController {
 		if(pageNum == 0) {
 			prev = false;
 		}
-		if (service.select_list(pageNum+5).size() == 0) {
+		if (service.select_list(pageNum+7).size() == 0) {
 			next = false;
 		}
 		
@@ -53,7 +53,7 @@ public class FreeBoardController {
 	@RequestMapping(value = "/f_delete", method = RequestMethod.GET)
 	public String delete(@RequestParam("f_id") int f_id) throws Exception {
 		service.delete(f_id);
-		return "redirect:f_board";
+		return "redirect:fboard";
 	}
 
 	// select
@@ -65,16 +65,17 @@ public class FreeBoardController {
 
 	// update
 	@RequestMapping(value = "/f_update", method = RequestMethod.GET)
-	public String update(FreeBoardVO sboard) throws Exception {
-		service.update(sboard);
-		return "redirect:f_board";
+	public String update(FreeBoardVO fboard) throws Exception {
+		service.update(fboard);
+		
+		return "redirect:fboard";
 	}
 
 	// insert
 	@RequestMapping(value = "/f_insert", method = RequestMethod.GET)
-	public String insert(FreeBoardVO sboard) throws Exception {
-		service.insert(sboard);
-		return "redirect:f_board";
+	public String insert(FreeBoardVO fboard) throws Exception {
+		service.insert(fboard);
+		return "redirect:fboard";
 	}
 
 }

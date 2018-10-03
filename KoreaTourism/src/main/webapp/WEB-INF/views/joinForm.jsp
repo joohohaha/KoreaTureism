@@ -9,9 +9,6 @@
 	<div class="modal-dialog">
 		<div class="modal-content" style="background: transparent; border: 0;">
 			<div class="close-modal" data-dismiss="modal">
-				<div class="lr">
-					<div class="rl"></div>
-				</div>
 			</div>
 			<div class="skip_navi">
 				<a href="#container">본문 바로 가기</a>
@@ -28,12 +25,10 @@
 					<div class="close-modal" data-dismiss="modal">
 						<div class="lr"><div class="rl"></div></div>
 					</div>
-
 				</div>
 				<div id="container">					
 					<form id="frmInJoin" action="user_join" method="POST" novalidate="novalidate"><!-- onsubmit="return false"  -->
-						<input type="hidden" id="sendEmailCheck" class="m_check"
-							value="false" checked="checked">
+						<input type="hidden" name="m_confirm" value="Default_User">
 						<div class="join_step_2">
 							<div class="step_header">
 								<h2>가입 정보 입력하기</h2>
@@ -44,35 +39,34 @@
 							<div class="box_info_write">
 								<dl class="write_input">
 									<dt class="info_id">
-										<label class="title" for="inputInfoID">아이디</label> <span
-											class="red_bullet">필수 항목</span>
+										<label class="title" for="inputInfoID">아이디</label>
+										<span class="red_bullet">필수 항목</span>
 									</dt>
 									<dd>
-										<span class="text_box">
-											<!-- on : 활성화 --> <input type="text" id="inputInfoID"
-											class="input_text valid mustValid" maxlength="12"
-											name="userId"> <span class="help_text">6-12자의
-												영문 소문자와 숫자</span> <span class="icon_noti"> <span
-												class="icon_confirmed" style="display: none;"></span> <span
-												class="icon_alert" style="display: none;"></span>
-										</span>
+										<span class="text_box"><!-- on : 활성화 -->
+										<input type="text" id="inputInfoID" class="input_text valid mustValid" maxlength="12" name="userId">
+											<span class="help_text"></span>
+											<span class="icon_noti">6-12자의 영문 소문자와 숫자
+												<span class="icon_confirmed" style="display: none;"></span>
+												<span class="icon_alert" style="display: none;"></span>
+											</span>
 										</span>
 										<div class="text_alert" style="display: none;">
 											<p>6~12자의 영문 소문자와 숫자를 사용해주세요</p>
 										</div>
 									</dd>
 									<dt class="info_pw">
-										<label class="title" for="inputInfoPassword">비밀번호</label> <span
-											class="red_bullet">필수 항목</span>
+										<label class="title" for="inputInfoPassword">비밀번호</label>
+										<span class="red_bullet">필수 항목</span>
 									</dt>
 									<dd>
-										<span class="text_box"> <input type="password"
-											id="inputInfoPassword" class="input_text valid mustValid"
-											name="userPass"> <span class="help_text">8자
-												이상, 대/소문자, 숫자, 특수문자</span> <span class="icon_noti"> <span
-												class="icon_confirmed" style="display: none;"></span> <span
-												class="icon_alert" style="display: none;"></span>
-										</span>
+										<span class="text_box">
+											<input type="password" id="inputInfoPassword" class="input_text valid mustValid" name="userPass">
+											<span class="help_text">8자 이상, 대/소문자, 숫자, 특수문자</span>
+											<span class="icon_noti">
+												<span class="icon_confirmed" style="display: none;"></span>
+												<span class="icon_alert" style="display: none;"></span>
+											</span>
 										</span>
 										<div class="text_alert" style="display: none;">
 											<p>8자 이상의 대·소문자, 숫자, 특수문자의 조합을 사용하세요</p>
@@ -83,14 +77,13 @@
 											재확인</label> <span class="red_bullet">필수 항목</span>
 									</dt>
 									<dd>
-										<span class="text_box">
-											<!-- warning : 입력 사항에 문제 있음 --> <input type="password"
-											id="inputInfoPasswordRe" class="input_text valid mustValid"
-											name="userPassConfirm"> <span class="help_text">비밀번호를
-												한번 더 입력해주세요.</span> <span class="icon_noti"> <span
-												class="icon_confirmed" style="display: none;"></span> <span
-												class="icon_alert" style="display: none;"></span>
-										</span>
+										<span class="text_box"><!-- warning : 입력 사항에 문제 있음 -->
+											<input type="password" id="inputInfoPasswordRe" class="input_text valid mustValid" name="userPassConfirm">
+											<span class="help_text">비밀번호를 한번 더 입력해주세요.</span>
+											<span class="icon_noti">
+												<span class="icon_confirmed" style="display: none;"></span>
+												<span class="icon_alert" style="display: none;"></span>
+											</span>
 										</span>
 										<div class="text_alert" style="display: none;">
 											<p>비밀번호와 동일하게 입력하세요</p>
@@ -101,17 +94,17 @@
 							<div class="box_info_write">
 								<dl class="write_input">
 									<dt class="info_name">
-										<label class="title" for="inputInfoName">이름</label> <span
-											class="red_bullet">필수 항목</span>
+										<label class="title" for="inputInfoName">이름</label>
+										<span class="red_bullet">필수 항목</span>
 									</dt>
 									<dd>
-										<span class="text_box"> <input type="text"
-											id="inputInfoName" class="input_text valid mustValid"
-											name="userName"> <span class="help_text">이름을
-												적어주세요.</span>
-										</span> <span class="icon_noti"> <span class="icon_confirmed"
-											style="display: none;"></span> <span class="icon_alert"
-											style="display: none;"></span>
+										<span class="text_box">
+											<input type="text" id="inputInfoName" class="input_text valid mustValid" name="userName">
+											<span class="help_text">이름을 적어주세요.</span>
+										</span>
+										<span class="icon_noti">
+											<span class="icon_confirmed" style="display: none;"></span>
+											<span class="icon_alert" style="display: none;"></span>
 										</span>
 										<div class="text_alert" style="display: none;">
 											<p>한글 1~16자, 영문 대·소문자 2~30자 가능합니다</p>
@@ -140,13 +133,13 @@
 														<option>${month}</option>
 													</c:forEach>
 											</select>
-											</span> <span class="select_day"> <select
-												class="valid mustValid" id="inputInfoBirthDay"
-												name="birthDate">
-													<option selected>일</option>
-													<c:forEach var="day" begin="1" end="30" step="1">
-														<option>${day}</option>
-													</c:forEach>
+											</span>
+											<span class="select_day">
+											<select class="valid mustValid" id="inputInfoBirthDay" name="birthDate">
+												<option selected>일</option>
+												<c:forEach var="day" begin="1" end="30" step="1">
+													<option>${day}</option>
+												</c:forEach>
 											</select>
 											</span>
 										</div>
@@ -159,33 +152,34 @@
 									</dt>
 									<dd>
 										<div class="check_gender" id="gender">
+											<span> <!-- selected : 체크됨 -->
+											<input type="radio" name="inputInfoGender" id="inputInfoGenderWomen" value="female">
+											<label for="inputInfoGenderWomen">
+											<span class="icon"><b></b></span>여자</label></span>
 											<span>
-												<!-- selected : 체크됨 --> <input type="radio"
-												name="inputInfoGender" id="inputInfoGenderWomen"
-												value="female"> <label for="inputInfoGenderWomen"><span
-													class="icon"><b></b></span>여자</label>
-											</span> <span> <input type="radio" name="inputInfoGender"
-												id="inputInfoGenderMen" value="male"> <label
-												for="inputInfoGenderMen"><span class="icon"><b></b></span>남자</label>
-											</span> <span class="selected"> <input type="radio"
-												name="inputInfoGender" id="inputInfoGenderNone"
-												value="unknown" checked> <label
-												for="inputInfoGenderNone"><span class="icon"><b></b></span>선택안함</label>
+												<input type="radio" name="inputInfoGender"id="inputInfoGenderMen" value="male">
+												<label for="inputInfoGenderMen">
+													<span class="icon"><b></b></span>남자
+												</label>
+											</span>
+											<span class="selected">
+												<input type="radio" name="inputInfoGender" id="inputInfoGenderNone" value="unknown" checked>
+												<label for="inputInfoGenderNone"><span class="icon"><b></b></span>선택안함</label>
 											</span>
 										</div>
 									</dd>
 									<dt class="info_email">
-										<label class="title" for="inputInfoEmail">이메일</label> <span
-											class="red_bullet">필수 항목</span>
+										<label class="title" for="inputInfoEmail">이메일</label>
+										<span class="red_bullet">필수 항목</span>
 									</dt>
 									<dd>
-										<span class="text_box"> <input type="text"
-											id="inputInfoEmail" class="input_text valid mustValid"
-											name="email"> <span class="help_text">이메일 주소를
-												입력하세요</span> <span class="icon_noti"> <span
-												class="icon_confirmed" style="display: none;"></span> <span
-												class="icon_alert" style="display: none;"></span>
-										</span>
+										<span class="text_box">
+											<input type="text" id="inputInfoEmail" class="input_text valid mustValid" name="email">
+											<span class="help_text">이메일 주소를 입력하세요</span>
+											<span class="icon_noti">
+												<span class="icon_confirmed" style="display: none;"></span>
+												<span class="icon_alert" style="display: none;"></span>
+											</span>
 										</span>
 										<div class="text_alert" style="display: none;">
 											<p>이메일 형식이 잘못되었습니다</p>
@@ -231,9 +225,10 @@
 				</li> -->
 									<li>
 										<div class="option_radio" id="emailRadio">
-											<input type="radio" name="radioCertOption"
-												id="certOptionEmail"> <label for="certOptionEmail"><span
-												class="icon"><b></b></span><strong>이메일</strong>로 인증하기</label>
+											<input type="radio" name="radioCertOption" id="certOptionEmail">
+											<label for="certOptionEmail">
+												<span class="icon"><b></b></span><strong>이메일</strong>로 인증하기
+											</label>
 										</div>
 										<div class="option_cont">
 											<div class="input_email on">
@@ -250,20 +245,18 @@
 											<div class="input_cert" id="emailConfirm"
 												style="display: none">
 												<!-- on : 활성화 -->
-												<span class="text_box"> <label
-													for="inputCertNumberEmail">인증번호</label> <input type="tel"
-													id="inputCertNumberEmail" maxlength="6">
+												<span class="text_box">
+													<label for="inputCertNumberEmail">인증번호</label>
+													<input type="tel" id="inputCertNumberEmail" maxlength="6">
 												</span>
 												<button type="button">확인</button>
 											</div>
-											<div class="text_alert" id="emailAuthTimeLimit"
-												style="display: none;">
+											<div class="text_alert" id="emailAuthTimeLimit" style="display: none;">
 												<p>
 													남은 시간 <span id="timer">05:00</span>
 												</p>
 											</div>
-											<div class="text_alert" id="emailAuthComplete"
-												style="display: none;">
+											<div class="text_alert" id="emailAuthComplete" style="display: none;">
 												<p>인증이 완료되었습니다.</p>
 											</div>
 										</div>
@@ -276,9 +269,8 @@
 						</div>
 					</form>
 					<form id="frmNext">
-						<input type="hidden" id="targetUrl" name="targetUrl"
-							value="http://zum.com/#!/home"> <input type="hidden"
-							id="zumpage" name="zumpage" value="false">
+						<input type="hidden" id="targetUrl" name="targetUrl" value="http://zum.com/#!/home">
+						<input type="hidden" id="zumpage" name="zumpage" value="false">
 					</form>
 
 					<div id="layer" style="display: none;">
@@ -312,9 +304,7 @@
 						</div>
 
 						<!-- 14세 미만 회원가입 시 나오는 레이어 - 에러 -->
-						<div id="layerError"
-							class="layer layer_under_14 layer_under_14_cert_error"
-							style="display: none;">
+						<div id="layerError" class="layer layer_under_14 layer_under_14_cert_error" style="display: none;">
 							<div class="layer_cont">
 								<p class="text">
 									입력하신 정보가 일치하지 않습니다.<br>다시 한번 정확하게 입력해 주십시오.

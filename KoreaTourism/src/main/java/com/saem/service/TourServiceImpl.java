@@ -24,15 +24,13 @@ public class TourServiceImpl implements TourService{
 	public List<TourVO> selectMain() throws Exception {
 		return dao.selectMain();
 	}
-
-	@Override
-	public List<TourVO> selectBusan() throws Exception {
-		return dao.selectBusan();
-	}
-
 	@Override
 	public List<TourVO> selectSeg(String seg_name) throws Exception {
 		return dao.selectSeg(seg_name);
 	}
-
+	
+	@Override
+	public TourVO selectOneSeg(String tour_name) throws Exception {
+		return dao.selectOneSeg(tour_name);
+	}
 }

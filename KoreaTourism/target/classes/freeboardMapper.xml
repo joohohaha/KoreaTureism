@@ -5,7 +5,7 @@
 
 <mapper namespace="com.saem.domain.freeboard">
 	<select id="select_list" resultType="com.saem.domain.FreeBoardVO">
-		SELECT * FROM the_sight_freeboard ORDER BY f_id DESC limit #{pageNum}, 5;
+		SELECT * FROM the_sight_freeboard ORDER BY f_id DESC limit #{pageNum}, 7;
 	</select>
 	
 	<select id="select" resultType="com.saem.domain.FreeBoardVO">

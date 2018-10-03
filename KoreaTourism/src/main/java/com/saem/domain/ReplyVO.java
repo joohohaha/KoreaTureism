@@ -3,10 +3,17 @@ package com.saem.domain;
 public class ReplyVO {
 	private int r_num;
 	private String m_userid;
-	private int b_num;
+	private String tour_name;
 	private String r_content;
 	private int r_used;
 	private String r_writedate;
+	
+	public String getTour_name() {
+		return tour_name;
+	}
+	public void setTour_name(String tour_name) {
+		this.tour_name = tour_name;
+	}
 	public int getR_num() {
 		return r_num;
 	}
@@ -18,12 +25,6 @@ public class ReplyVO {
 	}
 	public void setM_userid(String m_userid) {
 		this.m_userid = m_userid;
-	}
-	public int getB_num() {
-		return b_num;
-	}
-	public void setB_num(int b_num) {
-		this.b_num = b_num;
 	}
 	public String getR_content() {
 		return r_content;

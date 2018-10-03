@@ -90,8 +90,8 @@
 						</div>
 					</fieldset>
 				</table>
-				<a class="btn btn-outline-warning" href="fupdateForm?f_id=${fboard.f_id}">수정</a> 
-				<a class="btn btn-outline-danger" href="fdelete?f_id=${fboard.f_id}">삭제</a> 
+				<a class="btn btn-outline-warning" href="f_updateForm?f_id=${fboard.f_id}">수정</a> 
+				<a class="btn btn-outline-danger" href="f_delete?f_id=${fboard.f_id}">삭제</a> 
 				<a class="btn btn-outline-info" style="float:right" href="fboard">목록보기</a>
 			</div>
 		</div>

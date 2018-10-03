@@ -28,13 +28,12 @@ public class TourDAOImpl implements TourDAO{
 	}
 
 	@Override
-	public List<TourVO> selectBusan() throws Exception {
-		return session.selectList(namespace+".selectBusan");
-	}
-
-	@Override
 	public List<TourVO> selectSeg(String seg_name) throws Exception {
 		return session.selectList(namespace+".selectSeg", seg_name);
 	}
 	
+	@Override
+	public TourVO selectOneSeg(String tour_name) throws Exception {
+		return session.selectOne(namespace+".selectOneSeg", tour_name);
+	}
 }

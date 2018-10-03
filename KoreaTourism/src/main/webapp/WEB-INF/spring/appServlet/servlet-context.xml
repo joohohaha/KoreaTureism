@@ -28,5 +28,4 @@
 	<!-- Namespaces 에서 aop 추가 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
-	
 </beans:beans>

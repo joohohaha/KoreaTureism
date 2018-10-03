@@ -18,13 +18,20 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="resources/ps_design/js/bootstrap.js"></script>
+
+<!-- smart editor -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources
+/ps_design/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources
+/ps_design/editor/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
+
 <title>게시글 상세보기</title>
 </head>
 
 <body>
 
 	<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-		<a class="navbar-brand" href="#">한국관광공사</a>
+		<a class="navbar-brand" href="index">한국관광공사</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -53,8 +60,7 @@
 				<div class="col-lg-2"></div>
 
 				<div class="col-lg-8">
-					<form action="ps_update">
-						<table border="1">
+					<form action="ps_update" name="w_form">						
 							<fieldset class="form-group">
 
 								<legend class="border-bottom mb-4">게시글 상세보기</legend>
@@ -95,19 +101,56 @@
 										value="${sboard.b_readcount}" name="b_readcount" readonly>
 								</div>
 							</fieldset>
-						</table>
+						
 						<div class="form-group">
-							<button class="btn btn-outline-primary" type="submit"
+							<button class="btn btn-outline-primary" type="submit" onclick="submitContents(this)"
 								style="float: right">수정하기</button>
 						</div>
 					</form>
-
 				</div>
 			</div>
 			<!-- row(12분할) END -->
 		</div>
 		<!-- container END -->
 	</section>
+	
+	<!-- Naver Smart Editor 2 -->
+	<script>
+	  var oEditors = [];
+	  nhn.husky.EZCreator.createInIFrame({
+	      oAppRef: oEditors,
+	      elPlaceHolder: "textAreaContent",
+	      sSkinURI: "<%=request.getContextPath()%>/resources/ps_design/editor/SmartEditor2Skin.html",
+	      fCreator: "createSEditor2"
+	  });
+	   
+	  //‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
+	  function submitContents(elClickedObj) {
+	      // 에디터의 내용이 textarea에 적용된다.
+	      oEditors.getById["textAreaContent"].exec("UPDATE_CONTENTS_FIELD", [ ]);
+	   
+	      // 에디터의 내용에 대한 값 검증은 이곳에서
+	      // document.getElementById("textAreaContent").value를 이용해서 처리한다.
+	    
+	      try {
+	          elClickedObj.form.submit();
+	      } catch(e) {
+	       
+	      }
+	  }
+	   
+	  // textArea에 이미지 첨부
+	  function pasteHTML(filepath){
+	      var sHTML = '<img src="<%=request.getContextPath()%>/resources/ps_design/editor/upload/'+filepath+'">';
+	      oEditors.getById["textAreaContent"].exec("PASTE_HTML", [sHTML]);
+	  }
+	  
+	  // textArea에 영상 첨부
+	  function pasteHTML(filepath){
+	      var sHTML = '<iframe src="<%=request.getContextPath()%>/resources/ps_design/editor/stream/'+filepath+'">';
+	      oEditors.getById["textAreaContent"].exec("PASTE_HTML", [sHTML]);
+	  }
+	</script>
 
 </body>
 </html>

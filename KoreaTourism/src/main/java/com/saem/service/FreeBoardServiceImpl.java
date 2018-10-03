@@ -35,8 +35,8 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	}
 
 	@Override
-	public void insert(FreeBoardVO sboard) throws Exception {
-		dao.insert(sboard);
+	public void insert(FreeBoardVO fboard) throws Exception {
+		dao.insert(fboard);
 	}
 
 	@Override
@@ -45,8 +45,8 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	}
 
 	@Override
-	public void update(FreeBoardVO sboard) throws Exception {
-		dao.update(sboard);
+	public void update(FreeBoardVO fboard) throws Exception {
+		dao.update(fboard);
 	}
 
 }

@@ -11,12 +11,12 @@ public interface FreeBoardService {
 
 	public FreeBoardVO view(int f_id) throws Exception;
 
-	public void insert(FreeBoardVO sboard) throws Exception;
+	public void insert(FreeBoardVO fboard) throws Exception;
 
 	public void delete(int f_id) throws Exception;
 	
 	public FreeBoardVO select(int f_id) throws Exception;
 
-	public void update(FreeBoardVO sboard) throws Exception;
+	public void update(FreeBoardVO fboard) throws Exception;
 	
 }

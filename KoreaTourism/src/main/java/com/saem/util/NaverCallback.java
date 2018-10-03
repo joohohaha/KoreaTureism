@@ -24,7 +24,7 @@ public class NaverCallback {
 	    apiURL += "&code=" + code;
 	    apiURL += "&state=" + state;
 	    String access_token = "";
-	    String refresh_token = "";
+	    //String refresh_token = "";
 	    System.out.println("apiURL="+apiURL);
 	    try {
 		      URL url = new URL(apiURL);

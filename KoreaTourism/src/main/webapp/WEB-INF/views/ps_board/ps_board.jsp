@@ -27,7 +27,7 @@
 	
 	<!-- 헤드 -->
 	<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-		<a class="navbar-brand" href="#">한국관광공사</a>
+		<a class="navbar-brand" href="index">한국관광공사</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -76,7 +76,7 @@
 	<!-- ----------------------------------------------------------------------------- -->
 	
 	<!-- 게시판 -->
-	<section class="bg-light" id="board11">
+	<section class="bg-light">
 		<div class="container">
 
 			<!-- 1번 라인 -->
@@ -108,10 +108,10 @@
 				</table>
 				<c:set var="i" value="${i+pageNum}" />
 				<c:if test="${prev}">
-					<a class="btn btn-outline-info" href="board?pageNum=${i-7}">이전</a>
+					<a class="btn btn-outline-info" href="ps_board?pageNum=${i-7}">이전</a>
 				</c:if>
 				<c:if test="${next}">
-					<a class="btn btn-outline-primary" href="board?pageNum=${i+7}">다음</a>
+					<a class="btn btn-outline-primary" href="ps_board?pageNum=${i+7}">다음</a>
 				</c:if>
 					<a class="btn btn-outline-danger" style="float:right;" href="ps_writeForm">글쓰기</a>
 			</div>

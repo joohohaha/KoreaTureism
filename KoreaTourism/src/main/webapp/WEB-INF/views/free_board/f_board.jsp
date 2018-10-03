@@ -37,10 +37,10 @@
 						<c:forEach var="item" items="${list}">
 							<c:set var="row" value="${pageNum + list.size()}"/>
 							<tr>
-								<td>${row}</td>
+								<td>${item.f_id}</td>
 								<td>${item.m_userid}</td>
-								<td><a href="fview?f_id=${item.f_id}">${item.f_title}</a></td>
-								<td>${item.f_content}</td>
+								<td><a href="f_view?f_id=${item.f_id}">${item.f_title}</a></td>
+								<td><a href="f_view?f_id=${item.f_id}">${item.f_content}</a></td>
 								<td>${item.f_date}</td>
 								<td>${item.f_hit}</td>
 							</tr>
@@ -48,15 +48,15 @@
 					</table>
 					<c:set var="i" value="${0+pageNum}"/>
 					<c:if test="${prev}">
-						<a class="btn btn-outline-info" href="board?pageNum=${i-5}">이전</a> 
+						<a class="btn btn-outline-info" href="fboard?pageNum=${i-7}">이전</a> 
 					</c:if>
 					<c:if test="${next}">
-						<a class="btn btn-outline-primary" href="board?pageNum=${i+5}">다음</a>
+						<a class="btn btn-outline-primary" href="fboard?pageNum=${i+7}">다음</a>
 					</c:if>
 				</div>
 				<!-- 오른쪽친구 -->
 				<div class="board-s board-s-top">
-					<form action="finsert">
+					<form action="f_insert">
 						<table border="1">
 							<fieldset class="form-group">
 								<legend class="border-bottom mb-4">글을 씁시댜</legend>

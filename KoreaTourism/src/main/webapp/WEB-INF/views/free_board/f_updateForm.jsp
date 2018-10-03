@@ -16,7 +16,7 @@
 	<!-- Google jQuery file -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="resources/boardDesign/design/js/bootstrap.js"></script>
-	<title>게시글 상세보기</title>
+	<title>게시글 수정하기</title>
 </head>
 
 <body>
@@ -51,14 +51,13 @@
 				<div class="col-lg-2"></div>
 
 				<div class="col-lg-8">
-					<form action="fupdate">
+					<form action="f_update">
 						<table border="1">
 							<fieldset class="form-group">
 								<legend class="border-bottom mb-4">게시글 상세보기</legend>
 								<div class="form-group">
-									<label class="form-control-label">게시글 번호</label> <input
-										class="form-control form-control-lg" type="text"
-										value="${fboard.f_id}" name="bid" readonly>
+									<label class="form-control-label">게시글 번호</label>
+									<input class="form-control form-control-lg" type="text" value="${fboard.f_id}" name="bid" readonly>
 								</div>
 								<div class="form-group">
 									<label class="form-control-label">닉네임</label> <input
@@ -66,19 +65,17 @@
 										value="${fboard.m_userid}" name="bname" readonly>
 								</div>
 								<div class="form-group">
-									<label class="form-control-label">게시글 제목</label> <input
-										class="form-control form-control-lg" type="text"
-										value="${fboard.f_title}" name="btitle" required autofocus>
+									<label class="form-control-label">게시글 제목</label>
+									<input class="form-control form-control-lg" type="text" value="${fboard.f_title}" name="btitle" required autofocus>
 								</div>
 
 								<div class="form-group">
 									<label class="form-control-label"></label>
-									<textarea id="textAreaContent" name="bcontent" rows="10"
-										cols="80" style="width: 100%">${fboard.f_content}</textarea>
+									<textarea id="textAreaContent" name="bcontent" rows="10" cols="80" style="width: 100%">${fboard.f_content}</textarea>
 								</div>
 								<div class="form-group">
-									<label class="form-control-label"></label>작성일자<input
-										class="form-control form-control-lg" type="text"
+									<label class="form-control-label"></label>작성일자
+									<input class="form-control form-control-lg" type="text"
 										value="${fboard.f_date}" name="bdate" readonly>
 								</div>
 								<div class="form-group">

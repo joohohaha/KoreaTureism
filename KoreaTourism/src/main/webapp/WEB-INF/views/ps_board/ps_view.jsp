@@ -24,7 +24,7 @@
 <body>
 
 	<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-		<a class="navbar-brand" href="#">한국관광공사</a>
+		<a class="navbar-brand" href="index">한국관광공사</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -58,11 +58,11 @@
 					<fieldset class="form-group">
 
 						<legend class="border-bottom mb-4">게시글 상세보기</legend>
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label class="form-control-label">게시글 번호</label> <input
 								class="form-control form-control-lg" type="text"
 								value="${sboard.b_num}" name="b_num" readonly>
-						</div>
+						</div> --%>
 						<div class="form-group">
 							<label class="form-control-label">아이디</label> <input
 								class="form-control form-control-lg" type="text"
@@ -72,14 +72,19 @@
 							<label class="form-control-label">글 제목</label> <input
 								class="form-control form-control-lg" type="text"
 								value="${sboard.b_title}" name="b_title" readonly>
+						</div>						
+						<div class="form-group">
+							<label class="form-control-label">글 제목</label> <input
+								class="form-control form-control-lg" type="text"
+								value="${sboard.b_title}" name="b_title" readonly>
 						</div>
 
-						<div class="form-group">
-							<label class="form-control-label"></label>
-							<textarea id="textAreaContent" name="bcontent" rows="10"
-								cols="80" style="width: 100%" readonly>${sboard.b_content}</textarea>
+						<div class="form-group">	
+						<label class="form-control-label">글 내용</label><br>							
+						${sboard.b_content}
 						</div>
-						<div class="form-group">
+						
+						<%-- <div class="form-group">
 							<label class="form-control-label"></label>작성일<input
 								class="form-control form-control-lg" type="text"
 								value="${sboard.b_writedate}" name="b_writedate" readonly>
@@ -88,9 +93,9 @@
 							<label class="form-control-label"></label>수정일<input
 								class="form-control form-control-lg" type="text"
 								value="${sboard.b_updatedate}" name="b_updatedate" readonly>
-						</div>
+						</div> --%>
 						<div class="form-group">
-							<label class="form-control-label"></label>조회수<input
+							<label class="form-control-label">조회수</label><input
 								class="form-control form-control-lg" type="text"
 								value="${sboard.b_readcount}" name="b_readcount" readonly>
 						</div>

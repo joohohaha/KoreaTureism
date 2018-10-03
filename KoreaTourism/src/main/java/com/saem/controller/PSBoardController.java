@@ -31,7 +31,7 @@ public class PSBoardController {
 			prev = false;
 		}
 		
-		if (service.select_list(pageNum + 5).size() == 0) {
+		if (service.select_list(pageNum + 7).size() == 0) {
 			next = false;
 		}
 
@@ -54,7 +54,7 @@ public class PSBoardController {
 	public String delete(@RequestParam("b_num") int b_num) throws Exception {
 		
 		service.delete(b_num);
-		return "redirect:board";
+		return "redirect:ps_board";
 	}
 
 	// select
