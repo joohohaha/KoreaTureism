@@ -23,7 +23,14 @@ public class TourVO {
 	private String rec_update;
 	private String div_seg_area;
 	private String div_seg_name;
+	private String div_area_count;
 	
+	public String getDiv_area_count() {
+		return div_area_count;
+	}
+	public void setDiv_area_count(String div_area_count) {
+		this.div_area_count = div_area_count;
+	}
 	public String getTour_name() {
 		return tour_name;
 	}
@@ -156,12 +163,5 @@ public class TourVO {
 	public void setDiv_seg_name(String div_seg_name) {
 		this.div_seg_name = div_seg_name;
 	}
-	public int getDiv_area_count() {
-		return div_area_count;
-	}
-	public void setDiv_area_count(int div_area_count) {
-		this.div_area_count = div_area_count;
-	}
-	private int div_area_count;
 	
 }

@@ -33,4 +33,5 @@ public class TourServiceImpl implements TourService{
 	public TourVO selectOneSeg(String tour_name) throws Exception {
 		return dao.selectOneSeg(tour_name);
 	}
+	
 }

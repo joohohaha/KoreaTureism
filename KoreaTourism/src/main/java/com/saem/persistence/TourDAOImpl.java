@@ -36,4 +36,9 @@ public class TourDAOImpl implements TourDAO{
 	public TourVO selectOneSeg(String tour_name) throws Exception {
 		return session.selectOne(namespace+".selectOneSeg", tour_name);
 	}
+	
+	@Override
+	public void update_count(TourVO tvo) throws Exception {
+		session.update(namespace+".update_count", tvo);
+	}
 }

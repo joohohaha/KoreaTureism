@@ -8,16 +8,16 @@
 		SELECT * FROM the_sight_reply WHERE tour_name = #{tour_name}
 	</select>
 	
-	<insert id="insert">
-      	INSERT INTO the_sight_reply(m_userid, tour_name, r_content) VALUES(#{m_userid}, #{tour_name}, #{r_content})
-   	</insert>
-   	
-	<select id="select_max" resultType="com.saem.domain.ReplyVO">
-		SELECT MAX(r_num) as r_num FROM the_sight_reply WHERE tour_name = #{tour_name}
+	<select id="select_count" resultType="com.saem.domain.TourVO">
+		SELECT count(r_num) as div_area_count FROM the_sight_reply WHERE tour_name = #{tour_name}
 	</select>
 	
-	<delete id="delete">
-		DELETE FROM the_sight_freeboard WHERE f_id = #{f_id}
+	<insert id="insert_reply">
+      	INSERT INTO the_sight_reply(m_userid, tour_name, r_content) VALUES(#{m_userid}, #{tour_name}, #{r_content})
+   	</insert>
+	
+	<delete id="delete_reply">
+		DELETE FROM the_sight_reply WHERE r_num = #{r_num} and tour_name = #{tour_name}
 	</delete>
 	
 	<update id="update">
@@ -25,7 +25,7 @@
 	</update>
 	
 	 <update id="uphit">
-	 	UPDATE the_sight_freeboard SET f_hit = f_hit + 1 WHERE f_id = #{f_id}
+	 	UPDATE the_sight_freeboard SET f_hit = f_hit + 1 WHERE f_id = #{f_id} 
      </update>
 	
 </mapper>

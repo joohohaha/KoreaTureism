@@ -19,4 +19,8 @@
 	<select id="selectAll" resultType="com.saem.domain.TourVO">
 		SELECT * FROM the_sight_tourdata
 	</select>
+	
+	<update id="update_count">
+		UPDATE the_sight_tourdata SET div_area_count = #{div_area_count} WHERE tour_name = #{tour_name}
+	</update>
 </mapper>

@@ -9,4 +9,5 @@ public interface TourDAO {
 	public List<TourVO> selectMain() throws Exception;
 	public List<TourVO> selectSeg(String seg_name) throws Exception;
 	public TourVO selectOneSeg(String tour_name) throws Exception;
+	public void update_count(TourVO tvo) throws Exception;
 }

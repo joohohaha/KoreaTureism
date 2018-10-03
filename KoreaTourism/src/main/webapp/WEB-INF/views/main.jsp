@@ -77,10 +77,8 @@
 	    
 	<!-- ------------------------------------------------------------------------------------------------------------------------ -->
 	
-        <!-- 지역 이미지 -->
+        <!-- 인기 지역 -->
         <div class="row">
-          <!-- 1번째 줄-->
-          
           <c:forEach var="item" items="${mainlist}" varStatus="i">
           <div class="col-md-4 col-sm-6 portfolio-item">
             <a class="portfolio-link" data-toggle="modal" href="#hotlocal${i.count}" type="submit">
@@ -351,195 +349,217 @@
     <jsp:include page="hotLocal.jsp"/>
     
 	<!-- ============================================================= -->
-	<script>// -- 지도 스크립트
-		//---------- 페이지 시작부터 불러오기로 맵을 만든다. markers는 marker를 넣기위한 배열틀이다.
-	    var map = new naver.maps.Map("map", {
-	        zoom: 2,
-	        center: new naver.maps.LatLng(36.490692,128.0897413),
-	        zoomControl: true,
-	        zoomControlOptions: {
-	            position: naver.maps.Position.TOP_LEFT,
-	            style: naver.maps.ZoomControlStyle.SMALL
-	        }
-	    }),markers = [];
-		
-	    //-----------------------클러스터 마킹이미지 적용시키는 변수 작성 -----------
-		var htmlMarker1 = {
-		        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-1.png);background-size:contain;"></div>',
-		        size: N.Size(40, 40),
-		        anchor: N.Point(20, 20)
-		    },
-		    htmlMarker2 = {
-		        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-2.png);background-size:contain;"></div>',
-		        size: N.Size(40, 40),
-		        anchor: N.Point(20, 20)
-		    },
-		    htmlMarker3 = {
-		        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-3.png);background-size:contain;"></div>',
-		        size: N.Size(40, 40),
-		        anchor: N.Point(20, 20)
-		    },
-		    htmlMarker4 = {
-		        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-4.png);background-size:contain;"></div>',
-		        size: N.Size(40, 40),
-		        anchor: N.Point(20, 20)
-		    },
-		    htmlMarker5 = {
-		        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-5.png);background-size:contain;"></div>',
-		        size: N.Size(40, 40),
-		        anchor: N.Point(20, 20)
-		    };
-		//------------------------v3방식 마커 클러스터 방식--------
-		document.getElementById("map").onload = onLoad();
-		//------------------------클러스터 기법 foreach사용
-		function onLoad() {
-		    <c:forEach var="item" items="${selectAll}" varStatus="val">
-		    	<c:set var="i" value="${val.index}"/>
-		        var marker${i} = new naver.maps.Marker({
-		            position: new naver.maps.LatLng(${item.location_x}, ${item.location_y})
-		        });
-	  			// 마크 클릭시 인포윈도우 오픈
-				var infowindow${i} = new naver.maps.InfoWindow({
-					content: '${item.tour_name}'
-				});
-	  			
-				markers.push(marker${i});
-				
-				naver.maps.Event.addListener(marker${i}, "click", function(e) {
-					if (infowindow${i}.getMap()) {
-					  infowindow${i}.close();
-					} else {
-					  infowindow${i}.open(map, marker${i});
-					  window.setTimeout(function () { infowindow${i}.close(); }, 2000);//2초뒤 정보 사라짐
-					}
-				});
-		    </c:forEach>
-	  		
-		    var markerClustering = new MarkerClustering({
-		        minClusterSize: 2,
-		        maxZoom: 8,
-		        map: map,
-		        markers: markers,
-		        disableClickZoom: false,
-		        gridSize: 120,
-		        icons: [htmlMarker1, htmlMarker2, htmlMarker3, htmlMarker4, htmlMarker5],
-		        indexGenerator: [10, 100, 200, 500, 1000],
-		        stylingFunction: function(clusterMarker, count) {
-		        	$(clusterMarker.getElement()).find('div:first-child').text(count); //$() :: jQuery 문법
+		<script>// -- 지도 스크립트
+			//---------- 페이지 시작부터 불러오기로 맵을 만든다. markers는 marker를 넣기위한 배열틀이다.
+		    var map = new naver.maps.Map("map", {
+		        zoom: 2,
+		        center: new naver.maps.LatLng(36.490692,128.0897413),
+		        zoomControl: true,
+		        zoomControlOptions: {
+		            position: naver.maps.Position.TOP_LEFT,
+		            style: naver.maps.ZoomControlStyle.SMALL
 		        }
-		    });
-		}// endof onLoad();
-	</script><!-- 지도 스크립트 end -->
-	
-	<script> // Modal, moving, innerHTML(addDiv), map
+		    }),markers = [];
 			
+	   	 	//-----------------------클러스터 마킹이미지 적용시키는 변수 작성 -----------
+			var htmlMarker1 = {
+			        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-1.png);background-size:contain;"></div>',
+			        size: N.Size(40, 40),
+			        anchor: N.Point(20, 20)
+			    },
+			    htmlMarker2 = {
+			        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-2.png);background-size:contain;"></div>',
+			        size: N.Size(40, 40),
+			        anchor: N.Point(20, 20)
+			    },
+			    htmlMarker3 = {
+			        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-3.png);background-size:contain;"></div>',
+			        size: N.Size(40, 40),
+			        anchor: N.Point(20, 20)
+			    },
+			    htmlMarker4 = {
+			        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-4.png);background-size:contain;"></div>',
+			        size: N.Size(40, 40),
+			        anchor: N.Point(20, 20)
+			    },
+			    htmlMarker5 = {
+			        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-5.png);background-size:contain;"></div>',
+			        size: N.Size(40, 40),
+			        anchor: N.Point(20, 20)
+			    };
+			function onLoad() {
+			    <c:forEach var="item" items="${selectAll}" varStatus="val">
+			    	<c:set var="i" value="${val.index}"/>
+			        var marker${i} = new naver.maps.Marker({
+			            position: new naver.maps.LatLng(${item.location_x}, ${item.location_y})
+			        });
+		  			// 마크 클릭시 인포윈도우 오픈
+					var infowindow${i} = new naver.maps.InfoWindow({
+						content: '${item.tour_name}'
+					});
+		  			
+					markers.push(marker${i});
+					
+					naver.maps.Event.addListener(marker${i}, "click", function(e) {
+						if (infowindow${i}.getMap()) {
+						  infowindow${i}.close();
+						} else {
+						  infowindow${i}.open(map, marker${i});
+						  window.setTimeout(function () { infowindow${i}.close(); }, 2000);//2초뒤 정보 사라짐
+						}
+					});
+			    </c:forEach>
+		  		
+			    var markerClustering = new MarkerClustering({
+			        minClusterSize: 2,
+			        maxZoom: 8,
+			        map: map,
+			        markers: markers,
+			        disableClickZoom: false,
+			        gridSize: 120,
+			        icons: [htmlMarker1, htmlMarker2, htmlMarker3, htmlMarker4, htmlMarker5],
+			        indexGenerator: [10, 100, 200, 500, 1000],
+			        stylingFunction: function(clusterMarker, count) {
+			        	$(clusterMarker.getElement()).find('div:first-child').text(count); //$() :: jQuery 문법
+			        }
+			    });
+			}// endof onLoad();
+		</script><!-- 지도 스크립트 end -->
+	
+		<script> // Modal, moving, innerHTML(addDiv), map
+		
 			// 필요한 정보 불러오기
-          	function moving(local) {
+         	function moving(local) {
 				//페이지 비우기
 				$('#localData').empty();
 				
 				// page 만드는 ajax
-          		$.ajax({
-        			type : "POST",
-        			url : "AjaxData",
-        			dataType : "text",
-        			contentType : "application/text; charset=UTF-8",
-        			data : local,
-        			success : function(data){
-        				var seg_Data = JSON.parse(data);
-        				console.log(seg_Data);
-        				for(var i=0; i<seg_Data.length;i++){
-        					callDiv(seg_Data[i].tour_name, seg_Data[i].div_seg_area);
-        				}
-                  		document.getElementById('local_name').textContent = local;
-        				$('#myModal').modal();
-        			},
-        			error : function(jqXHR, textStatus, errorThrown){
-        				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-        			}		
-        		});
+         		$.ajax({
+	       			type : "POST",
+	       			url : "seg_Data",
+	       			dataType : "text",
+	       			contentType : "application/text; charset=UTF-8",
+	       			data : local,
+	       			success : function(data){
+	       				var seg_Data = JSON.parse(data);
+	       				console.log(seg_Data);
+	       				for(var i=0; i<seg_Data.length;i++){
+	       					callDiv(seg_Data[i].tour_name, seg_Data[i].div_seg_area);
+	       				}
+                 		document.getElementById('local_name').textContent = local;
+	       				$('#myModal').modal();
+	       			},
+	       			error : function(jqXHR, textStatus, errorThrown){
+	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
+	       			}		
+	       		});
 			}
-	
-          	// 받은정보로 페이지 만들기
-          	function callDiv(tour_name, div_seg_area){
+
+         	// 받은정보로 페이지 만들기
+         	function callDiv(tour_name, div_seg_area){
 	      		// 첫번째 모달 페이지
-          		var newDiv = document.createElement('div');
+	         	var newDiv = document.createElement('div');
 	      		newDiv.className = 'col-md-4 col-sm-6 portfolio-item';
 	      		newDiv.innerHTML = "<a class=\"portfolio-link\" onclick=\"call_tour_data('"+ tour_name + "')\">"+
-      			"<img class='img-fluid' src='resources/design/img/portfolio/01-thumbnail.jpg'></a>"+
-      			"<div class='portfolio-caption'>"+
-      				"<h4>"+tour_name+"</h4>"+
-      				"<p class='text-muted'>"+div_seg_area+"</p>"+
-      			"</div>";
-      			
+	     			"<img class='img-fluid' src='resources/design/img/portfolio/01-thumbnail.jpg'></a>"+
+	     			"<div class='portfolio-caption'>"+
+	     				"<h4>"+tour_name+"</h4>"+
+	     				"<p class='text-muted'>"+div_seg_area+"</p>"+
+	     			"</div>";
+	     			
 	      		document.getElementById('localData').prepend(newDiv);
-      			
+	     			
 	      	}
-          	
-          	function call_tour_data(tour_name) {
-          		// 초기화 시키기
+         	
+         	function call_tour_data(tour_name) {
+         		// 초기화 시키기
 				$('#tour_data').empty();
-				$('#reply').empty();
 				
 				// 관광지 정보 가져오기
 				$.ajax({
-        			type : "POST",
-        			url : "tour_data",
-        			dataType : "text",
-        			contentType : "application/text; charset=UTF-8",
-        			data : tour_name,
-        			success : function(data){
-        				console.log("Data: " + data);
-        				var tData = JSON.parse(data);
-        				tour_data(tData.tour_info, tData.tour_com_tel, tData.tour_name, tData.div_seg_area, tData.location_x, tData.location_y, tData.st_date, tData.tour_com_name, tData.addr_street, tData.addr_location);
-        				$('#seg_Data').modal();
-        			},
-        			error : function(jqXHR, textStatus, errorThrown){
-        				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-        			}		
-        		});
-				
-				// 덧글 정보 가져오기
+	       			type : "POST",
+	       			url : "tour_data",
+	       			dataType : "text",
+	       			contentType : "application/text; charset=UTF-8",
+	       			data : tour_name,
+	       			success : function(data){
+	       				console.log("Data: " + data);
+	       				var tData = JSON.parse(data);
+	       				tour_data(tData.tour_info, tData.tour_com_tel, tData.tour_name, tData.div_seg_area, tData.location_x, tData.location_y, tData.st_date, tData.tour_com_name, tData.addr_street, tData.addr_location);
+	       				
+	       				call_tour_reply(tour_name);
+	       				
+	       				$('#seg_Data').modal();
+	       			},
+	       			error : function(jqXHR, textStatus, errorThrown){
+	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
+	       			}		
+	       		});
+         	}
+         	
+         	function call_tour_reply(tour_name) {
+         		// 덧글 초기화
+				$('#reply').empty();
+	         		// 덧글 정보 가져오기
 				$.ajax({
-        			type : "POST",
-        			url : "tour_reply",
-        			dataType : "text",
-        			contentType : "application/text;charset=utf-8",
-        			data : tour_name,
-        			success : function(data){
-        				var result = JSON.parse(data);
-        				console.log("reply : " + result);
-        				for(var i=0; i<result.length;i++){
-        					applyReply(seq, result[i].r_num, result[i].tour_name, result[i].m_userid, result[i].r_content);
-        				}
-        			},
-        			error : function(jqXHR, textStatus, errorThrown){
-        				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-        			}
-        		});
-          	}
-          	
-          	function tour_data(tour_info, tour_com_tel, tour_name, div_seg_area, location_x, location_y, st_date, tour_com_name, addr_street, addr_location) {
+	       			type : "POST",
+	       			url : "tour_reply",
+	       			dataType : "text",
+	       			contentType : "application/text;charset=utf-8",
+	       			data : tour_name,
+	       			success : function(data){
+	       				var result = JSON.parse(data);
+	       				console.log("reply : " + result);
+	       				for(var i=0; i<result.length;i++){
+	       					applyReply(result[i].r_num, result[i].tour_name, result[i].m_userid, result[i].r_content);
+	       				}
+	       			},
+	       			error : function(jqXHR, textStatus, errorThrown){
+	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
+	       			}
+	       		});
+			}
+         	
+        	// 관광지 소개페이지 댓글 최신화
+			function applyReply(r_num, tour_name, m_userid, r_content) {  //append 
+			    var replyDiv = document.createElement("div");
+			    var id = '${SessionNaver}';
+				if(id == '')id = '${SessionUser}';
+				
+				var img_tag = "";
+				if(id == m_userid){ // 본인 글 일 때 지울 수 있게 만들기
+					img_tag = "<a onclick=\"delbtn(" + r_num + ",'" + tour_name + "')\"><img class=\"d-flex mr-3 rounded-circle\" src=\"resources/img/clear.png\"></a>";	
+				} else {			// 남의 글 일 때
+					img_tag = "<img class='d-flex mr-3 rounded-circle' src='resources/img/reply.png'>";
+				}
+				
+				replyDiv.className = 'media mb-4';
+				replyDiv.innerHTML = "<div class='media mb-4'>"+img_tag+"<div class='media-body'><h5 class='mt-0'>" + m_userid + "</h5>" + r_content + "</div></div>";
+			    
+			    document.getElementById('reply').prepend(replyDiv); //appendChild(newDIv); 
+		  	}
+        
+         	function tour_data(tour_info, tour_com_tel, tour_name, div_seg_area, location_x, location_y, st_date, tour_com_name, addr_street, addr_location) {
 				var replybtn = '', addr = '';
-    			
-    			//세션 유효성 검사
-    			<c:choose>
+   			
+	   			// 세션 유효성 검사
+	   			<c:choose>
 					<c:when test='${empty SessionNaver and empty SessionUser}'>
-						replybtn = "<input type='button' class='btn btn-primary' onclick='alert('로그인 후 이용가능합니다.')' value='submit'>";
+						replybtn = "<input type='button' class='btn btn-primary' onclick='no_login()' value='submit'>";
 					</c:when>
 					<c:otherwise>
-						replybtn = "<input type='button' class='btn btn-primary' onclick='sendReply('"+tour_name+"')' value='submit'>";
+						replybtn = "<input type=\"button\" class=\"btn btn-primary\" onclick=\"sendReply('"+tour_name+"')\" value=\"submit\">";
 					</c:otherwise>
 				</c:choose>
-				
-				//주소 유효성 검사
-      			if(addr_street == ''){
-      				addr = "<p class='item-intro text-muted'>" + addr_street + "</p>";
+					
+				// 주소 유효성 검사
+     			if(addr_street == ''){
+     				addr = "<p class='item-intro text-muted'>" + addr_street + "</p>";
 				} else {
 					addr = "<p class='item-intro text-muted'>" + addr_location + "</p>";
 				}
-      			
-				// 두번째 모달 페이지
+		     			
+				// 두번째 모달 페이지(관광지 소개 페이지)
 	      		var tourData = document.createElement('div');
 	      		tourData.className = "col-lg-8 mx-auto";
 	      		tourData.innerHTML = "" + 
@@ -581,34 +601,74 @@
 		            position: new naver.maps.LatLng(location_x,location_y),
 			    	map: map_local
 		        });
-			}
-          	
-         	// 댓글 뿌리기
-			function applyReply(r_num, tour_name, m_userid, r_content) {  //append 
-			    var replyDiv = document.createElement("div");
-			    var id = '${SessionNaver}';
-				if(id == '')id = '${SessionUser}';
 				
-				var img_tag = "";
-				if(id == m_userid){ // 본인 글 일 때
-					img_tag = "<a onclick='delbtn(" + r_num + "," + tour_name + ")'><img class='d-flex mr-3 rounded-circle' src='resources/img/clear.png'></a>";	
-				} else {			// 남의 글 일 때
-					img_tag = "<img class='d-flex mr-3 rounded-circle' src='resources/img/reply.png'>";
-				}
-				
-				replyDiv.className = 'media mb-4'; 
-				replyDiv.innerHTML = "<div class='media mb-4'>"+img_tag+"<div class='media-body'><h5 class='mt-0'>" + m_userid + "</h5>" + r_content + "</div></div>";
-			    
-			    document.getElementById('reply').prepend(replyDiv); //appendChild(newDIv); 
-		  	}
-          </script>
-          
-          <script>
-          	function delbtn(r_num, tour_name){
-				location.href="reboard_delete&tour_name=" + tour_name + "&renum=" + r_num;
+		    	
 			}
-			
-          </script>
-  </body>
-
+         	
+         	function no_login(){
+				alert('로그인 후 사용 가능합니다.');
+				var cont = document.getElementById("replyData"); 
+				cont.value = '';
+			}
+         	
+         </script>
+         
+         <script>
+         	function delbtn(r_num, tour_name){
+         		
+         		var data = {
+         			"r_num" : r_num,
+         			"tour_name" : tour_name
+         		};
+         		
+         		var result = JSON.stringify(data);
+         		
+         		$.ajax({
+	       			type : "POST",
+	       			url : "delete_reply",
+	       			dataType : "text",
+	       			contentType : "application/text;charset=utf-8",
+	       			data : result,
+	       			success : function(data){
+	       				if(data == 'success')call_tour_reply(tour_name);
+	       			},
+	       			error : function(jqXHR, textStatus, errorThrown){
+	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
+	       			}
+	       		});
+			}
+         	
+			function sendReply(tour_name){
+	         		var cont = document.getElementById("replyData");
+					var r_content = cont.value;
+					
+					var m_userid = '${SessionNaver}';
+					if(m_userid == '')m_userid = '${SessionUser}';
+					
+	         		var data = {
+	         			"tour_name" : tour_name,
+	         			"m_userid" : m_userid,
+	         			"r_content" : r_content
+	         		};
+	         		
+	         		var result = JSON.stringify(data);
+	         		
+	         		cont.value = '';
+	         		
+	         		$.ajax({
+	       			type : "POST",
+	       			url : "send_reply",
+	       			dataType : "text",
+	       			contentType : "application/text;charset=utf-8",
+	       			data : result,
+	       			success : function(data){
+	       				if(data == 'success')call_tour_reply(tour_name);
+	       			},
+	       			error : function(jqXHR, textStatus, errorThrown){
+	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
+	       			}
+				});
+			}
+		</script>
+	</body>
 </html>
