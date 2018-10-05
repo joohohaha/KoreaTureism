@@ -33,4 +33,14 @@ public class MemberDAOImpl implements MemberDAO{
 		session.insert(namespace+".naver_join", mvo);
 	}
 	
+	@Override
+	public void default_join(MemberVO mvo) throws Exception {
+		session.insert(namespace+".default_join",mvo);
+	}
+	
+	@Override
+	public MemberVO user_login(MemberVO mvo) throws Exception {
+		return session.selectOne(namespace+".user_login", mvo);
+	}
+	
 }

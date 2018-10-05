@@ -62,7 +62,7 @@
 								<legend class="border-bottom mb-4">글을 씁시댜</legend>
 								<div class="form-group">
 									<label class="form-control-label">닉네임</label>
-									<input class="form-control form-control-lg" type="text" name="m_userid" value="${sessionScope.userid}" readonly>
+									<input class="form-control form-control-lg" type="text" name="m_userid" value="${SessionNaver}${SessionUser}" readonly>
 								</div>
 								<div class="form-group">
 									<label class="form-control-label">글 제목</label> 
@@ -76,7 +76,7 @@
 							</fieldset>
 						</table>
 						<div class="form-group">
-							<button class="btn btn-outline-success" type="submit" style="float: right">글쓰기</button>
+							<button class="btn btn-outline-success" type="submit" style="float: right">글쓰기<	/button>
 						</div>
 					</form>
 				</div>

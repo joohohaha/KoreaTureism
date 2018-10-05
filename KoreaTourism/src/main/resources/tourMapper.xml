@@ -4,6 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.saem.domain.tour">
+
 	<select id="selectMain" resultType="com.saem.domain.TourVO">
 		SELECT * FROM the_sight_tourdata ORDER BY div_area_count DESC LIMIT 9
 	</select>
@@ -23,4 +24,5 @@
 	<update id="update_count">
 		UPDATE the_sight_tourdata SET div_area_count = #{div_area_count} WHERE tour_name = #{tour_name}
 	</update>
+	
 </mapper>

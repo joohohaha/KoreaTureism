@@ -27,18 +27,14 @@ public class PSBoardController {
 
 		boolean prev = true, next = true;
 
-		if (pageNum == 0) {
-			prev = false;
-		}
-		
-		if (service.select_list(pageNum + 7).size() == 0) {
-			next = false;
-		}
+		if (pageNum == 0)prev = false;
+		if (service.select_list(pageNum + 7).size() == 0)next = false;
 
 		model.addAttribute("list", service.select_list(pageNum));
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);
 		model.addAttribute("pageNum", pageNum);
+		
 		return "ps_board/ps_board";
 	}
 
@@ -52,7 +48,6 @@ public class PSBoardController {
 	// delete
 	@RequestMapping(value = "/ps_delete", method = RequestMethod.GET)
 	public String delete(@RequestParam("b_num") int b_num) throws Exception {
-		
 		service.delete(b_num);
 		return "redirect:ps_board";
 	}
@@ -61,15 +56,13 @@ public class PSBoardController {
 	@RequestMapping(value = "/ps_updateForm", method = RequestMethod.GET)
 	public String updateForm(Model model, @RequestParam("b_num") int b_num) throws Exception {
 		model.addAttribute("sboard", service.select(b_num));
-		
 		return "ps_board/ps_updateForm";
 	}
 
 	// update
 	@RequestMapping(value = "/ps_update", method = RequestMethod.GET)
 	public String update(PSBoardVO sboard) throws Exception {
-		service.update(sboard);
-		
+		service.update(sboard);		
 		return "redirect:ps_board";
 	}
 
@@ -82,7 +75,6 @@ public class PSBoardController {
 	// insert
 	@RequestMapping(value = "/ps_insert", method = RequestMethod.GET)
 	public String insert(PSBoardVO sboard) throws Exception {
-		
 		service.insert(sboard);
 		return "redirect:ps_board";
 	}

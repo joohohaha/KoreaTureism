@@ -9,12 +9,16 @@
 	</select>
 	
 	<select id="select_user" resultType="com.saem.domain.MemberVO">
-		SELECT count(*) as m_count FROM the_sight_member WHERE m_confirm = #{m_confirm} and m_userid = #{m_userid}
+		SELECT count(*) as m_count FROM the_sight_member WHERE m_confirm = #{m_confirm} and (m_userid = #{m_userid} or m_email = #{m_email})
 	</select>
 	
-	<delete id="delete">
-		DELETE FROM the_sight_member WHERE f_id = #{f_id}
-	</delete>
+	<select id="user_login" resultType="com.saem.domain.MemberVO">
+		SELECT *,IFNULL(m_userid,'---') FROM the_sight_member WHERE m_userid = #{m_userid} AND m_password = #{m_password}
+	</select>
+	
+	<update id="delete_user">
+		UPDATE the_sight_member SET m_used = 0, WHERE m_userid = #{m_userid}
+	</update>
 	
 	<update id="update">
 		UPDATE the_sight_member SET f_title = #{f_title}, f_content = #{f_content} WHERE f_id = #{f_id}
@@ -23,9 +27,8 @@
 	<insert id="naver_join">
       	INSERT INTO the_sight_member(m_userid, m_email, m_name, m_gender, m_birth, m_emailcheck, m_confirm) VALUES(#{m_userid}, #{m_email}, #{m_name}, #{m_gender}, #{m_birth}, true, #{m_confirm})
    	</insert>
-	
-	 <update id="uphit">
-	 	UPDATE the_sight_member SET f_hit = f_hit + 1 WHERE f_id = #{f_id}
-     </update>
-	
+   	
+   	<select id="default_join">
+   		INSERT INTO the_sight_member(m_userid, m_password, m_name, m_birth, m_gender, m_email, m_emailcheck, m_salt) VALUES(#{m_userid}, #{m_password}, #{m_name}, #{m_birth}, #{m_gender}, #{m_email},#{m_emailcheck}, #{m_salt})
+   	</select>
 </mapper>

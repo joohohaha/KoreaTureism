@@ -23,14 +23,22 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public MemberVO select_User(MemberVO mvo) throws Exception {
-		System.out.println("select_Service 호출");
 		return dao.select_User(mvo);
 	}
 	
+	@Override
+	public MemberVO user_login(MemberVO mvo) throws Exception {
+		return dao.user_login(mvo);
+	}
 	
 	@Override
 	public void naver_join(MemberVO mvo) throws Exception {
 		dao.naver_join(mvo);
+	}
+	
+	@Override
+	public void default_join(MemberVO mvo) throws Exception {
+		dao.default_join(mvo);
 	}
 	
 }

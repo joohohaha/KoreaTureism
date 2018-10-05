@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-	
+	<!-- find_id link -->
+	<link href="resources/memberDesign/css/member.css" rel="stylesheet" type="text/css">
 	
 	<script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=lN3APOAVWfk96iNDnU6F&submodules=geocoder"></script>
 	<script type="text/javascript" src="resources/mapCluster/src/MarkerClustering.js"></script>
@@ -27,10 +28,15 @@
     <jsp:include page="joinForm.jsp"/>
 	<!-- 메인 배경과 버튼 사이의 공간 -->
 	<div class="container top-section">
+	
 		<!-- 지도 입니다. 지도 스크립트 검색하면 됨 Ctrl+F -->
-		<div id="map"></div>
+		
+						<div id="map"></div>
+						
+		<!-- 지도 입니다. 지도 스크립트 검색하면 됨 Ctrl+F -->
+		
 		<!-- 오른쪽친구 -->
-		<div id="rightImg" class="carousel slide aaaa" data-ride="carousel" >
+		<div id="rightImg" class="carousel slide aaaa" data-ride="carousel">
 			  <ol class="carousel-indicators">
 			    <li data-target="#rightImg" data-slide-to="0" class="active"></li>
 			    <li data-target="#rightImg" data-slide-to="1"></li>
@@ -81,7 +87,7 @@
         <div class="row">
           <c:forEach var="item" items="${mainlist}" varStatus="i">
           <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#hotlocal${i.count}" type="submit">
+            <a class="portfolio-link" onclick="call_tour_data('${item.tour_name}')" role="button">
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content">
                   <i class="fa fa-plus fa-3x"></i>
@@ -346,10 +352,20 @@
     <!-- Portfolio Modals -->
     <!-- ============================================================= -->
     <jsp:include page="localInfo.jsp"/>
-    <jsp:include page="hotLocal.jsp"/>
-    
+    <jsp:include page="find_id.jsp" />
 	<!-- ============================================================= -->
-		<script>// -- 지도 스크립트
+	<script>
+		function join(){
+			$('#loginForm').modal('hide');
+			$('#joinForm').modal();
+		}
+		
+		function find_id(){
+			$('#loginForm').modal('hide');
+			$('#find_userid').modal();	
+		}
+	</script>
+		<script>//지도 스크립트
 			//---------- 페이지 시작부터 불러오기로 맵을 만든다. markers는 marker를 넣기위한 배열틀이다.
 		    var map = new naver.maps.Map("map", {
 		        zoom: 2,
@@ -361,7 +377,7 @@
 		        }
 		    }),markers = [];
 			
-	   	 	//-----------------------클러스터 마킹이미지 적용시키는 변수 작성 -----------
+		    //-----------------------클러스터 마킹이미지 적용시키는 변수 작성 -----------
 			var htmlMarker1 = {
 			        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(resources/mapCluster/img/cluster-marker-1.png);background-size:contain;"></div>',
 			        size: N.Size(40, 40),
@@ -387,6 +403,9 @@
 			        size: N.Size(40, 40),
 			        anchor: N.Point(20, 20)
 			    };
+			//------------------------v3방식 마커 클러스터 방식--------
+			document.getElementById("map").onload = onLoad();
+			//------------------------클러스터 기법 foreach사용
 			function onLoad() {
 			    <c:forEach var="item" items="${selectAll}" varStatus="val">
 			    	<c:set var="i" value="${val.index}"/>
@@ -423,6 +442,8 @@
 			        	$(clusterMarker.getElement()).find('div:first-child').text(count); //$() :: jQuery 문법
 			        }
 			    });
+			    
+			       
 			}// endof onLoad();
 		</script><!-- 지도 스크립트 end -->
 	
@@ -565,7 +586,7 @@
 	      		tourData.innerHTML = "" + 
 					"<div class='modal-body'>"+
 						"<h2 class='text-uppercase'>"+tour_name+"</h2>" + addr +
-						"<div id='map_local'></div>"+
+						"<div id='map_local' style='width: 500px; height: 500px; margin:0 auto;'></div>"+
 						"<p>"+tour_info+"</p>"+
 						"<ul class='list-inline'>"+
 							"<li>등록 일자 : "+st_date+"</li>"+
@@ -592,7 +613,6 @@
 	      		// 맵 선언
 				var map_local = new naver.maps.Map('map_local', {
 				    	center: new naver.maps.LatLng(location_x, location_y),
-				    	size: new naver.maps.Size(500, 500),
 				    	mapTypeId: naver.maps.MapTypeId.HYBRID,
 				        zoom: 8
 				});
@@ -639,23 +659,23 @@
 			}
          	
 			function sendReply(tour_name){
-	         		var cont = document.getElementById("replyData");
-					var r_content = cont.value;
-					
-					var m_userid = '${SessionNaver}';
-					if(m_userid == '')m_userid = '${SessionUser}';
-					
-	         		var data = {
-	         			"tour_name" : tour_name,
-	         			"m_userid" : m_userid,
-	         			"r_content" : r_content
-	         		};
-	         		
-	         		var result = JSON.stringify(data);
-	         		
-	         		cont.value = '';
-	         		
-	         		$.ajax({
+         		var cont = document.getElementById("replyData");
+				var r_content = cont.value;
+				
+				var m_userid = '${SessionNaver}';
+				if(m_userid == '')m_userid = '${SessionUser}';
+				
+         		var data = {
+         			"tour_name" : tour_name,
+         			"m_userid" : m_userid,
+         			"r_content" : r_content
+         		};
+         		
+         		var result = JSON.stringify(data);
+         		
+         		cont.value = '';
+         		
+         		$.ajax({
 	       			type : "POST",
 	       			url : "send_reply",
 	       			dataType : "text",

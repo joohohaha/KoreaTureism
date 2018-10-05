@@ -22,8 +22,8 @@
 <body id="layout_body">
 
 		<!-- this in the header -->
-	<jsp:include page="../include/header.jsp" />
-
+	<jsp:include page="../include/header.jsp"/>
+		<!-- end header -->
 	<div class="skip_navi">
 		<a href="#container">본문 바로 가기</a>
 	</div>
@@ -33,55 +33,48 @@
 		<jsp:include page="../include/profileHeader.jsp" />
 
 	<div id="container">
-		
-
-<div class="title">
-	<h2>비밀번호 변경
-		<span><em>l</em> 비밀번호는 개인정보 보호를 위해 최소 3개월마다 주기적으로 변경해 주세요.</span>
-	</h2>
-</div>
-
-	<input type="hidden" id="userId" value="">
-
-
-<input type="hidden" id="updateFrom" value="main">
-
-<form action="#" method="post" id="frmUpdatePass">
-<div class="contents">
-	<div class="content_wrap">
-		<h3><strong>비밀번호 변경</strong>을 위해 아래 정보를 정확히 입력해 주세요.</h3>
-		<dl class="info_basic clear_float">
-			
-				<dt><label for="userPass">현재 비밀번호</label></dt>
-				<dd>
-					<input type="password" id="userPass" name="userPass" class="type_02 valid" style="width:180px" maxlength="30">
-					<span for="userPass" class="error aye" generated="false" style="display: none;"><em><span class="blind">알림</span></em></span>
-				</dd>
-			
-			<dt><label for="userNewPass">새로운 비밀번호</label></dt>
-			<dd>
-				<input type="password" id="userNewPass" name="userNewPass" class="type_02 valid" style="width:180px" maxlength="30">
-				<span for="userNewPass" class="error rort" generated="false" style="display: none;"><em><span class="blind">알림</span></em>대,소문자,숫자,특수문자 3가지를 넣은 8자 이상 가능합니다.</span>
-			</dd>
-			<dt><label for="userNewPassConfirm">새로운 비밀번호 확인</label></dt>
-			<dd>
-				<input type="password" id="userNewPassConfirm" name="userNewPassConfirm" class="type_02 valid" style="width:180px" maxlength="30">
-				<span for="userNewPassConfirm" class="error rort" generated="false" style="display: none;"><em><span class="blind">알림</span></em>새 비밀번호를 한 번 더 입력해 주시기 바랍니다.</span>
-			</dd>
-		</dl>
-		<div class="btn">
-			<a href="#" id="btnUpdatePass"><img src="resources/memberDesign/images/btn_ok.gif?_LM=1499327256000" alt="확인"></a>
+		<div class="title">
+			<h2>비밀번호 변경
+				<span><em>l</em> 비밀번호는 개인정보 보호를 위해 최소 3개월마다 주기적으로 변경해 주세요.</span>
+			</h2>
 		</div>
-	</div>
-	<p class="guide guide_change">
-		<strong>안전한 비밀번호 사용 TIP</strong><br>
-		비밀번호는 꼭 주기적으로 변경하기!<br>
-		타 사이트와는 다른 아이디와 비밀번호를 사용하여 도용의 위험 낮추기!<br>
-		아이디, 주민등록번호, 전화번호등 개인정보와 관련된 비밀번호 사용하지 않기!
-	</p>
-</div>
-</form>
-
+		<input type="hidden" id="userId" value="">
+		<input type="hidden" id="updateFrom" value="main">
+		<form action="#" method="post" id="frmUpdatePass">
+		<div class="contents">
+			<div class="content_wrap">
+				<h3><strong>비밀번호 변경</strong>을 위해 아래 정보를 정확히 입력해 주세요.</h3>
+				<dl class="info_basic clear_float">
+					
+						<dt><label for="userPass">현재 비밀번호</label></dt>
+						<dd>
+							<input type="password" id="userPass" name="userPass" class="type_02 valid" style="width:180px" maxlength="30">
+							<span for="userPass" class="error aye" generated="false" style="display: none;"><em><span class="blind">알림</span></em></span>
+						</dd>
+					
+					<dt><label for="userNewPass">새로운 비밀번호</label></dt>
+					<dd>
+						<input type="password" id="userNewPass" name="userNewPass" class="type_02 valid" style="width:180px" maxlength="30">
+						<span for="userNewPass" class="error rort" generated="false" style="display: none;"><em><span class="blind">알림</span></em>대,소문자,숫자,특수문자 3가지를 넣은 8자 이상 가능합니다.</span>
+					</dd>
+					<dt><label for="userNewPassConfirm">새로운 비밀번호 확인</label></dt>
+					<dd>
+						<input type="password" id="userNewPassConfirm" name="userNewPassConfirm" class="type_02 valid" style="width:180px" maxlength="30">
+						<span for="userNewPassConfirm" class="error rort" generated="false" style="display: none;"><em><span class="blind">알림</span></em>새 비밀번호를 한 번 더 입력해 주시기 바랍니다.</span>
+					</dd>
+				</dl>
+				<div class="btn">
+					<a href="#" id="btnUpdatePass"><img src="resources/memberDesign/images/btn_ok.gif?_LM=1499327256000" alt="확인"></a>
+				</div>
+			</div>
+			<p class="guide guide_change">
+				<strong>안전한 비밀번호 사용 TIP</strong><br>
+				비밀번호는 꼭 주기적으로 변경하기!<br>
+				타 사이트와는 다른 아이디와 비밀번호를 사용하여 도용의 위험 낮추기!<br>
+				아이디, 주민등록번호, 전화번호등 개인정보와 관련된 비밀번호 사용하지 않기!
+			</p>
+		</div>
+		</form>
 	</div>
 <!-- 	<div id="footer">
 		

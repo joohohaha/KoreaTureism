@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a href="fboard" class="nav-link">${SessionNaver}자유 게시판 가자</a>
+              <a href="fboard" class="nav-link">자유 게시판 가자</a>
             </li>
             <li class="nav-item">
               <a href="ps_board" class="nav-link">후기 게시판 가자</a>

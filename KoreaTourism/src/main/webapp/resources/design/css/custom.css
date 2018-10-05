@@ -23,4 +23,11 @@
 	float:left;
 }
 
-
+/* 댓글 */
+#reply .media.mb-4 {
+    border-bottom: 1px solid #ddd;
+}
+#reply .media.mb-4 .mb-4 {
+    margin-bottom: 5px !important;
+    border: none;
+}

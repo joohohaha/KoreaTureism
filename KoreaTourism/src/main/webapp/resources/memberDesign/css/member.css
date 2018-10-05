@@ -87,7 +87,7 @@ body{line-height:1;font-family:'돋움',dotum,AppleGothic,sans-serif;color:#000;
 #header .header_menu > ul > li.on a{position:relative;background:#1169ee;color:#fff;}
 
 #container{width:inherit;margin:0 auto}
-#container .title{position:relative;padding-top:20px;height:38px;border-bottom:2px solid #0d0409;}
+#container .title{position:relative;padding-top:20px;height:38px;}
 #container .title h2{font-size:16px;height:20px;line-height:20px;letter-spacing:-1px;}
 #container .title h2 span{position:relative;top:-1px;display:inline-block;font-size:12px;color:#828896;}
 #container .title h2 span em{font-weight:normal;padding:0 5px;}
@@ -375,3 +375,34 @@ body{line-height:1;font-family:'돋움',dotum,AppleGothic,sans-serif;color:#000;
 #unblock .content_wrap .unblock_code_expired p{font-size:12px;line-height:17px;padding:39px 0 0}
 #unblock .content_wrap .btn{min-height:51px;padding:0 0 27px}
 #unblock .content_wrap .btn img{vertical-align:top;margin:0}
+
+/* 아이디 찾기 */
+#find_userid #container {
+	padding: 0px;
+}
+#find_userid .modal-content{
+	background-color: rgba(0,0,0,0);
+}
+#find_userid #container .contents{
+	width: auto;
+}
+#find_userid .box_outer {
+    padding: 0;
+}
+#find_userid .box_outer .box {
+    position: relative;
+    /* border: 1px solid #dddee0; */
+    width: 438px;
+    height: 427px;
+    margin: 0 auto;
+    /* box-shadow: 2px 3px 3px #ebebeb; */
+}
+#find_userid #container .contents .guide{
+	margin-bottom:0;
+}
+#find_userid #container:before {
+	background: #ffff;
+}
+#find_userid .box_outer .box .btn {
+    bottom: 25px;
+}

@@ -40,13 +40,12 @@
 								<dl class="write_input">
 									<dt class="info_id">
 										<label class="title" for="inputInfoID">아이디</label>
-										<span class="red_bullet">필수 항목</span>
 									</dt>
 									<dd>
 										<span class="text_box"><!-- on : 활성화 -->
 										<input type="text" id="inputInfoID" class="input_text valid mustValid" maxlength="12" name="userId">
-											<span class="help_text"></span>
-											<span class="icon_noti">6-12자의 영문 소문자와 숫자
+											<span class="help_text">6-12자의 영문 소문자와 숫자</span>
+											<span class="icon_noti">
 												<span class="icon_confirmed" style="display: none;"></span>
 												<span class="icon_alert" style="display: none;"></span>
 											</span>
@@ -57,7 +56,7 @@
 									</dd>
 									<dt class="info_pw">
 										<label class="title" for="inputInfoPassword">비밀번호</label>
-										<span class="red_bullet">필수 항목</span>
+										
 									</dt>
 									<dd>
 										<span class="text_box">
@@ -73,8 +72,7 @@
 										</div>
 									</dd>
 									<dt class="info_pw_r">
-										<label class="title" for="inputInfoPasswordRe">비밀번호
-											재확인</label> <span class="red_bullet">필수 항목</span>
+										<label class="title" for="inputInfoPasswordRe">비밀번호 재확인</label> 
 									</dt>
 									<dd>
 										<span class="text_box"><!-- warning : 입력 사항에 문제 있음 -->
@@ -95,7 +93,6 @@
 								<dl class="write_input">
 									<dt class="info_name">
 										<label class="title" for="inputInfoName">이름</label>
-										<span class="red_bullet">필수 항목</span>
 									</dt>
 									<dd>
 										<span class="text_box">
@@ -111,14 +108,13 @@
 										</div>
 									</dd>
 									<dt class="info_birth">
-										<label class="title" for="inputInfoBirthYear">생년월일</label> <span
-											class="red_bullet">필수 항목</span>
+										<label class="title" for="inputInfoBirthYear">생년월일</label>
 									</dt>
 									<dd>
 										<div class="select_birthdate">
 											<span class="select_year">
-												<!-- on : 활성화 --> <select class="valid"
-												id="inputInfoBirthYear" name="birthYear">
+												<!-- on : 활성화 -->
+												<select class="valid" id="inputInfoBirthYear" name="birthYear">
 													<option selected>년</option>
 													<c:set var="year" value="2018" />
 													<c:forEach begin="1900" end="2018">
@@ -153,24 +149,26 @@
 									<dd>
 										<div class="check_gender" id="gender">
 											<span> <!-- selected : 체크됨 -->
-											<input type="radio" name="inputInfoGender" id="inputInfoGenderWomen" value="female">
-											<label for="inputInfoGenderWomen">
-											<span class="icon"><b></b></span>여자</label></span>
+												<input type="radio" name="inputInfoGender" id="inputInfoGenderWomen" value="female">
+												<label for="inputInfoGenderWomen">
+													<span class="icon"><b></b></span>여자
+												</label>
+											</span>
 											<span>
-												<input type="radio" name="inputInfoGender"id="inputInfoGenderMen" value="male">
+												<input type="radio" name="inputInfoGender" id="inputInfoGenderMen" value="male">
 												<label for="inputInfoGenderMen">
 													<span class="icon"><b></b></span>남자
 												</label>
 											</span>
 											<span class="selected">
-												<input type="radio" name="inputInfoGender" id="inputInfoGenderNone" value="unknown" checked>
+												<input type="radio" name="inputInfoGender" id="inputInfoGenderNone" value="unknown">
 												<label for="inputInfoGenderNone"><span class="icon"><b></b></span>선택안함</label>
 											</span>
 										</div>
 									</dd>
 									<dt class="info_email">
 										<label class="title" for="inputInfoEmail">이메일</label>
-										<span class="red_bullet">필수 항목</span>
+										
 									</dt>
 									<dd>
 										<span class="text_box">
@@ -189,40 +187,6 @@
 							</div>
 							<div class="box_user_certification">
 								<ul class="cert_option">
-									<!-- <li>selected : 인증 방식 선택됨 , disable : 선택되지 않은 인증 방식
-					<div class="option_radio" id="phoneRadio">
-						<input type="radio" name="radioCertOption" id="certOptionPhone">
-						<label for="certOptionPhone"><span class="icon"><b></b></span><strong>휴대전화</strong> 번호로 인증하기</label>
-					</div>
-					<div class="option_cont">
-						<div class="input_phone">on : 활성화
-							<span class="text_box">
-									<select>
-										<option>+82</option>
-									</select>
-									<label for="inputPhone">휴대전화번호</label>
-									<input type="tel" id="inputPhone" maxlength="11" name="phone">
-								</span>
-							<button type="button">인증</button>
-						</div>
-						<div class="text_alert" style="display:block;">
-							<p>휴대전화번호 입력 후 인증 버튼을 눌러주세요.</p>
-						</div>
-						<div class="input_cert" id="phoneConfirm" style="display:none">on : 활성화
-							<span class="text_box">
-									<label for="inputCertNumberPhone">인증번호</label>
-									<input type="tel" id="inputCertNumberPhone" maxlength="6">
-								</span>
-							<button type="button">확인</button>
-						</div>
-						<div class="text_alert" id="phoneAuthTimeLimit" style="display:none;">
-							<p>남은 시간 <span id="phoneTimer">05:00</span></p>
-						</div>
-						<div class="text_alert" id="phoneAuthComplete" style="display:none;">
-							<p>인증이 완료되었습니다.</p>
-						</div>
-					</div>
-				</li> -->
 									<li>
 										<div class="option_radio" id="emailRadio">
 											<input type="radio" name="radioCertOption" id="certOptionEmail">
@@ -285,8 +249,8 @@
 									<strong>14세 미만</strong> 회원가입시<br>보호자 인증절차가 필요합니다.
 								</p>
 								<div class="btn_bottom">
-									<a href="javascript:;" class="btn_cert">인증 받기</a> <a
-										href="javascript:;" class="btn_cancel">취소 하기</a>
+									<a href="javascript:;" class="btn_cert">인증 받기</a>
+									<a href="javascript:;" class="btn_cancel">취소 하기</a>
 								</div>
 							</div>
 						</div>
@@ -310,24 +274,13 @@
 									입력하신 정보가 일치하지 않습니다.<br>다시 한번 정확하게 입력해 주십시오.
 								</p>
 								<div class="btn_bottom">
-									<a href="javascript:;" class="btn_cert">인증 받기</a> <a
-										href="javascript:;" class="btn_cancel">취소 하기</a>
+									<a href="javascript:;" class="btn_cert">인증 받기</a>
+									<a href="javascript:;" class="btn_cancel">취소 하기</a>
 								</div>
 							</div>
 						</div>
 					</div>
-
 				</div>
-				<!-- <div id="footer">
-		
-<ul class="footer_menu">
-	<li><a href="http://policy.zum.com/terms/">이용약관</a></li>
-	<li><a href="http://policy.zum.com/info"><strong>개인정보처리방침</strong></a></li>
-	<li><a href="http://www.zuminternet.com/" target="_blank"><strong>©ZUMinternet</strong></a></li>
-</ul>
-
-
-	</div> -->
 			</div>
 		</div>
 	</div>
@@ -337,16 +290,18 @@
 
 
 
-<!-- <script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="//estat.zum.com/scripts/at.js"></script><script type="text/javascript" src="/script/plugin/jquery-1.8.2.min.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/plugin/jquery.validate.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/rsa/jsbn.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/rsa/rsa.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/rsa/prng4.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/rsa/rng.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/checkpass.min.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/plugin/jquery.cookie.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/member.common.js?_LM=1512698956000"></script>
-<script type="text/javascript" src="/script/join/member.join.form.js?_LM=1530147020000"></script>
+<script async="" src="//www.google-analytics.com/analytics.js"></script>
+<script type="text/javascript" async="" src="//estat.zum.com/scripts/at.js"></script>
+<script type="text/javascript" src="resources/memberDesign/js/plugin/jquery-1.8.2.min.js?_LM=1499327254000"></script>
+<script type="text/javascript" src="resources/memberDesign/js/plugin/jquery.validate.js?_LM=1499327254000"></script>
+<script type="text/javascript" src="resources/memberDesign/js/rsa/jsbn.js?_LM=1499327254000"></script>
+<script type="text/javascript" src="resources/memberDesign/js/rsa/rsa.js?_LM=1499327254000"></script>
+<script type="text/javascript" src="resources/memberDesign/js/rsa/prng4.js?_LM=1499327254000"></script>
+<script type="text/javascript" src="resources/memberDesign/js/rsa/rng.js?_LM=1499327254000"></script>
+<script type="text/javascript" src="resources/memberDesign/js/checkpass.min.js?_LM=1499327254000"></script>
+<script type="text/javascript" src="resources/memberDesign/js/plugin/jquery.cookie.js?_LM=1499327254000"></script>
+<script type="text/javascript" src="resources/memberDesign/js/member.common.js?_LM=1512698956000"></script>
+<script type="text/javascript" src="resources/memberDesign/js/join/member.join.form.js?_LM=1530147020000"></script>
 <script type="text/javascript">
 $(function() {
 	$('#frmInJoin').validate().settings.messages = {
@@ -422,4 +377,4 @@ $(function() {
 	
 	ga('create', 'UA-51949688-1', 'zum.com');
 	ga('send', 'pageview');
-</script> -->
+</script>

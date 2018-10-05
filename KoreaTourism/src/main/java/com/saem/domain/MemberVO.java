@@ -14,7 +14,7 @@ public class MemberVO {
 	private String m_gender;
 	private String m_confirm;
 	private int m_count;
-
+	
 	public int getM_num() {
 		return m_num;
 	}

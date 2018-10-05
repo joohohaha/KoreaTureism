@@ -7,6 +7,7 @@ import com.saem.domain.MemberVO;
 public interface MemberService {
 	public List<MemberVO> selectAll() throws Exception;
 	public void naver_join(MemberVO mvo) throws Exception;
+	public void default_join(MemberVO mvo) throws Exception;
 	public MemberVO select_User(MemberVO mvo) throws Exception;
-	
+	public MemberVO user_login(MemberVO mvo) throws Exception;
 }

@@ -16,24 +16,35 @@
 <link href="/favicon.ico?v=2" rel="shortcut icon">
 </head>
 <body id="layout_body">
-
+	<!-- this in the header -->
 	<jsp:include page="../include/header.jsp"/>
+	
+	<!-- end header -->
 	
 	<div class="skip_navi"><a href="#container">본문 바로 가기</a></div>
 	
 	<div class="wrap" id="wrap">
 		<!-- this in the profile_header -->
-		<jsp:include page="../include/profileHeader.jsp"/>
-		
+		<div id="header">
+			<!-- GNB -->
+			<div class="gnb_wrap" id="gnb_wrap"></div>
+			<input type="hidden" id="loginUrl" value="" > 
+			<input type="hidden" id="headerLoginTargetUrl" value="index.jsp" >
+			<h1></h1>
+			<div class="header_menu">
+				<ul class="clear_float">
+					<li class="${find_id}"><a href="find_id">아이디 찾기</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- end profile_header -->
+		<div class="container">
 		<div id="container">
-		
 			<div class="title">
 				<h2>
 					아이디 찾기 <span><em>l</em> 아래의 사용자 확인 방법 중 하나를 선택해 주세요.</span>
 				</h2>
 			</div>
-
-
 			<div class="contents">
 				<div class="box_outer clear_float">
 					<form action="#" id="frmFindIdByEmail" name="email" method="post">
@@ -58,13 +69,9 @@
 									<label for="userFrontEmail">이메일</label>
 								</dt>
 								<dd>
-									<input type="text" id="userFrontEmail" name="userFrontEmail"
-										class="type_01 email_valid" style="width: 80px"
-										title="이메일 아이디 입력"> @ <input type="text"
-										id="userBackEmail" name="userBackEmail"
-										class="type_01 email_valid" style="width: 80px"
-										title="이메일 도메인 입력"> <select class="type_01"
-										id="certEmailAddress" title="이메일 도메인 선텍" style="width: 105px">
+									<input type="text" id="userFrontEmail" name="userFrontEmail" class="type_01 email_valid" style="width: 80px" title="이메일 아이디 입력"> @ 
+									<input type="text" id="userBackEmail" name="userBackEmail" class="type_01 email_valid" style="width: 80px" title="이메일 도메인 입력"> 
+									<select class="type_01" id="certEmailAddress" title="이메일 도메인 선텍" style="width: 105px">
 										<option>직접입력</option>
 										<option>chol.com</option>
 										<option>daum.net</option>
@@ -93,7 +100,7 @@
 							</div>
 						</div>
 					</form>
-					<form action="#" id="frmFindIdByPhone" name="phone" method="post">
+					<!-- <form action="#" id="frmFindIdByPhone" name="phone" method="post">
 						<div class="box box_right">
 							<div class="id_phone">
 								<span class="blind">휴대폰</span>
@@ -138,7 +145,7 @@
 									alt="아이디 찾기"></a>
 							</div>
 						</div>
-					</form>
+					</form> -->
 				</div>
 				<p class="guide">위의 방법으로 아이디 찾을 수 없을 경우 별도 확인이 불가능하오니, 새로운 아이디로
 					가입하여 주시기 바랍니다.</p>
@@ -146,6 +153,7 @@
 
 
 
+		</div>
 		</div>
 		<!-- <div id="footer">
 		

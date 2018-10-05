@@ -14,6 +14,22 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+		<!-- sendMail Direct Build Path -->
+		<dependency>
+			<groupId>mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>4.5</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/mail.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+			<groupId>activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>5.5</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/activation.jar</systemPath>
+		</dependency>
 		<!-- spring-jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>

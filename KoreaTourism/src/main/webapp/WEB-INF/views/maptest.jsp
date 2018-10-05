@@ -52,7 +52,7 @@
 				tvo.setRec_update(rs.getString("rec_update"));
 				tvo.setDiv_seg_area(rs.getString("div_seg_area"));
 				tvo.setDiv_seg_name(rs.getString("div_seg_name"));
-				tvo.setDiv_area_count(rs.getInt("div_area_count"));
+				tvo.setDiv_area_count(rs.getString("div_area_count"));
 				
 				list.add(tvo);
 			}
