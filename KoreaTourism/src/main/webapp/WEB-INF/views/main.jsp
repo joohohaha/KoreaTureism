@@ -8,30 +8,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-	<!-- find_id link -->
-	<link href="resources/memberDesign/css/member.css" rel="stylesheet" type="text/css">
+	
+	
 	
 	<script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=lN3APOAVWfk96iNDnU6F&submodules=geocoder"></script>
 	<script type="text/javascript" src="resources/mapCluster/src/MarkerClustering.js"></script>
+	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
-
+	
     <title>Agency - Start Bootstrap Theme</title>
     
     <jsp:include page="include/mainLink.jsp"/>
-
+    
+    <!-- member link -->
+	<link href="resources/memberDesign/css/member.css" rel="stylesheet" type="text/css">
+	<link href="resources/memberDesign/css/loginform.css" rel="stylesheet" type="text/css" >
+	<link href="resources/memberDesign/css/find_id.css" rel="stylesheet" type="text/css">
+	<link href="resources/memberDesign/css/find_newPass.css" rel="stylesheet" type="text/css">
+	<link href="resources/memberDesign/css/find_pass.css" rel="stylesheet" type="text/css">
   </head>
 
   <body id="page-top">
     <!-- 여백 -->
+    <jsp:include page="loginForm.jsp" />
+    <jsp:include page="find_newPass.jsp" />
+    <jsp:include page="find_id.jsp" />
+    <jsp:include page="find_pass.jsp" />
 	<jsp:include page="include/header.jsp"/>
-    <jsp:include page="loginForm.jsp"/>
-    <jsp:include page="joinForm.jsp"/>
+	
+    
 	<!-- 메인 배경과 버튼 사이의 공간 -->
 	<div class="container top-section">
 	
 		<!-- 지도 입니다. 지도 스크립트 검색하면 됨 Ctrl+F -->
 		
-						<div id="map"></div>
+		<div id="map"></div>
 						
 		<!-- 지도 입니다. 지도 스크립트 검색하면 됨 Ctrl+F -->
 		
@@ -71,7 +82,6 @@
       <div class="container">
         <div class="navbar-expand-lg bg-dark navbar-dark">
 		 	<a style="margin:12px" data-toggle="modal" href="#" class="btn btn-primary btn-lg active" role="button" type="submit">인기 지역 보기</a>
-			
 			<a style="margin:12px" onclick="moving('gyeongsang')" class="btn btn-outline-info btn-lg active" role="button">경상도</a>
 			<a style="margin:12px" onclick="moving('seoul')" class="btn btn-outline-info btn-lg active" role="button">서울</a>
 			<a style="margin:12px" onclick="moving('gyeonggi')" class="btn btn-outline-info btn-lg active" role="button">경기도</a>
@@ -307,64 +317,14 @@
         </div>
       </div>
     </section>	
-
-    <!-- Footer -->
-    <!-- <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Copyright &copy; Your Website 2018</span>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline social-buttons">
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-facebook"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer> -->
 	
+	 <!-- footer -->
 	 
     <!-- Portfolio Modals -->
     <!-- ============================================================= -->
     <jsp:include page="localInfo.jsp"/>
-    <jsp:include page="find_id.jsp" />
 	<!-- ============================================================= -->
-	<script>
-		function join(){
-			$('#loginForm').modal('hide');
-			$('#joinForm').modal();
-		}
-		
-		function find_id(){
-			$('#loginForm').modal('hide');
-			$('#find_userid').modal();	
-		}
-	</script>
+	
 		<script>//지도 스크립트
 			//---------- 페이지 시작부터 불러오기로 맵을 만든다. markers는 marker를 넣기위한 배열틀이다.
 		    var map = new naver.maps.Map("map", {
@@ -442,8 +402,6 @@
 			        	$(clusterMarker.getElement()).find('div:first-child').text(count); //$() :: jQuery 문법
 			        }
 			    });
-			    
-			       
 			}// endof onLoad();
 		</script><!-- 지도 스크립트 end -->
 	
@@ -451,9 +409,8 @@
 		
 			// 필요한 정보 불러오기
          	function moving(local) {
-				//페이지 비우기
+				// 지역 초기화
 				$('#localData').empty();
-				
 				// page 만드는 ajax
          		$.ajax({
 	       			type : "POST",
@@ -493,8 +450,8 @@
 	      	}
          	
          	function call_tour_data(tour_name) {
-         		// 초기화 시키기
-				$('#tour_data').empty();
+         		// 관광지 초기화
+				$('#tour_Data').empty();
 				
 				// 관광지 정보 가져오기
 				$.ajax({
@@ -520,8 +477,8 @@
          	
          	function call_tour_reply(tour_name) {
          		// 덧글 초기화
-				$('#reply').empty();
-	         		// 덧글 정보 가져오기
+         		$('#reply').empty();
+	         	// 덧글 정보 가져오기
 				$.ajax({
 	       			type : "POST",
 	       			url : "tour_reply",
@@ -621,8 +578,6 @@
 		            position: new naver.maps.LatLng(location_x,location_y),
 			    	map: map_local
 		        });
-				
-		    	
 			}
          	
          	function no_login(){
@@ -635,7 +590,6 @@
          
          <script>
          	function delbtn(r_num, tour_name){
-         		
          		var data = {
          			"r_num" : r_num,
          			"tour_name" : tour_name

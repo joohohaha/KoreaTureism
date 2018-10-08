@@ -8,6 +8,7 @@
 <head>
 <meta content="charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<!-- Bootstrap file -->
 	<link rel="stylesheet" href="resources/boardDesign/design/css/bootstrap.css">
 	<link rel="stylesheet" href="resources/boardDesign/design/css/custom.css">
@@ -16,33 +17,12 @@
 	<!-- Google jQuery file -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="resources/boardDesign/design/js/bootstrap.js"></script>
+	
+	<jsp:include page="../include/boardHeader.jsp"/>
 	<title>게시글 수정하기</title>
 </head>
 
 <body>
-
-	<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-		<a class="navbar-brand" href="index">한국관광공사</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#collapsibleNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="list"></a></li>
-				<li class="nav-item"><a class="nav-link" href="list"></a></li>
-			</ul>
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbargrop"
-					data-toggle="dropdown">접속</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#"></a> <a class="dropdown-item"
-							href="#"></a>
-					</div></li>
-			</ul>
-		</div>
-	</nav>
 	<section>
 		<div id="board-list" class="container">
 			<!-- 부트스트랩 이용한 그리드 시스템 -->

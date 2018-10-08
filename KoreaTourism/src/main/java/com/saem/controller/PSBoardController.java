@@ -1,16 +1,25 @@
 package com.saem.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.saem.domain.BReplyVO;
 import com.saem.domain.PSBoardVO;
+import com.saem.domain.ReplyVO;
+import com.saem.service.BReplyService;
 import com.saem.service.PSBoardService;
 
 @Controller
@@ -18,6 +27,9 @@ public class PSBoardController {
 
 	@Inject
 	private PSBoardService service;
+	
+	@Inject
+	private BReplyService brService;
 
 	private static final Logger logger = LoggerFactory.getLogger(PSBoardController.class);
 	
@@ -37,11 +49,21 @@ public class PSBoardController {
 		
 		return "ps_board/ps_board";
 	}
-
+	
+	@RequestMapping(value = "/psboard_hotPost", method = RequestMethod.POST)
+	public @ResponseBody String psboard_hotPost() throws Exception{
+		final List<PSBoardVO> list = service.select_hotpost();
+		
+		final String result = new Gson().toJson(list);
+		
+		return result;
+	}
+	
 	// view
 	@RequestMapping(value = "/ps_view", method = RequestMethod.GET)
 	public String view(Model model, @RequestParam(value="b_num") int b_num) throws Exception {
 		model.addAttribute("sboard", service.view(b_num));
+		model.addAttribute("breply_Data", brService.select_list(b_num));
 		return "ps_board/ps_view";
 	}
 

@@ -160,7 +160,6 @@
                     'm_emailcheck' : flag.sendEmail,
                     'm_gender' : $gender.find('input[name=inputInfoGender]:checked').val()
                 };
-                
                 var result = JSON.stringify(postZum);
                 console.log(result);
                 $.ajax({
@@ -400,8 +399,10 @@
      */
     var overlapCheck = function(name, value) {
         if(flag[name] && value === checkValue[name]) return true;
+        
         var jsonData = { "data" : value, "type" : name };
         var result = JSON.stringify(jsonData);
+        
     	$.ajax({
             'url' : 'member/check',
             'type' : 'POST',

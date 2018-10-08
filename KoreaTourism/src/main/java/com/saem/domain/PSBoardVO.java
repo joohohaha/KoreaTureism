@@ -9,7 +9,15 @@ public class PSBoardVO {
 	private String m_userid;
 	private int b_used;
 	private int b_readcount;
+	private int b_replycount;
 	
+	
+	public int getB_replycount() {
+		return b_replycount;
+	}
+	public void setB_replycount(int b_replycount) {
+		this.b_replycount = b_replycount;
+	}
 	public int getB_num() {
 		return b_num;
 	}

@@ -8,11 +8,21 @@
 <head>
 <meta content="charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Bootstrap file -->
+	<link rel="stylesheet" href="resources/boardDesign/design/css/bootstrap.css">
+	<link rel="stylesheet" href="resources/boardDesign/design/css/custom.css">
+	<link rel="shortcut icon" href="#">
+	<!-- favicon 못찾는 오류나서.. 일단 넣어둠 태그 지우면 console에 오류뜸 -->
+	
+	<!-- Google jQuery file -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="resources/boardDesign/design/js/bootstrap.js"></script>
+	
 	<jsp:include page="../include/boardHeader.jsp"/>
 <title>게시판이엽</title>
 </head>
 <body>
-	
 	<!-- 녹색 -->
 	  <div class="container jumbotron">
         <h1>FREE BOARD</h1>

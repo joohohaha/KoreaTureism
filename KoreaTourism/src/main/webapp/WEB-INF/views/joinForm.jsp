@@ -1,33 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta charset="utf-8">
-
-<link rel="stylesheet" href="resources/memberDesign/css/join_form.css">
 
 <div class="portfolio-modal modal fade" id="joinForm" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
 	<div class="modal-dialog">
 		<div class="modal-content" style="background: transparent; border: 0;">
-			<div class="close-modal" data-dismiss="modal">
-			</div>
-			<div class="skip_navi">
-				<a href="#container">본문 바로 가기</a>
-			</div>
 			<div class="wrap" id="wrap">
 				<div id="header">
-					<input type="hidden" id="loginUrl" value=""> 
-					<input type="hidden" id="headerLoginTargetUrl" value="#">
-					<h1>
-						<a href="#" class="logo">
-							<img src="resources/memberDesign/images/img_logo_join.png?_LM=1530147020000" alt="#">
-						</a>
-					</h1>
 					<div class="close-modal" data-dismiss="modal">
 						<div class="lr"><div class="rl"></div></div>
 					</div>
 				</div>
 				<div id="container">					
-					<form id="frmInJoin" action="user_join" method="POST" novalidate="novalidate"><!-- onsubmit="return false"  -->
+					<form id="frmInJoin" method="POST" novalidate="novalidate"><!-- onsubmit="return false"  -->
 						<input type="hidden" name="m_confirm" value="Default_User">
 						<div class="join_step_2">
 							<div class="step_header">
@@ -285,11 +270,6 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
 <script async="" src="//www.google-analytics.com/analytics.js"></script>
 <script type="text/javascript" async="" src="//estat.zum.com/scripts/at.js"></script>
 <script type="text/javascript" src="resources/memberDesign/js/plugin/jquery-1.8.2.min.js?_LM=1499327254000"></script>

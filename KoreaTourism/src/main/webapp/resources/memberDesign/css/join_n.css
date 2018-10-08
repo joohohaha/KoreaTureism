@@ -23,7 +23,7 @@ body{line-height:1.5;font-family:"맑은 고딕","Malgun Gothic",'돋움',dotum,
 }
 
 /** 헤더 **/
-#header{position:relative;height:56px;overflow:hidden;background:#1b52ed;background:linear-gradient(to right,#3faeeb,#3967d0 46%,#3846d0);background:-webkit-linear-gradient(left,#3faeeb,#3967d0 46%,#3846d0);padding-top:24px}
+#header{position:relative;overflow:hidden;background:#1b52ed;background:linear-gradient(to right,#3faeeb,#3967d0 46%,#3846d0);background:-webkit-linear-gradient(left,#3faeeb,#3967d0 46%,#3846d0);padding-top: 5px}
 #header .logo{display:block;width:85px;margin:0 auto}
 #header .logo img{width:100%;vertical-align:top;image-rendering:-webkit-optimize-contrast}
 

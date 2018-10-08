@@ -18,7 +18,6 @@ import com.saem.domain.TourVO;
 import com.saem.service.ReplyService;
 
 @Controller
-@SessionAttributes({"SessionNaver","SessionUser"})
 public class ReplyController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReplyController.class);
@@ -47,7 +46,6 @@ public class ReplyController {
 	
 	@RequestMapping(value = "/delete_reply", method = RequestMethod.POST)
 	public @ResponseBody String delete_reply(Model model, @RequestBody String data) throws Exception{
-		
 		Gson gson = new Gson();
 		ReplyVO reply = gson.fromJson(data, ReplyVO.class);
 		try {

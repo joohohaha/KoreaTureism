@@ -1,37 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-	
-	<!-- Bootstrap file -->
-	<link rel="stylesheet" href="resources/boardDesign/design/css/bootstrap.css">
-	<link rel="stylesheet" href="resources/boardDesign/design/css/custom.css">
-	<link rel="shortcut icon" href="#">
-	<!-- favicon 못찾는 오류나서.. 일단 넣어둠 태그 지우면 console에 오류뜸 -->
-	
-	<!-- Google jQuery file -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="resources/boardDesign/design/js/bootstrap.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
 	<!-- 헤드 -->
 	<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-		<a class="navbar-brand" href="index">한국관광공사</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="list"></a></li>
-				<li class="nav-item"><a class="nav-link" href="list"></a></li>
-			</ul>
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbargrop"
-					data-toggle="dropdown">접속</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">뭘?</a> 
-						<a class="dropdown-item" href="#">꼬라</a>
-						<a class="dropdown-item" href="#">보노보노</a>
-					</div></li>
-			</ul>
-		</div>
-	</nav><br>
+		<div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="index">한국 관광 공사</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a href="fboard" class="nav-link">자유 게시판 가자</a>
+            </li>
+            <li class="nav-item">
+              <a href="ps_board" class="nav-link">후기 게시판 가자</a>
+            </li>
+       		<c:choose>
+       			<c:when test="${empty SessionNaver and empty SessionUser}">
+		            <li class="nav-item">
+		              <a class="nav-link" data-toggle="modal" href="#loginModal">로그인</a>
+		            </li>
+		            <li class="nav-item">
+		              <a class="nav-link" href="joinpage">회원가입</a>
+		            </li>
+		    	</c:when>
+		    	<c:otherwise>
+		    		<c:set var="myID" value="${SessionNaver}${SessionUser}"/><!-- 이제 myID쓰면 세션임.. -->
+		    		<li class="nav-item">
+		              <a class="nav-link" href="logout" >로그아웃</a>
+		            </li>
+		            <c:if test="${empty SessionNaver}"><!-- 네이버 아이디로 로그인하지 않았을때 표시 -->
+			            <li class="nav-item">
+			              <a class="nav-link" href="user_info?m_userid=${myID}">회원관리 가즈아</a>
+			            </li>
+		            </c:if>
+		    	</c:otherwise>
+            </c:choose>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
 	<!-- 헤드 끝 -->
+	<!-- 모달 css -->
+   	<link href="resources/design/css/agency.min.css" rel="stylesheet">
+	<!-- member link -->
+	<link href="resources/memberDesign/css/find_id.css" rel="stylesheet" type="text/css">
+	<link href="resources/memberDesign/css/loginform.css" rel="stylesheet" type="text/css">
+    <jsp:include page="../loginForm.jsp"/>
+    <jsp:include page="../find_id.jsp" />

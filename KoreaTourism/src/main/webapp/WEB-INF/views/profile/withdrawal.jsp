@@ -37,10 +37,7 @@
 					회원 탈퇴 <span><em>l</em> 회원 탈퇴를 위해 아래 내용을 확인해 주세요.</span>
 				</h2>
 			</div>
-
-
-			<input type="hidden" id="userId" value="">
-			<form action="#" id="frmLeaveUser" method="post">
+			<form id="frmLeaveUser" method="POST">
 				<div class="contents">
 					<div class="section">
 						<h3>
@@ -81,99 +78,78 @@
 								for="checkCashAgree">유료 콘텐츠 관련한 모든 정보 삭제에 동의합니다.</label>
 						</p>
 						<p>
-							<input type="checkbox" id="checkLeaveAgree"> <label
-								for="checkLeaveAgree">전체 내용을 확인하였습니다.</label>
+							<input type="checkbox" id="checkLeaveAgree"> <label for="checkLeaveAgree">전체 내용을 확인하였습니다.</label>
 						</p>
 					</div>
 					<div class="content_wrap">
 						<dl class="info_basic modify_03 clear_float">
 							<dt>아이디</dt>
-							<dd>
-								<span class="id">-</span>
-							</dd>
-							<dt>
-								<label for="userNewPassConfirm">비밀번호</label>
-							</dt>
-							<dd>
-								<input type="password" id="userPass" name="userPass"
-									class="type_02 valid" style="width: 180px" maxlength="30">
-							</dd>
+							<dd><span class="id">${SessionUser}</span></dd>
+							<dt><label for="userPass">비밀번호</label></dt>
+							<dd><input type="password" id="userPass" class="type_02 valid" style="width: 180px" maxlength="30"></dd>
 						</dl>
 						<div class="btn">
-							<a href="#" id="btnLeaveUser"><img
-								src="resources/memberDesign/images/btn_withdraw.gif?_LM=1499327256000"
-								alt="회원탈퇴"></a>
+							<button type="button" onclick="update_withdrawal()" style="background:transparent;border: 0px;" onkeyup="enterkey();">
+								<img src="resources/memberDesign/images/btn_withdraw.gif?_LM=1499327256000" alt="회원탈퇴">
+							</button>
 						</div>
 					</div>
-
 				</div>
-
 			</form>
 		</div>
-		<!-- 	<div id="footer">
-		
-<div class="footer">
-	<ul>
-		<li><a href="http://inside.zum.com/brand/">서비스 소개</a></li>
-		<li><a href="http://policy.zum.com/terms" >이용약관</a></li>
-		<li><a href="http://policy.zum.com/info" ><strong>개인정보취급방침</strong></a></li>
-		<li><a href="mailto:partner@zuminternet.com">제휴</a></li>
-		<li><a href="http://www.estsoft.co.kr/default.aspx?wbs=5.0.3" target="_blank">채용</a></li>
-		<li><a href="http://help.zum.com/">고객센터</a></li>
-		<li><a href="http://dev.zum.com/">개발자센터</a></li>
-		<li class="adr"><a href="http://www.zuminternet.com/" target="_blank"><em>©</em><strong>ZUM internet</strong></a></li>
-	</ul>
-</div>
-
-	</div> -->
 	</div>
-
-
-
-
-	<!-- <script type="text/javascript" src="/script/plugin/jquery-1.8.2.min.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/plugin/jquery.validate.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/rsa/jsbn.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/rsa/rsa.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/rsa/prng4.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/rsa/rng.js?_LM=1499327254000"></script>
-<script type="text/javascript" src="/script/delete/member.leave.main.js?_LM=1512698956000"></script>
-<script type="text/javascript" src="/script/member.common.js?_LM=1512698956000"></script>
-<script type="text/javascript" src="/script/gnb.js?_LM=1536220352000"></script>
-<script type="text/javascript">
-$(function() {
-	$('#frmLeaveUser').validate().settings.messages = {
-		'userPass' : {
-			'required' : '비밀번호를 입력해주십시오.',	
-			'whitespace' : '공백문자는 입력할 수 없습니다.'
-		}
-	};
-});
-</script>
-
-
-
-<script type="text/javascript">
-	//EST
-	(function() {
-		var at = document.createElement('script');
-		at.type = 'text/javascript';
-		at.async = true;
-		at.src = '//estat.zum.com/scripts/at.js';
-		var s = document.getElementsByTagName('script')[0];
-		s.parentNode.insertBefore(at, s);
-	})();
-	var ESTatTracker = ESTatTracker || [];
-	ESTatTracker.push(['@PageView']);   
-
-	//GA
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<script>
+	//왜 안먹냐... enter 
+	function enterkey() {
+	    if (window.event.keyCode == 13) {
+	         update_withdrawal();
+	    }
+	}
 	
-	ga('create', 'UA-51949688-1', 'zum.com');
-	ga('send', 'pageview');
-</script> -->
+	function update_withdrawal(){
+		var jsonData = {
+				"m_password" : $('#userPass').val(),
+				"m_userid" : '${SessionUser}',
+				"m_confirm" : "Default_user"
+		};
+		
+		if($('#userPass').val() == ''){
+			alert('비밀번호를 입력해주세요');
+		} else {
+			$.ajax({
+				type : "POST",
+				url : "update_withdrawal",
+				dataType : "text",
+				contentType : "application/text; charset=UTF-8",
+				data : JSON.stringify(jsonData),
+				success : function(data){
+					console.log("success : " + data);
+					if(data == 'Not_Found') {
+						alert('입력하신 비밀번호가 틀렸습니다.');
+						$('#userPass').val("");
+						$('#userPass').focus();
+					} else if(data == 'success') {
+						alert('회원탈퇴에 성공하였습니다.');
+						location.href='logout';
+					} else {
+						alert('error');
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
+				}		
+			});
+		}
+	}
+	
+	function frm_submit() {
+		if($('#userPass').val() == ''){
+			alert('비밀번호를 입력하세요!!!!!!!!!!');
+			return false;
+		} else {
+			return true;
+		}
+	}
+</script>
 </body>
 </html>

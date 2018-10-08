@@ -38,4 +38,5 @@ public class ReplyDAOImpl implements ReplyDAO {
    	public void delete_reply(ReplyVO rvo) throws Exception {
    		session.delete(namespace+".delete_reply", rvo);
    	}
+   	
 }

@@ -87,7 +87,7 @@ body{line-height:1;font-family:'돋움',dotum,AppleGothic,sans-serif;color:#000;
 #header .header_menu > ul > li.on a{position:relative;background:#1169ee;color:#fff;}
 
 #container{width:inherit;margin:0 auto}
-#container .title{position:relative;padding-top:20px;height:38px;}
+#container .title{position:relative;padding-top:10px;height:38px;}
 #container .title h2{font-size:16px;height:20px;line-height:20px;letter-spacing:-1px;}
 #container .title h2 span{position:relative;top:-1px;display:inline-block;font-size:12px;color:#828896;}
 #container .title h2 span em{font-weight:normal;padding:0 5px;}

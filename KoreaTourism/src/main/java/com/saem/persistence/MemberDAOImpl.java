@@ -25,7 +25,22 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	@Override
 	public MemberVO select_User(MemberVO mvo) throws Exception {
-		return session.selectOne(namespace+".select_user", mvo);
+		return session.selectOne(namespace+".select_User", mvo);
+	}
+
+	@Override
+	public MemberVO select_UserId(MemberVO mvo) throws Exception {
+		return session.selectOne(namespace+".select_UserId", mvo);
+	}
+	
+	@Override
+	public MemberVO select_UserInfo(MemberVO mvo) throws Exception {
+		return session.selectOne(namespace+".select_UserInfo", mvo);
+	}
+	
+	@Override
+	public MemberVO find_UserPass(MemberVO mvo) throws Exception {
+		return session.selectOne(namespace+".find_UserPass", mvo);
 	}
 	
 	@Override
@@ -36,6 +51,21 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public void default_join(MemberVO mvo) throws Exception {
 		session.insert(namespace+".default_join",mvo);
+	}
+	
+	@Override
+	public void update_info(MemberVO mvo) throws Exception {
+		session.update(namespace+".update_info",mvo);		
+	}
+	
+	@Override
+	public void update_password(MemberVO mvo) throws Exception {
+		session.update(namespace+".update_password",mvo);		
+	}
+	
+	@Override
+	public void update_withdrawal(MemberVO mvo) throws Exception {
+		session.update(namespace+".update_withdrawal",mvo);			
 	}
 	
 	@Override

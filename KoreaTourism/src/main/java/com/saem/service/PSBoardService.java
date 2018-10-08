@@ -7,6 +7,8 @@ import com.saem.domain.PSBoardVO;
 public interface PSBoardService {
 	public List<PSBoardVO> select_list(int pageNum) throws Exception;
 
+	public List<PSBoardVO> select_hotpost() throws Exception;
+	
 	public PSBoardVO view(int b_num) throws Exception;
 
 	public void insert(PSBoardVO sboard) throws Exception;

@@ -23,8 +23,6 @@ if(request.getContentLength() > 10*1024*1024 ){
 } else {
 
 	try {
-
-		
 		MultipartRequest multi=new MultipartRequest(request, path, 15*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 	
 		java.text.SimpleDateFormat formatter2 = new java.text.SimpleDateFormat ("yyyy_MM_dd_HHmmss", java.util.Locale.KOREA);
@@ -70,7 +68,7 @@ if(request.getContentLength() > 10*1024*1024 ){
              window.opener.pasteHTML(fname); 
 	    	 window.close();
 	    }catch(e){ 
-//             alert(e); 
+             alert(e); 
 	    }
 	}
 	fileAttach();

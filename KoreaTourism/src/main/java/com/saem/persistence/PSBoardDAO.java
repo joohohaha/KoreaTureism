@@ -3,11 +3,14 @@ package com.saem.persistence;
 import java.util.List;
 
 import com.saem.domain.PSBoardVO;
+import com.saem.domain.ReplyVO;
 
 public interface PSBoardDAO {
 	public List<PSBoardVO> select_list(int pageNum) throws Exception;
 
 	public PSBoardVO select(int b_num) throws Exception;
+	
+	public List<PSBoardVO> select_hotpost() throws Exception;
 
 	public void insert(PSBoardVO sboard) throws Exception;
 
@@ -16,4 +19,6 @@ public interface PSBoardDAO {
 	public void update(PSBoardVO sboard) throws Exception;
 	
 	public void uphit(int b_num) throws Exception;
+
+	public void reply_count(PSBoardVO pvo) throws Exception;
 }

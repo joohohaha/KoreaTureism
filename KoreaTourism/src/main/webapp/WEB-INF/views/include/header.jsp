@@ -20,19 +20,20 @@
        		<c:choose>
        			<c:when test="${empty SessionNaver and empty SessionUser}">
 		            <li class="nav-item">
-		              <a class="nav-link" data-toggle="modal" href="#loginForm" role="button" type="submit">로그인</a>
+		              <a class="nav-link" data-toggle="modal" href="#loginModal" role="button" type="submit">로그인</a>
 		            </li>
 		            <li class="nav-item">
-		              <a class="nav-link" data-toggle="modal" href="#joinForm" role="button" type="submit">회원가입</a>
+		              <a class="nav-link" href="joinpage" role="button" type="submit">회원가입</a>
 		            </li>
 		    	</c:when>
 		    	<c:otherwise>
+		    		<c:set var="myID" value="${SessionNaver}${SessionUser}"/><!-- 이제 myID쓰면 세션임.. -->
 		    		<li class="nav-item">
 		              <a class="nav-link" href="logout" >로그아웃</a>
 		            </li>
 		            <c:if test="${empty SessionNaver}"><!-- 네이버 아이디로 로그인하지 않았을때 표시 -->
 			            <li class="nav-item">
-			              <a class="nav-link" href="user_info">회원관리 가즈아</a>
+			              <a class="nav-link" href="user_info?m_userid=${myID}">회원관리 가즈아</a>
 			            </li>
 		            </c:if>
 		    	</c:otherwise>
@@ -66,8 +67,3 @@
     
     <!-- Custom scripts for this template -->
    	<script src="resources/design/js/agency.min.js"></script>
-   	
-   	
-   	
-   	
-   	
