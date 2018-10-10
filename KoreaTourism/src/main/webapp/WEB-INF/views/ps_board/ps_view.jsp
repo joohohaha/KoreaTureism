@@ -12,15 +12,15 @@
 		<!-- Bootstrap file -->
 		<link rel="stylesheet" href="resources/ps_design/css/bootstrap.css">
 		<link rel="stylesheet" href="resources/ps_design/css/custom.css">
-		<!-- Google jQuery file -->
 		
+		<!-- Google jQuery file -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="resources/ps_design/js/bootstrap.js"></script>
 		
 		<jsp:include page="../include/boardHeader.jsp"/>
 		<title>게시글 상세보기</title>
 	</head>
-	
+	<c:set var="myID" value="${SessionNaver}${SessionUser}"/>
 	<body>
 		<section>
 			<div id="board-list" class="container">
@@ -42,8 +42,10 @@
 								<a href="#"><strong class="ell">${sboard.m_userid}</strong></a><br>
 								<small>${sboard.b_updatedate}</small>
 								<div class="media-body" style="float: right;">
-									<a class="txt" href="ps_updateForm?b_num=${sboard.b_num}">수정</a> 
-									<a class="txt" href="ps_delete?b_num=${sboard.b_num}">삭제</a> 
+									<c:if test="${sboard.m_userid eq myID}">
+										<a class="txt" href="ps_updateForm?b_num=${sboard.b_num}">수정</a>
+										<a class="txt" href="ps_delete?b_num=${sboard.b_num}">삭제</a>
+									</c:if> 
 									<a class="txt" href="ps_board">목록보기</a>
 								</div>
 							</div>
@@ -56,11 +58,10 @@
 								<h5 class="tit_h5 col-lg-2">덧글 달기: </h5>
 								<input type="text" class="form-control col-lg-7" id="reply_content">
 								<c:choose>
-									<c:when test="${empty SessionNaver and empty SessionUser}">
+									<c:when test="${empty myID}">
 										<input type="button" class="btn btn-primary col-lg-2" onclick="alert('로그인 후 이용가능합니다.')" value="Submit">
 									</c:when>
 									<c:otherwise>
-									<c:set var="myID" value="${SessionNaver}${SessionUser}"/>
 										<input type="button" class="btn btn-primary col-lg-2" onclick="sendReply('${sboard.b_num}')" value="Submit">
 									</c:otherwise>
 								</c:choose>

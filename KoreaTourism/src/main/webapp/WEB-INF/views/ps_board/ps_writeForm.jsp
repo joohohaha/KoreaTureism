@@ -25,7 +25,13 @@
 	<jsp:include page="../include/boardHeader.jsp"/>
 	<title>게시글 상세보기</title>
 </head>
-
+<c:set var="myID" value="${SessionNaver}${SessionUser}"/>
+<c:if test="${empty myID}">
+	<script>
+		alert('로그인 하세요.');
+		location.href='ps_board';
+	</script>
+</c:if>
 <body>
 	<section>
 		<div id="board-list" class="container">

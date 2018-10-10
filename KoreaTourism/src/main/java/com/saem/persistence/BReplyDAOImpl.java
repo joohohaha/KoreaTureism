@@ -35,7 +35,7 @@ public class BReplyDAOImpl implements BReplyDAO {
    	
    	@Override
    	public void delete_reply(BReplyVO rvo) throws Exception {
-   		session.delete(namespace+".delete_reply", rvo);
+   		session.update(namespace+".delete_reply", rvo);
    	}
    	
    	@Override

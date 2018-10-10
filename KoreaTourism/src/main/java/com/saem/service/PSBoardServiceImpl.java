@@ -22,22 +22,32 @@ public class PSBoardServiceImpl implements PSBoardService {
 	}
 
 	@Override
+	public List<PSBoardVO> select_search(PSBoardVO pvo) throws Exception {
+		return dao.select_search(pvo);
+	}
+	
+	@Override
 	public List<PSBoardVO> select_hotpost() throws Exception {
 		return dao.select_hotpost();
+	}
+
+	@Override
+	public PSBoardVO select(int b_num) throws Exception {
+		return dao.select(b_num);
+	}
+	
+	@Override
+	public PSBoardVO select_count() throws Exception {
+		return dao.select_count();
 	}
 	
 	@Transactional
 	@Override
 	public PSBoardVO view(int b_num) throws Exception {
-		System.out.println("view~");
 		dao.uphit(b_num);
 		return dao.select(b_num);
 	}
 	
-	@Override
-	public PSBoardVO select(int b_num) throws Exception {
-		return dao.select(b_num);
-	}
 
 	@Override
 	public void insert(PSBoardVO sboard) throws Exception {

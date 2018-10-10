@@ -22,6 +22,11 @@ public class PSBoardDAOImpl implements PSBoardDAO {
    	public List<PSBoardVO> select_list(int pageNum) throws Exception {
    		return session.selectList(namespace + ".select_list", pageNum);
    	}
+   	
+   	@Override
+   	public List<PSBoardVO> select_search(PSBoardVO pvo) throws Exception {
+   		return session.selectList(namespace + ".select_search", pvo);
+   	}
    
    	@Override
 	public List<PSBoardVO> select_hotpost() throws Exception {
@@ -32,6 +37,11 @@ public class PSBoardDAOImpl implements PSBoardDAO {
    	public PSBoardVO select(int b_num) throws Exception {
    		return session.selectOne(namespace + ".select", b_num);
    	}
+   	
+   	@Override
+   	public PSBoardVO select_count() throws Exception {
+   		return session.selectOne(namespace + ".select_count");
+   	}
 
    	@Override
    	public void insert(PSBoardVO sboard) throws Exception {
@@ -40,7 +50,7 @@ public class PSBoardDAOImpl implements PSBoardDAO {
    	
    	@Override
    	public void delete(int b_num) throws Exception {
-   		session.delete(namespace + ".delete", b_num);
+   		session.update(namespace + ".delete", b_num);
    	}		
 
    	@Override

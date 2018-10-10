@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- 여기를 따로 빼내기 -->
+<!-- Portfolio Modals -->
+
 <!-- --------여기는 관광지를 지역별로 뿌리는부분 ---------------------------------------------------------- -->
 <div class="portfolio-modal modal fade" id="find_userid" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
 	<div class="modal-dialog">

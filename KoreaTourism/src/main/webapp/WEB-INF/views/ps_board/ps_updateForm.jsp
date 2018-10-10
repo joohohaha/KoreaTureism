@@ -25,7 +25,13 @@
 	<jsp:include page="../include/boardHeader.jsp"/>
 	<title>게시글 상세보기</title>
 </head>
-
+<c:set var="myID" value="${SessionNaver}${SessionUser}"/>
+<c:if test="${sboard.m_userid ne myID}">
+	<script>
+		alert('당신 글이 아닙니다. ㅎㅎ');
+		location.href='ps_board';
+	</script>
+</c:if>
 <body>
 	<section>
 		<div id="board-list" class="container">
@@ -77,8 +83,7 @@
 							</fieldset>
 						
 						<div class="form-group">
-							<button class="btn btn-outline-primary" type="submit" onclick="submitContents(this)"
-								style="float: right">수정하기</button>
+							<button class="btn btn-outline-primary" type="submit" onclick="submitContents(this)" style="float: right">수정하기</button>
 						</div>
 					</form>
 				</div>

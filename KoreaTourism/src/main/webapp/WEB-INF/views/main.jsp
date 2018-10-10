@@ -3,14 +3,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-	
-	
-	
+    
 	<script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=lN3APOAVWfk96iNDnU6F&submodules=geocoder"></script>
 	<script type="text/javascript" src="resources/mapCluster/src/MarkerClustering.js"></script>
 	
@@ -31,9 +28,9 @@
   <body id="page-top">
     <!-- 여백 -->
     <jsp:include page="loginForm.jsp" />
-    <jsp:include page="find_newPass.jsp" />
-    <jsp:include page="find_id.jsp" />
-    <jsp:include page="find_pass.jsp" />
+    <jsp:include page="findPage/find_newPass.jsp" />
+    <jsp:include page="findPage/find_id.jsp" />
+    <jsp:include page="findPage/find_pass.jsp" />
 	<jsp:include page="include/header.jsp"/>
 	
     

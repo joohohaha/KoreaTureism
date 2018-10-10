@@ -12,8 +12,6 @@
 	<!-- Bootstrap file -->
 	<link rel="stylesheet" href="resources/boardDesign/design/css/bootstrap.css">
 	<link rel="stylesheet" href="resources/boardDesign/design/css/custom.css">
-	<link rel="shortcut icon" href="#">
-	<!-- favicon 못찾는 오류나서.. 일단 넣어둠 태그 지우면 console에 오류뜸 -->
 	<!-- Google jQuery file -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="resources/boardDesign/design/js/bootstrap.js"></script>
@@ -35,11 +33,6 @@
 					<fieldset class="form-group">
 						<legend class="border-bottom mb-4">게시글 상세보기</legend>
 						<div class="form-group">
-							<label class="form-control-label">게시글 번호</label> <input
-								class="form-control form-control-lg" type="text"
-								value="${fboard.f_id}" name="bid" readonly>
-						</div>
-						<div class="form-group">
 							<label class="form-control-label">닉네임</label> <input
 								class="form-control form-control-lg" type="text"
 								value="${fboard.m_userid}" name="bname" readonly>
@@ -49,7 +42,6 @@
 								class="form-control form-control-lg" type="text"
 								value="${fboard.f_title}" name="btitle" readonly>
 						</div>
-
 						<div class="form-group">
 							<label class="form-control-label"></label>
 							<textarea id="textAreaContent" name="bcontent" rows="10"
@@ -67,8 +59,10 @@
 						</div>
 					</fieldset>
 				</table>
-				<a class="btn btn-outline-warning" href="f_updateForm?f_id=${fboard.f_id}">수정</a> 
-				<a class="btn btn-outline-danger" href="f_delete?f_id=${fboard.f_id}">삭제</a> 
+				<c:if test="${fboard.f_id eq myID}">
+					<a class="btn btn-outline-warning" href="f_updateForm?f_id=${fboard.f_id}">수정</a> 
+					<a class="btn btn-outline-danger" href="f_delete?f_id=${fboard.f_id}">삭제</a>
+				</c:if> 
 				<a class="btn btn-outline-info" style="float:right" href="fboard">목록보기</a>
 			</div>
 		</div>

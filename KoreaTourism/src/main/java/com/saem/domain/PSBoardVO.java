@@ -10,8 +10,38 @@ public class PSBoardVO {
 	private int b_used;
 	private int b_readcount;
 	private int b_replycount;
+	private int b_count;
 	
+	//----------------------------------------------------
+	private int pageNum;
+	private String search_op;
+	private String search_cont;
+	public int getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+	public String getSearch_op() {
+		return search_op;
+	}
+	public void setSearch_op(String search_op) {
+		this.search_op = search_op;
+	}
+	public String getSearch_cont() {
+		return search_cont;
+	}
+	public void setSearch_cont(String search_cont) {
+		this.search_cont = search_cont;
+	}
+	//----------------------------------------------------	
 	
+	public int getB_count() {
+		return b_count;
+	}
+	public void setB_count(int b_count) {
+		this.b_count = b_count;
+	}
 	public int getB_replycount() {
 		return b_replycount;
 	}

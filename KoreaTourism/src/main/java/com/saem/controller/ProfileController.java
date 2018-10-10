@@ -23,7 +23,7 @@ import com.saem.util.NaverProfileJoin;
 import com.saem.util.SHA256;
 
 @Controller
-@SessionAttributes({"SessionNaver","SessionUser"})
+@SessionAttributes({"SessionNaver"})
 public class ProfileController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
@@ -37,7 +37,13 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(SessionStatus session) throws Exception{
+	public String logout(HttpSession id, SessionStatus session) throws Exception{
+		MemberVO mvo = new MemberVO();
+		if(id.getAttribute("SessionUser") != null) {
+			mvo.setM_userid(id.getAttribute("SessionUser").toString());
+			mService.user_logout(mvo);
+			id.invalidate();
+		}
 		session.setComplete();
 		return "redirect:index";
 	}
@@ -55,12 +61,6 @@ public class ProfileController {
 			model.addAttribute("SessionNaver", member.getM_userid());
 		}
 		return "redirect:index";
-	}
-	
-	@RequestMapping(value = "/login_info", method = RequestMethod.GET)
-	public String login_info(Model model) throws Exception{
-		model.addAttribute("login_info", "on");
-		return "profile/login_info";
 	}
 	
 	@RequestMapping(value = "/new_pass", method = RequestMethod.GET)
@@ -180,6 +180,7 @@ public class ProfileController {
 		if(data!=null) {
 			vo = gson.fromJson(data,MemberVO.class);
 		}
+		
 		vo.setM_confirm("Default_user");
 		System.out.println("vo.getM_userid() : " + vo.getM_userid());
 		if(vo.getM_userid()!=null && vo.getM_password()!=null) {

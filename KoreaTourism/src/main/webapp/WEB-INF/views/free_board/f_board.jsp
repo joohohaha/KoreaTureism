@@ -20,6 +20,9 @@
 	<script src="resources/boardDesign/design/js/bootstrap.js"></script>
 	
 	<jsp:include page="../include/boardHeader.jsp"/>
+	
+	<link rel="stylesheet" href="resources/footer/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/footer/custom.css">
 <title>게시판이엽</title>
 </head>
 <body>
@@ -86,7 +89,14 @@
 							</fieldset>
 						</table>
 						<div class="form-group">
-							<button class="btn btn-outline-success" type="submit" style="float: right">글쓰기<	/button>
+							<c:choose>
+								<c:when test="${empty myID}">
+									<a class="btn btn-outline-danger" style="float:right;" href="#" onclick="alert('로그인 하셈 ㅎㅎ');">글쓰기</a>
+								</c:when>
+								<c:otherwise>
+									<button class="btn btn-outline-success" type="submit" style="float: right">글쓰기</button>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</form>
 				</div>
@@ -152,5 +162,6 @@
 		</div><!-- container END -->
 	</section>
 	<!-- 게시판 끝-->	
+	<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

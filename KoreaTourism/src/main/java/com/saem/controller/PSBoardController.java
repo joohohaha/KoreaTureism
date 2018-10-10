@@ -35,14 +35,25 @@ public class PSBoardController {
 	
 	// select_list
 	@RequestMapping(value = "/ps_board", method = RequestMethod.GET)
-	public String list(Model model, @RequestParam(value="pageNum",required=false,defaultValue="0") int pageNum) throws Exception {
-
+	public String list(Model model, PSBoardVO pvo) throws Exception {
+		
+		int pageNum = 0;
+		try {pageNum = pvo.getPageNum();}catch (Exception e) {}
+		if(pvo.getSearch_cont() != null) {
+			pvo.setSearch_cont("%"+pvo.getSearch_cont()+"%");//검색으로 들어왓는가 확인
+			model.addAttribute("list", service.select_search(pvo));
+		} else {
+			model.addAttribute("list", service.select_list(pageNum));
+		}
+		
 		boolean prev = true, next = true;
-
+		
 		if (pageNum == 0)prev = false;
 		if (service.select_list(pageNum + 7).size() == 0)next = false;
-
-		model.addAttribute("list", service.select_list(pageNum));
+		
+		int maxNum = service.select_count().getB_count();
+		
+		model.addAttribute("maxNum", maxNum);
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);
 		model.addAttribute("pageNum", pageNum);
@@ -50,11 +61,10 @@ public class PSBoardController {
 		return "ps_board/ps_board";
 	}
 	
-	@RequestMapping(value = "/psboard_hotPost", method = RequestMethod.POST)
+	@RequestMapping(value = "/psboard_hotPost", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	public @ResponseBody String psboard_hotPost() throws Exception{
 		final List<PSBoardVO> list = service.select_hotpost();
-		
-		final String result = new Gson().toJson(list);
+		final String result = new Gson().toJson(list).toString();
 		
 		return result;
 	}

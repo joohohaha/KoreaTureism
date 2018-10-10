@@ -30,8 +30,6 @@
 		<jsp:include page="../include/profileHeader.jsp" />
 
 		<div id="container">
-
-
 			<div class="title">
 				<h2>
 					회원 탈퇴 <span><em>l</em> 회원 탈퇴를 위해 아래 내용을 확인해 주세요.</span>
@@ -74,11 +72,12 @@
 					</div>
 					<div class="withdraw_check">
 						<p>
-							<input type="checkbox" id="checkCashAgree"> <label
-								for="checkCashAgree">유료 콘텐츠 관련한 모든 정보 삭제에 동의합니다.</label>
+							<input type="checkbox" id="checkCashAgree">
+							<label for="checkCashAgree">사용자의 모든 정보 삭제에 동의합니다.(필수)</label>
 						</p>
 						<p>
-							<input type="checkbox" id="checkLeaveAgree"> <label for="checkLeaveAgree">전체 내용을 확인하였습니다.</label>
+							<input type="checkbox" id="checkLeaveAgree">
+							<label for="checkLeaveAgree">전체 내용을 확인하였습니다.(필수)</label>
 						</p>
 					</div>
 					<div class="content_wrap">
@@ -112,8 +111,11 @@
 				"m_userid" : '${SessionUser}',
 				"m_confirm" : "Default_user"
 		};
-		
-		if($('#userPass').val() == ''){
+		if($("input:checkbox[id='checkCashAgree']").is(":checked") != true){
+			alert('위 항목을 모두 체크해주십시요');
+		} else if($("input:checkbox[id='checkLeaveAgree']").is(":checked") == false){
+			alert('위 항목을 모두 체크해주십시요');
+		} else if($('#userPass').val() == ''){
 			alert('비밀번호를 입력해주세요');
 		} else {
 			$.ajax({

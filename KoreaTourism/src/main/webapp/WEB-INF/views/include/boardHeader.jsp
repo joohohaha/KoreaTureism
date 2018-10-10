@@ -50,4 +50,4 @@
 	<link href="resources/memberDesign/css/find_id.css" rel="stylesheet" type="text/css">
 	<link href="resources/memberDesign/css/loginform.css" rel="stylesheet" type="text/css">
     <jsp:include page="../loginForm.jsp"/>
-    <jsp:include page="../find_id.jsp" />
+    <jsp:include page="../findPage/find_id.jsp" />

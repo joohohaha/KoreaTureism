@@ -57,6 +57,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	public MemberVO user_logout(MemberVO mvo) throws Exception {
+		return mvo;
+	}
+	
+	@Override
 	public void naver_join(MemberVO mvo) throws Exception {
 		dao.naver_join(mvo);
 	}

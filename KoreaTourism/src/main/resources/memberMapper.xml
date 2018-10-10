@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id="select_User" resultType="com.saem.domain.MemberVO">
-		SELECT count(*) as m_count FROM the_sight_member WHERE m_confirm = #{m_confirm} AND (m_userid = #{m_userid} OR m_email = #{m_email})
+		SELECT count(*) as m_count FROM the_sight_member WHERE m_confirm = #{m_confirm} AND m_used != 0 AND (m_userid = #{m_userid} OR m_email = #{m_email})
 	</select>
 	
 	<select id="select_UserInfo" resultType="com.saem.domain.MemberVO">
@@ -29,7 +29,7 @@
 	</select>
 	
 	<update id="delete_user">
-		UPDATE the_sight_member SET m_used = 0, WHERE m_userid = #{m_userid}
+		UPDATE the_sight_member SET m_used = 0 WHERE m_userid = #{m_userid}
 	</update>
 	
 	<update id="update_info">

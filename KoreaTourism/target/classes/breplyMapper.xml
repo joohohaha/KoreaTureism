@@ -5,7 +5,7 @@
 
 <mapper namespace="com.saem.domain.breply">
 	<select id="select_list" resultType="com.saem.domain.BReplyVO">
-		SELECT * FROM the_board_reply WHERE b_num = #{b_num} ORDER BY br_num DESC
+		SELECT * FROM the_board_reply WHERE br_used != 0 AND b_num = #{b_num} ORDER BY br_num DESC
 	</select>
 	
 	<select id="select_max" resultType="com.saem.domain.BReplyVO">
@@ -13,15 +13,16 @@
 	</select>
 	
 	<select id="select_count" resultType="com.saem.domain.PSBoardVO">
-		SELECT count(br_num) as b_replycount FROM the_board_reply WHERE b_num = #{b_num}
+		SELECT count(br_num) as b_replycount FROM the_board_reply WHERE br_used != 0 AND b_num = #{b_num}
 	</select>
 	
 	<insert id="insert_reply">
       	INSERT INTO the_board_reply(b_num, m_userid, br_content) VALUES(#{b_num}, #{m_userid}, #{br_content})
    	</insert>
 	
-	<delete id="delete_reply">
-		DELETE FROM the_board_reply WHERE b_num = #{b_num} and br_num = #{br_num}
-	</delete>
+	<update id="delete_reply">
+		UPDATE the_board_reply SET b_used = 0 WHERE b_num = #{b_num} and br_num = #{br_num}
+	</update>
+	
 	
 </mapper>
