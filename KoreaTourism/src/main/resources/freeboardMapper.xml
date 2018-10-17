@@ -12,6 +12,14 @@
 		SELECT * FROM the_sight_freeboard WHERE f_id = #{f_id} <!-- mybatis 문법 -->
 	</select>
 	
+	<select id="select_hotpost" resultType="com.saem.domain.FreeBoardVO">
+		SELECT * FROM the_sight_freeboard ORDER BY f_hit DESC limit 5
+	</select>
+	
+	<select id="select_count" resultType="com.saem.domain.FreeBoardVO">
+		SELECT count(*) as f_count FROM the_sight_freeboard
+	</select>
+	
 	<delete id="delete">
 		DELETE FROM the_sight_freeboard WHERE f_id = #{f_id}
 	</delete>

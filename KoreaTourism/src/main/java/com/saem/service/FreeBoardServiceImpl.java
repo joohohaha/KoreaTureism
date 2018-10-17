@@ -22,18 +22,26 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return dao.select_list(pageNum);
 	}
 	
-	@Transactional
 	@Override
-	public FreeBoardVO view(int f_id) throws Exception {
-		dao.uphit(f_id);
+	public FreeBoardVO select(int f_id) throws Exception {
 		return dao.select(f_id);
 	}
 	
 	@Override
-	public FreeBoardVO select(int bid) throws Exception {
-		return dao.select(bid);
+	public FreeBoardVO select_count() throws Exception {
+		return dao.select_count();
 	}
-
+	
+	@Override
+	public void uphit(int f_id) throws Exception {
+		dao.uphit(f_id);
+	}
+	
+	@Override
+	public List<FreeBoardVO> select_hotpost() throws Exception {
+		return dao.select_hotpost();
+	}
+	
 	@Override
 	public void insert(FreeBoardVO fboard) throws Exception {
 		dao.insert(fboard);

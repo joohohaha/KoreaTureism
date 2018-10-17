@@ -8,7 +8,14 @@ public class FreeBoardVO {
 	private String f_content;
 	private String f_date;
 	private int f_hit;
- 
+	private int f_count;
+	
+	public int getF_count() {
+		return f_count;
+	}
+	public void setF_count(int f_count) {
+		this.f_count = f_count;
+	}
 	public int getF_id() {
 		return f_id;
 	}

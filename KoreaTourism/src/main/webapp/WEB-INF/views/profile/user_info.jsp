@@ -13,7 +13,9 @@
 <jsp:include page="../include/mainLink.jsp" />
    	<!-- Profile styles for this template -->
 	<link href="resources/memberDesign/css/member.css" rel="stylesheet" type="text/css">
-<link href="/favicon.ico?v=2" rel="shortcut icon">
+	<link rel="stylesheet" href="resources/footer/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/footer/custom.css">
+	<link href="/favicon.ico?v=2" rel="shortcut icon">
 </head>
 <body id="layout_body">
 
@@ -90,8 +92,8 @@
 		</form>
 	</div>
 	</div>
+	<jsp:include page="../include/footer.jsp"/>
 </body>
-
 <script>
 
 	//성별 체크
@@ -123,12 +125,12 @@
 		var email2 = $('#userBackEmail');
 		var resultEmail = email1.val() + '@' + email2.val();
 		$('#m_email').val(resultEmail);
-		if(email1 == '' || email2 == ''){
+		if(email1.val() == '' || email2.val() == ''){
 			alert('E-mail을 확인해주세요');
+			email1.focus();
 		} else {
 			$('#frmUpdateInfo').submit();
 		}
 	}
-	
 </script>
 </html>

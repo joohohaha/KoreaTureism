@@ -32,20 +32,18 @@ public class MainController {
 	
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String home(Model model) throws Exception{
-
 		model.addAttribute("selectAll", tService.selectAll());
-		model.addAttribute("mainlist", tService.selectMain());
-		
 		return "main";
 	}
 	
 	@RequestMapping(value="/seg_Data", method = RequestMethod.POST, produces = "application/text; charset=utf8")
-	public @ResponseBody String AjaxData(Model model, @RequestBody String data) throws Exception{
-		
-		System.out.println(data);
+	public @ResponseBody String seg_Data(@RequestBody String data) throws Exception{
 		List<TourVO> seg_data = null;
-		
-		if(data.equals("gyeongsang")) {
+		System.out.println("---------------------------");
+		System.out.println("search SegData : " + data);
+		if(data.equals("hotlocal")){
+			seg_data = tService.selectMain();
+		}else if(data.equals("gyeongsang")) {
 			seg_data = tService.selectSeg("%경상%");
 		}else if(data.equals("gyeonggi")) {
 			seg_data = tService.selectSeg("%경기%");

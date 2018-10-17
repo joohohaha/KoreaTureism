@@ -40,6 +40,7 @@ public class ReplyController {
 			rService.insert_reply(reply);
 			return "success";
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "error";
 		}
 	}
@@ -52,6 +53,7 @@ public class ReplyController {
 			rService.delete_reply(reply);
 			return "success";
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "error";
 		}
 	}

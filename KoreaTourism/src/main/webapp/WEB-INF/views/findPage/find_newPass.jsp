@@ -60,45 +60,33 @@
 </div>
 <script>
 	function update_newPass() {
-		var pass = $('#newPassword').val();
-		var passRe = $('#newPasswordRe').val();
+		var pass = $('#newPassword');
+		var passRe = $('#newPasswordRe');
 		
 		var jsonData = {
 				"m_confirm" : "Default_user",
 				"m_userid" : $('#updateNewPass_id').val(),
-				"m_password" : pass
+				"m_password" : pass.val()
 		};
-		
-		console.log(JSON.stringify(jsonData));
-		
-		if(pass != passRe){
+		console.log('새 비밀번호 send Data : ' + JSON.stringify(jsonData));
+		if(pass.val() != passRe.val()){
 			alert('비밀번호를 동일하게 입력해주세요.');
+			passRe.focus();
 		} else {
-			$.ajax({
-	   			type : "POST",
-	   			url : "update_newPass",
-	   			dataType : "text",
-	   			contentType : "application/text; charset=UTF-8",
-	   			data : JSON.stringify(jsonData),
-	   			success : function(data){
-	   				console.log("success : " + data);
-   					$('#newPassword').val("");
-   					$('#newPasswordRe').val("");
-	   				if(data == 'error'){
-	   					alert('비밀번호 변경 실패.');
-	   				} else {
-	   					if(confirm('비밀번호 변경을 성공했습니다. 로그인 창으로 이동하시겠습니까?') == true) {
-	   						$('#find_newPass').modal('hide');
-	   						$('#loginModal').modal();
-	   					} else {
-	   						$('#find_newPass').modal('hide');
-	   					}
-	   				}
-	   			},
-	   			error : function(jqXHR, textStatus, errorThrown){
-	   				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-	   			}		
-	   		});
+			fetch('update_newPass', {method : 'POST', body : JSON.stringify(jsonData)}).then(res => res.text()).then(function(data) {
+				pass.val('');
+				passRe.val('');
+   				if(data == 'error'){
+   					alert('비밀번호 변경 실패.');
+   				} else if(data =='success') {
+   					if(confirm('비밀번호 변경을 성공했습니다. 로그인 창으로 이동하시겠습니까?') == true) {
+   						$('#find_newPass').modal('hide');
+   						$('#loginModal').modal();
+   					} else {
+   						$('#find_newPass').modal('hide');
+   					}
+   				}
+			});
 		}
 	}
 </script>

@@ -21,6 +21,11 @@ public class TourServiceImpl implements TourService{
 	}
 	
 	@Override
+	public List<TourVO> select_list(int pageNum) throws Exception {
+		return dao.select_list(pageNum);
+	}
+	
+	@Override
 	public List<TourVO> selectMain() throws Exception {
 		return dao.selectMain();
 	}
@@ -34,4 +39,8 @@ public class TourServiceImpl implements TourService{
 		return dao.selectOneSeg(tour_name);
 	}
 	
+	@Override
+	public void new_tour(TourVO tvo) throws Exception {
+		dao.new_tour(tvo);
+	}
 }

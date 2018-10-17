@@ -17,8 +17,13 @@ public class MemberServiceImpl implements MemberService{
 	private MemberDAO dao;
 	
 	@Override
-	public List<MemberVO> selectAll() throws Exception {
-		return dao.selectAll();
+	public List<MemberVO> select_list(int pageNum) throws Exception {
+		return dao.select_list(pageNum);
+	}
+	
+	@Override
+	public List<MemberVO> select_delete(int pageNum) throws Exception {
+		return dao.select_delete(pageNum);
 	}
 	
 	@Override
@@ -76,4 +81,13 @@ public class MemberServiceImpl implements MemberService{
 		dao.update_withdrawal(mvo);
 	}
 	
+	@Override
+	public void delete(MemberVO mvo) throws Exception {
+		dao.delete(mvo);
+	}
+	
+	@Override
+	public void save(MemberVO mvo) throws Exception {
+		dao.save(mvo);
+	}
 }

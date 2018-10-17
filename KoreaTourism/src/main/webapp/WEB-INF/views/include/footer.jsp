@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<div style="padding-top: 40px;">
 	<section id="infomation_footer">
 	  <div class="inr-c clearfix">
 	        <div class="col-md-4 first">
@@ -27,13 +28,12 @@
 	                <h1>FOLLOW US</h1>
 	                <div class="cont">
 	                    <ul class="sns">
-	                      <li><a href="#"><!-- target="_blank" -->
-	                      <img src="http://www.nova-design.co.kr/theme/basic/images/common/ico_blog_off.png" alt="블로그"></a></li>
-	                      <li><a href="#">
-	                      <img src="http://www.nova-design.co.kr/theme/basic/images/common/ico_instagram_off.png" alt="인스타그램"></a></li>
+	                    	<li><a href="#"><img src="http://www.nova-design.co.kr/theme/basic/images/common/ico_blog_off.png" alt="블로그"></a></li>
+	                    	<li><a href="#"><img src="http://www.nova-design.co.kr/theme/basic/images/common/ico_instagram_off.png" alt="인스타그램"></a></li>
 	                    </ul>
 	                </div>
 	            </div>
 	        </div>
 	    </div>
 	</section>
+	</div>

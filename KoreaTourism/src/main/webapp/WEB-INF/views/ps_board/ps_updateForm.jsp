@@ -12,6 +12,9 @@
 	<!-- Bootstrap file -->
 	<link rel="stylesheet" href="resources/ps_design/css/bootstrap.css">
 	<link rel="stylesheet" href="resources/ps_design/css/custom.css">
+	<link rel="stylesheet" href="resources/footer/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/footer/custom.css">
+	
 	<link rel="shortcut icon" href="#">
 	<!-- favicon 못찾는 오류나서.. 일단 넣어둠 태그 지우면 console에 오류뜸 -->
 	<!-- Google jQuery file -->
@@ -26,7 +29,7 @@
 	<title>게시글 상세보기</title>
 </head>
 <c:set var="myID" value="${SessionNaver}${SessionUser}"/>
-<c:if test="${sboard.m_userid ne myID}">
+<c:if test="${posts.m_userid ne myID}">
 	<script>
 		alert('당신 글이 아닙니다. ㅎㅎ');
 		location.href='ps_board';
@@ -41,47 +44,24 @@
 				<div class="col-lg-2"></div>
 
 				<div class="col-lg-8">
-					<form action="ps_update" name="w_form">						
-							<fieldset class="form-group">
-								<legend class="border-bottom mb-4">게시글 상세보기</legend>
-								<div class="form-group">
-									<label class="form-control-label">게시글 번호</label> <input
-										class="form-control form-control-lg" type="text"
-										value="${sboard.b_num}" name="b_num" readonly>
-								</div>
-								<div class="form-group">
-									<label class="form-control-label">닉네임</label> <input
-										class="form-control form-control-lg" type="text"
-										value="${sboard.m_userid}" name="m_userid" readonly>
-								</div>
-								<div class="form-group">
-									<label class="form-control-label">게시글 제목</label> <input
-										class="form-control form-control-lg" type="text"
-										value="${sboard.b_title}" name="b_title" required autofocus>
-								</div>
-
-								<div class="form-group">
-									<label class="form-control-label"></label>
-									<textarea id="textAreaContent" name="b_content" rows="10"
-										cols="80" style="width: 100%">${sboard.b_content}</textarea>
-								</div>
-								<div class="form-group">
-									<label class="form-control-label"></label>작성일자<input
-										class="form-control form-control-lg" type="text"
-										value="${sboard.b_writedate}" name="b_writedate" readonly>
-								</div>
-								<div class="form-group">
-									<label class="form-control-label"></label>수정일자<input
-										class="form-control form-control-lg" type="text"
-										value="${sboard.b_updatedate}" name="b_updatedate" readonly>
-								</div>
-								<div class="form-group">
-									<label class="form-control-label"></label>조회수<input
-										class="form-control form-control-lg" type="text"
-										value="${sboard.b_readcount}" name="b_readcount" readonly>
-								</div>
-							</fieldset>
-						
+					<form action="ps_update" name="w_form">
+						<input type="hidden" name="b_num" value="${posts.b_num}">
+						<fieldset class="form-group">
+							<legend class="border-bottom mb-4">글수정</legend>
+							<div class="form-group">
+								<label class="form-control-label">게시글 제목</label> <input
+									class="form-control form-control-lg" type="text"
+									value="${posts.b_title}" name="b_title" required autofocus>
+							</div>
+							<div class="form-group">
+								<label class="form-control-label"></label>
+								<textarea id="textAreaContent" name="b_content" rows="10" cols="80" style="width: 100%">${posts.b_content}</textarea>
+							</div>
+							<div class="form-group">
+								<label class="form-control-label">조회수</label>
+								<input class="form-control form-control-lg" type="text" value="${posts.b_readcount}" name="b_readcount" readonly>
+							</div>
+						</fieldset>
 						<div class="form-group">
 							<button class="btn btn-outline-primary" type="submit" onclick="submitContents(this)" style="float: right">수정하기</button>
 						</div>
@@ -124,12 +104,8 @@
 	      oEditors.getById["textAreaContent"].exec("PASTE_HTML", [sHTML]);
 	  }
 	  
-	  // textArea에 영상 첨부
-	  <%-- function pasteHTML(filepath){
-	      var sHTML = '<iframe src="<%=request.getContextPath()%>/resources/ps_design/editor/stream/'+filepath+'">';
-	      oEditors.getById["textAreaContent"].exec("PASTE_HTML", [sHTML]);
-	  } --%>
 	</script>
 
+	<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

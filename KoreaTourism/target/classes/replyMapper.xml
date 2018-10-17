@@ -17,15 +17,7 @@
    	</insert>
 	
 	<update id="delete_reply">
-		UPDATE the_sight_reply SET b_used = 0  WHERE r_num = #{r_num} and tour_name = #{tour_name}
+		UPDATE the_sight_reply SET r_used = 0  WHERE r_num = #{r_num} and tour_name = #{tour_name}
 	</update>
-	
-	<update id="update">
-		UPDATE the_sight_freeboard SET f_title = #{f_title}, f_content = #{f_content} WHERE f_id = #{f_id}
-	</update>
-	
-	 <update id="uphit">
-	 	UPDATE the_sight_freeboard SET f_hit = f_hit + 1 WHERE f_id = #{f_id} 
-     </update>
 	
 </mapper>

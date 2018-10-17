@@ -19,8 +19,13 @@ public class MemberDAOImpl implements MemberDAO{
 	private static final String namespace="com.saem.domain.member";
 	
 	@Override
-	public List<MemberVO> selectAll() throws Exception {
-		return session.selectList(namespace+".selectAll");
+	public List<MemberVO> select_list(int pageNum) throws Exception {
+		return session.selectList(namespace+".select_list", pageNum);
+	}
+	
+	@Override
+	public List<MemberVO> select_delete(int pageNum) throws Exception {
+		return session.selectList(namespace+".select_delete", pageNum);
 	}
 	
 	@Override
@@ -60,7 +65,7 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	@Override
 	public void update_password(MemberVO mvo) throws Exception {
-		session.update(namespace+".update_password",mvo);		
+		session.update(namespace+".update_password",mvo);
 	}
 	
 	@Override
@@ -73,4 +78,13 @@ public class MemberDAOImpl implements MemberDAO{
 		return session.selectOne(namespace+".user_login", mvo);
 	}
 	
+	@Override
+	public void delete(MemberVO mvo) throws Exception {
+		session.update(namespace+".delete", mvo);
+	}
+	
+	@Override
+	public void save(MemberVO mvo) throws Exception {
+		session.update(namespace+".save", mvo);
+	}
 }

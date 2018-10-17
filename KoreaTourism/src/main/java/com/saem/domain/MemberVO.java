@@ -1,7 +1,6 @@
 package com.saem.domain;
 
 public class MemberVO {
-	private int m_num;
 	private String m_userid;
 	private String m_password;
 	private String m_name;
@@ -14,12 +13,13 @@ public class MemberVO {
 	private String m_gender;
 	private String m_confirm;
 	private int m_count;
+	private int m_used;
 	
-	public int getM_num() {
-		return m_num;
+	public int getM_used() {
+		return m_used;
 	}
-	public void setM_num(int m_num) {
-		this.m_num = m_num;
+	public void setM_used(int m_used) {
+		this.m_used = m_used;
 	}
 	public int getM_count() {
 		return m_count;

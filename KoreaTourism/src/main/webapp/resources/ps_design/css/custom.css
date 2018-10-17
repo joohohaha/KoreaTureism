@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
 *{
 	font-family:'Nanum Gothic', sans-serif;
 }
@@ -75,6 +76,9 @@ h1{
     background-color: #fff;
     padding: 25px;
     overflow: hidden;
+}
+#ps_title{
+	font-size: 30px;
 }
 #latest .main-title2{
 	font-size:14px;
@@ -155,13 +159,30 @@ table th{
 
 
 /* 게시판 */
-#board-list .btn-dummy{
+#psboard-list .btn-dummy{
 	cursor: default;
 	background-color: #929292;
     border-color: #929292;
-	
-	
 }
+
+#psboard-list{
+	min-height: 600px;	
+}
+
+#psboard-list tr td{
+	text-align:center
+}
+
+#psboard-list tr td:nth-child(2n){
+	text-align:left;
+}
+
+#psboard-list .table{
+	margin: 10px 0;
+	border:0;
+}
+
+/* 뭐야 여기는..*/
 .btn-dummy:hover{
 	background-color: #929292;
     border-color: #929292;
@@ -185,10 +206,6 @@ table th{
     border: none;
     text-indent: -1000px;
 }
-#board-list .table{
-	margin: 10px 0;
-	border:0;
-}
 thead {
     font-size: 14px;
     color:#353535;
@@ -204,12 +221,6 @@ tr {
 }
 a {
     color: #2f639b;
-}
-#board-list tr td{
-	text-align:center
-}
-#board-list tr td:nth-child(2n){
-	text-align:left;
 }
 
 /* ps_덧글쪽 */

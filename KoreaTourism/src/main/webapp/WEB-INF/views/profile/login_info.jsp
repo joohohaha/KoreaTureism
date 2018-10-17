@@ -14,7 +14,9 @@
 <jsp:include page="../include/mainLink.jsp" />
    	<!-- Profile styles for this template -->
 	<link href="resources/memberDesign/css/member.css" rel="stylesheet" type="text/css">
-<link href="/favicon.ico?v=2" rel="shortcut icon">
+	<link rel="stylesheet" href="resources/footer/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/footer/custom.css">
+	<link href="/favicon.ico?v=2" rel="shortcut icon">
 </head>
 <body id="layout_body">
 		<!-- this in the header -->
@@ -70,10 +72,10 @@
 			<!-- UI Object -->
 			<div class="paginate">
 				<c:if test="${prev}">
-					<a href="user_info?m_userid=${SessionUser}&pageNum=${paegNum-10}" class="pre"><span>이전</span></a>
+					<a href="login_info?m_userid=${SessionUser}&pageNum=${paegNum-10}" style="border: 0">이전</a>
 				</c:if>
 				<c:if test="${next}">
-					<a href="user_info?m_userid=${SessionUser}&pageNum=${paegNum+10}" class="next"><span>다음</span></a>
+					<a href="login_info?m_userid=${SessionUser}&pageNum=${paegNum+10}" style="border: 0">다음</a>
 				</c:if>
 			</div>
 			<!-- //UI Object -->
@@ -81,5 +83,6 @@
 		</div>
 	</div>
 </div>
+	<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

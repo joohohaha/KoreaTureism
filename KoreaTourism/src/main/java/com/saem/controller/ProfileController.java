@@ -30,28 +30,29 @@ public class ProfileController {
 
 	@Inject
 	private MemberService mService;
-
-	@RequestMapping(value = "/joinpage", method = RequestMethod.GET)
-	public String joinpage(Model model) throws Exception{
-		return "joinPage";
-	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession id, SessionStatus session) throws Exception{
 		MemberVO mvo = new MemberVO();
+		
 		if(id.getAttribute("SessionUser") != null) {
 			mvo.setM_userid(id.getAttribute("SessionUser").toString());
 			mService.user_logout(mvo);
 			id.invalidate();
 		}
+		
 		session.setComplete();
 		return "redirect:index";
 	}
 	
 	@RequestMapping(value = "/naver_login", method = RequestMethod.GET)
 	public String naver_login(Model model, @RequestParam("code") String code, @RequestParam("state") String state) throws Exception{
+		System.out.println("---------------------------");
+		System.out.println("Naver Login Start");
+		
 		MemberVO member; 
 		final String access_token = new NaverCallback().CallBack(code, state);
+		
 		if(access_token != null) {
 	    	member = new NaverProfileJoin().NaverSign_in(access_token);
 			if(mService.select_User(member).getM_count() == 0) {
@@ -71,9 +72,14 @@ public class ProfileController {
 
 	@RequestMapping(value = "/update_InfoPass", method = RequestMethod.POST, produces="application/text; charset=utf8")
 	public String update_InfoPass(Model model, @RequestParam(value="userNewPass") String newPass, MemberVO mvo) throws Exception {
+		System.out.println("---------------------------");
+		System.out.println("userPassword Update");
+		
 		String mSalt = "salt";
 		String encryptPw = SHA256.getEncrypt(mvo.getM_password(), mSalt);
+		
 		mvo.setM_password(encryptPw);
+		
 		if(mService.user_login(mvo) != null) {
 			String newEncryptPw = SHA256.getEncrypt(newPass, mSalt);
 			mvo.setM_password(newEncryptPw);
@@ -88,6 +94,7 @@ public class ProfileController {
 	@RequestMapping(value = "/user_info", method = RequestMethod.GET)
 	public String user_info(Model model, MemberVO mvo) throws Exception{
 		mvo.setM_confirm("Default_user");
+		
 		model.addAttribute("info", mService.select_UserInfo(mvo));
 		model.addAttribute("user_info", "on");
 		
@@ -96,9 +103,13 @@ public class ProfileController {
 	
 	@RequestMapping(value = "/info_update", method = RequestMethod.POST)
 	public String info_update(Model model, MemberVO mvo) throws Exception{
-		mService.update_info(mvo);
 		String m_userid = mvo.getM_userid();
-		return "redirect:user_info?m_userid="+m_userid;
+		
+		System.out.println("---------------------------");
+		System.out.println("userInfo update : " + m_userid);
+		
+		mService.update_info(mvo);
+		return "redirect:user_info?m_userid=" + m_userid;
 	}
 	
 	@RequestMapping(value = "/withdrawal", method = RequestMethod.GET)
@@ -111,7 +122,10 @@ public class ProfileController {
 	
 	@RequestMapping(value = "/update_withdrawal", method = RequestMethod.POST, produces="application/text; charset=utf8")
 	public @ResponseBody String update_withdrawal(Model model, @RequestBody String data) throws Exception{
-		MemberVO mvo = new Gson().fromJson(data, MemberVO.class);
+		System.out.println("---------------------------");
+		System.out.println("user withdrawal : " + data);
+		MemberVO mvo = new MemberVO();
+		if(data != null)mvo = new Gson().fromJson(data,MemberVO.class);
 		
 		if(mvo.getM_userid()!=null && mvo.getM_password()!=null) {
 			String mSalt = "salt";
@@ -146,8 +160,9 @@ public class ProfileController {
 	@RequestMapping(value = "/find_id", method = RequestMethod.POST, produces="application/text; charset=utf8")
 	public @ResponseBody String find_id(@RequestBody String data) throws Exception{
 		Gson gson = new Gson();
-		System.out.println(data);
-		MemberVO vo = gson.fromJson(data, MemberVO.class);
+		System.out.println("userID Find __ Data : " + data);
+		MemberVO vo = new MemberVO();
+		if(data != null)vo = gson.fromJson(data,MemberVO.class);
 		vo = mService.select_UserId(vo); // 데이터를 새로 넣으면 원래값은 안남고 덮어진다.
 		if(vo == null) {
 			return "Not_Found";
@@ -156,56 +171,64 @@ public class ProfileController {
 		}
 	}
 	
+	// vo = mService.find_UserPass(vo); 데이터를 새로 넣으면 원래값은 안남고 덮어진다.
 	@RequestMapping(value = "/find_pass", method = RequestMethod.POST, produces="application/text; charset=utf8")
 	public @ResponseBody String find_pass(@RequestBody String data) throws Exception{
+		System.out.println("find_UserInfo in /find_pass -- data : " + data);
 		Gson gson = new Gson();
-		System.out.println(data);
 		MemberVO vo = gson.fromJson(data, MemberVO.class);
-		vo = mService.select_UserId(vo); // 데이터를 새로 넣으면 원래값은 안남고 덮어진다.
-		if(vo == null) {
-			return "Not_Found";
+		vo =  mService.find_UserPass(vo);
+		if(vo != null) {
+			return vo.getM_userid();
 		} else {
-			return vo.getM_userid();	
+			return "Not_Found";
 		}
 	}
 	
 	@RequestMapping(value = "/user_login", method = RequestMethod.POST)
 	public @ResponseBody String user_login(HttpSession session,@RequestBody String data) throws Exception{
-		String result ="fail";
 		System.out.println("login_page_start");
 		System.out.println("data :" + data);
+		
+		String result ="fail";
+		
 		Gson gson = new Gson();
 		MemberVO vo = new MemberVO();
 		
-		if(data!=null) {
-			vo = gson.fromJson(data,MemberVO.class);
-		}
-		
+		if(data != null)vo = gson.fromJson(data,MemberVO.class);
 		vo.setM_confirm("Default_user");
-		System.out.println("vo.getM_userid() : " + vo.getM_userid());
 		if(vo.getM_userid()!=null && vo.getM_password()!=null) {
-			
 			String mSalt = "salt";
 			String encryptPw = SHA256.getEncrypt(vo.getM_password(), mSalt);
 			vo.setM_password(encryptPw);
-			
-			if(mService.user_login(vo) != null) {
-				System.out.println("login 성공!" + vo.getM_userid());
-				session.setAttribute("SessionUser", vo.getM_userid());
-				result = "success";
+			vo = mService.user_login(vo);
+			if(vo != null) {
+				System.out.println("used : " + vo.getM_used());
+				if(vo.getM_used() == 1) {
+					System.out.println("login 성공!" + vo.getM_userid());
+					session.setAttribute("SessionUser", vo.getM_userid());
+					result = "success";	
+				} else if(vo.getM_used() == 0) {
+					System.out.println("회원탈퇴 아이디 : " + vo.getM_userid());
+					result = "withdrawal";
+				}
 			} else {
 				System.out.println("데이터없음");
 			}
 		}
 		return result;
 	}
+	@RequestMapping(value = "/joinpage", method = RequestMethod.GET)
+	public String joinpage(Model model) throws Exception{	
+		return "profile/joinPage";
+	}
 	
 	@RequestMapping(value = "/member/user_join", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	public @ResponseBody String user_join(@RequestBody String data) throws Exception {
 		Gson gson = new Gson();
-		MemberVO mvo = gson.fromJson(data, MemberVO.class);
-		
-//		mvo.setM_password(mvo.getM_password()); ?뭐지이거?
+
+		MemberVO mvo = new MemberVO();
+		if(data != null)mvo = gson.fromJson(data,MemberVO.class);
 		
 		String mSalt = "salt";
 		String encryptPw = SHA256.getEncrypt(mvo.getM_password(), mSalt);

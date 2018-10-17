@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,14 +10,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!-- Bootstrap file -->
-	<link rel="stylesheet" href="resources/boardDesign/design/css/bootstrap.css">
-	<link rel="stylesheet" href="resources/boardDesign/design/css/custom.css">
+	<link rel="stylesheet" href="resources/f_design/css/bootstrap.css">
+	<link rel="stylesheet" href="resources/f_design/css/custom.css">
 	<link rel="shortcut icon" href="#">
 	<!-- favicon 못찾는 오류나서.. 일단 넣어둠 태그 지우면 console에 오류뜸 -->
 	
 	<!-- Google jQuery file -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="resources/boardDesign/design/js/bootstrap.js"></script>
+	<script src="resources/f_design/js/bootstrap.js"></script>
 	
 	<jsp:include page="../include/boardHeader.jsp"/>
 	
@@ -26,14 +26,15 @@
 <title>게시판이엽</title>
 </head>
 <body>
+	<c:set var="myID" value="${SessionNaver}${SessionUser}"/>
 	<!-- 녹색 -->
 	  <div class="container jumbotron">
         <h1>FREE BOARD</h1>
-      </div>   
+      </div>
 	<!-- 녹색 끝 -->
 	
 	<!-- 게시판 -->	
-	<section class="bg-light" id="board11">
+	<section id="board11">
 		<div class="container">
 				<!-- 1번 라인 -->
 				<!-- 왼쪽친구 -->
@@ -43,20 +44,23 @@
 							<td>번호</td>
 							<td>이름</td>
 							<td>제목</td>
-							<td>내용</td>
 							<td>날짜</td>
 							<td>조회수</td>
 						</tr>
+						<c:set var="maxCount" value="${maxNum}"/>
+						<c:if test="${pageNum != 0}">
+							<fmt:parseNumber var="thisPage" integerOnly="true" type="number" value="${pageNum/7}" />
+							<c:set var="maxCount" value="${maxNum - (7 * thisPage)}"/>
+						</c:if>
 						<c:forEach var="item" items="${list}">
-							<c:set var="row" value="${pageNum + list.size()}"/>
 							<tr>
-								<td>${item.f_id}</td>
+								<td>${maxCount}</td>
 								<td>${item.m_userid}</td>
-								<td><a href="f_view?f_id=${item.f_id}">${item.f_title}</a></td>
-								<td><a href="f_view?f_id=${item.f_id}">${item.f_content}</a></td>
+								<td><a href="f_view?f_id=${item.f_id}&m_userid=${myID}">${item.f_title}</a></td>
 								<td>${item.f_date}</td>
 								<td>${item.f_hit}</td>
 							</tr>
+							<c:set var="maxCount" value="${maxCount-1}"/>
 						</c:forEach>
 					</table>
 					<c:set var="i" value="${0+pageNum}"/>
@@ -90,7 +94,7 @@
 						</table>
 						<div class="form-group">
 							<c:choose>
-								<c:when test="${empty myID}">
+								<c:when test="${empty SessionNaver and empty SessionUser}">
 									<a class="btn btn-outline-danger" style="float:right;" href="#" onclick="alert('로그인 하셈 ㅎㅎ');">글쓰기</a>
 								</c:when>
 								<c:otherwise>

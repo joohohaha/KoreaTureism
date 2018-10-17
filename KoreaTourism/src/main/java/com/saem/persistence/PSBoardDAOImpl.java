@@ -24,6 +24,16 @@ public class PSBoardDAOImpl implements PSBoardDAO {
    	}
    	
    	@Override
+   	public List<PSBoardVO> select_delete(int pageNum) throws Exception {
+   		return session.selectList(namespace + ".select_delete", pageNum);
+   	}
+   	
+   	@Override
+   	public List<PSBoardVO> select_notice() throws Exception {
+   		return session.selectList(namespace + ".select_notice");
+   	}
+   	
+   	@Override
    	public List<PSBoardVO> select_search(PSBoardVO pvo) throws Exception {
    		return session.selectList(namespace + ".select_search", pvo);
    	}
@@ -52,10 +62,15 @@ public class PSBoardDAOImpl implements PSBoardDAO {
    	public void delete(int b_num) throws Exception {
    		session.update(namespace + ".delete", b_num);
    	}		
-
+   	
    	@Override
-   	public void update(PSBoardVO sboard) throws Exception {
-   		session.update(namespace + ".update", sboard);
+   	public void save(int b_num) throws Exception {
+   		session.update(namespace + ".save", b_num);
+   	}
+   	
+   	@Override
+   	public void update(PSBoardVO pvo) throws Exception {
+   		session.update(namespace + ".update", pvo);
    	}
    
    	@Override

@@ -9,6 +9,7 @@
     <meta name="author" content="">
     
 	<script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=lN3APOAVWfk96iNDnU6F&submodules=geocoder"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<script type="text/javascript" src="resources/mapCluster/src/MarkerClustering.js"></script>
 	
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js" ></script>
@@ -26,6 +27,7 @@
   </head>
 
   <body id="page-top">
+	<c:set var="myID" value="${SessionNaver}${SessionUser}"/>
     <!-- 여백 -->
     <jsp:include page="loginForm.jsp" />
     <jsp:include page="findPage/find_newPass.jsp" />
@@ -44,31 +46,13 @@
 		<!-- 지도 입니다. 지도 스크립트 검색하면 됨 Ctrl+F -->
 		
 		<!-- 오른쪽친구 -->
-		<div id="rightImg" class="carousel slide aaaa" data-ride="carousel">
-			  <ol class="carousel-indicators">
-			    <li data-target="#rightImg" data-slide-to="0" class="active"></li>
-			    <li data-target="#rightImg" data-slide-to="1"></li>
-			    <li data-target="#rightImg" data-slide-to="2"></li>
-			  </ol>
-			  <div class="carousel-inner">
-			    <div class="carousel-item active">
-			      <img class="d-block w-100" src="resources/design/img/a1.png" alt="First slide" width="50%" height="380px">
-			    </div>
-			    <div class="carousel-item">
-			      <img class="d-block w-100" src="resources/design/img/a2.png" alt="Second slide" width="50%" height="380px">
-			    </div>
-			    <div class="carousel-item">
-			      <img class="d-block w-100" src="resources/design/img/a3.png" alt="Third slide" width="50%" height="380px">
-			    </div>
-			  </div>
-			  <a class="carousel-control-prev" href="#rightImg" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#rightImg" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
+		<div id="board_hotClip" class="carousel slide aaaa" data-ride="carousel">
+			<ul class="list-group" id='ps_posts'>
+				  <li class="list-group-item disabled">여행후기 게시판 인기글</li>
+			</ul>
+			<ul class="list-group" id='f_posts'>
+				  <li class="list-group-item disabled">자유 게시판 인기글</li>
+			</ul>
 		</div>
 		
 	</div> <!-- top-section END -->
@@ -78,38 +62,21 @@
     <section class="bg-light" id="portfolio">
       <div class="container">
         <div class="navbar-expand-lg bg-dark navbar-dark">
+        	<img alt="" src="">
 		 	<a style="margin:12px" data-toggle="modal" href="#" class="btn btn-primary btn-lg active" role="button" type="submit">인기 지역 보기</a>
-			<a style="margin:12px" onclick="moving('gyeongsang')" class="btn btn-outline-info btn-lg active" role="button">경상도</a>
-			<a style="margin:12px" onclick="moving('seoul')" class="btn btn-outline-info btn-lg active" role="button">서울</a>
-			<a style="margin:12px" onclick="moving('gyeonggi')" class="btn btn-outline-info btn-lg active" role="button">경기도</a>
-			<a style="margin:12px" onclick="moving('gangwon')" class="btn btn-outline-info btn-lg active" role="button">강원도</a>
-			<a style="margin:12px" onclick="moving('chungcheong')" class="btn btn-outline-info btn-lg active" role="button">충청도</a>
-			<a style="margin:12px" onclick="moving('jeonla')" class="btn btn-outline-info btn-lg active" role="button">전라도</a>
-			<a style="margin:12px" onclick="moving('jeju')" class="btn btn-outline-info btn-lg active" role="button">제주도</a>
+			<a style="margin:12px" onclick="localData('gyeongsang')" class="btn btn-outline-info btn-lg active" role="button">경상도</a>
+			<a style="margin:12px" onclick="localData('seoul')" class="btn btn-outline-info btn-lg active" role="button">서울</a>
+			<a style="margin:12px" onclick="localData('gyeonggi')" class="btn btn-outline-info btn-lg active" role="button">경기도</a>
+			<a style="margin:12px" onclick="localData('gangwon')" class="btn btn-outline-info btn-lg active" role="button">강원도</a>
+			<a style="margin:12px" onclick="localData('chungcheong')" class="btn btn-outline-info btn-lg active" role="button">충청도</a>
+			<a style="margin:12px" onclick="localData('jeonla')" class="btn btn-outline-info btn-lg active" role="button">전라도</a>
+			<a style="margin:12px" onclick="localData('jeju')" class="btn btn-outline-info btn-lg active" role="button">제주도</a>
 	    </div><br>
 	    
 	<!-- ------------------------------------------------------------------------------------------------------------------------ -->
 	
         <!-- 인기 지역 -->
-        <div class="row">
-          <c:forEach var="item" items="${mainlist}" varStatus="i">
-          <div class="col-md-4 col-sm-6 portfolio-item">
-            <a class="portfolio-link" onclick="call_tour_data('${item.tour_name}')" role="button">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="resources/design/img/m2.png" alt="" width="400" height="300"><!--// /m2-> ${item.div_seg_name} 넣을거임 -->
-            </a>
-            <div class="portfolio-caption">
-               <h4>${item.tour_name}</h4>
-              <p class="text-muted">${item.tour_info}</p>
-            </div>
-          </div>
-          </c:forEach>
-          
-        </div>
+        <div class="row" id="hotlocal"></div>
       </div>
     </section>
 
@@ -121,142 +88,17 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading text-uppercase">Our Amazing Colleague</h2>
-            <h3 class="section-subheading text-muted">bitc 503의 숨겨진 ACE</h3>
+            <h3 class="section-subheading text-muted">KoreaTourism Create by...</h3>
           </div>
         </div>
         
         <div class="row">
-          <!-- 선생님 -->
-          <div class="col-sm-4">
+          <!-- 동욱형님 -->
+          <div class="col-sm-3">
             <div class="team-member">
-              <img class="mx-auto rounded-circle" src="resources/design/img/team/master.png" alt="">
-              <h4>GOD Jooho Choi</h4>
-              <p class="text-muted">CRUD Master</p>
-              <ul class="list-inline social-buttons">
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-linkedin"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-           <!-- 태훈 -->
-          <div class="col-sm-4">
-            <div class="team-member">
-              <img class="mx-auto rounded-circle" src="resources/design/img/team/leader.png" alt="">
-              <h4>TaeHoon</h4>
-              <p class="text-muted">503 Leader</p>
-              <ul class="list-inline social-buttons">
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-linkedin"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-           <!-- 성건 -->
-          <div class="col-sm-4">
-            <div class="team-member">
-              <img class="mx-auto rounded-circle" src="resources/design/img/team/gun.png" alt="">
-              <h4>Gun</h4>
-              <p class="text-muted">His GOD</p>
-              <ul class="list-inline social-buttons">
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-linkedin"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-           <!-- 나 -->
-           <div class="col-sm-4">
-            <div class="team-member">
-              <img class="mx-auto rounded-circle" src="resources/design/img/team/me.jpg" alt="">
-              <h4>HanSaem</h4>
-              <p class="text-muted">Park Driver</p>
-              <ul class="list-inline social-buttons">
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-linkedin"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-           <!-- 정배형 -->
-           <div class="col-sm-4">
-            <div class="team-member">
-              <img class="mx-auto rounded-circle" src="resources/design/img/team/bae.png" alt="">
-              <h4>JoungBae</h4>
-              <p class="text-muted">Ma Driver</p>
-              <ul class="list-inline social-buttons">
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-twitter"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-facebook"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="#">
-                    <i class="fa fa-linkedin"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-           <!-- 누구??? -->
-           <div class="col-sm-4">
-            <div class="team-member">
-              <img class="mx-auto rounded-circle" src="resources/design/img/team/who.png" alt="">
-              <h4>who are you</h4>
-              <p class="text-muted">come with me?</p>
+              <img class="mx-auto rounded-circle" src="resources/img/team/who.jpg" alt="">
+              <h4>LDW</h4>
+              <p class="text-muted">----</p>
               <ul class="list-inline social-buttons">
                 <li class="list-inline-item">
                   <a href="#">
@@ -277,6 +119,78 @@
             </div>
           </div>
           
+           <!-- 태훈 -->
+          <div class="col-sm-3">
+            <div class="team-member">
+              <img class="mx-auto rounded-circle" src="resources/img/team/leader.png" alt="">
+              <h4>TH</h4>
+              <p class="text-muted">503 Leader</p>
+              <ul class="list-inline social-buttons">
+              	<li class="list-inline-item">
+                  <a href="https://blog.naver.com/dpsdlskzb1" target="_blank">
+                  	<i class="fab fa-blogger"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.instagram.com/long_longtae/?hl=ko" target="_blank">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+           <!-- 세진형님 -->
+          <div class="col-sm-3">
+            <div class="team-member">
+              <img class="mx-auto rounded-circle" src="resources/img/team/who.jpg" alt="">
+              <h4>JSJ</h4>
+              <p class="text-muted">----</p>
+              <ul class="list-inline social-buttons">
+                <li class="list-inline-item">
+                  <a href="https://blog.naver.com/skel123" target="_blank">
+                  	<i class="fab fa-blogger"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.facebook.com/people/%EC%A0%95%EC%84%B8%EC%A7%84/100009988682219" target="_blank">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.instagram.com/rxmo.sj/?hl=ko" target="_blank">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+           <!-- 나 -->
+           <div class="col-sm-3">
+            <div class="team-member">
+              <img class="mx-auto rounded-circle" src="resources/img/team/me.jpg" alt="">
+              <h4>HS</h4>
+              <p class="text-muted">Park Driver</p>
+              <ul class="list-inline social-buttons">
+                <li class="list-inline-item">
+                  <a href="https://blog.naver.com/melomelo11" target="_blank">
+                  	<i class="fab fa-blogger"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.instagram.com/1.one_saem/?hl=ko" target="_blank">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         
         <div class="row">
@@ -292,12 +206,12 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3 col-sm-6">
-            <a href="http://www.mcst.go.kr/main.jsp">
+            <a href="http://www.mcst.go.kr/main.jsp" target="_blank">
               <img class="img-fluid d-block mx-auto" src="resources/design/img/logos/l1.png" alt="" width="150" height="200">
             </a>
           </div>
           <div class="col-md-3 col-sm-6">
-            <a href="http://kto.visitkorea.or.kr/kor.kto">
+            <a href="http://kto.visitkorea.or.kr/kor.kto" target="_blank">
               <img class="img-fluid d-block mx-auto" src="resources/design/img/logos/l2.png" alt="" width="150" height="200">
             </a>
           </div>
@@ -307,7 +221,7 @@
             </a>
           </div>
           <div class="col-md-3 col-sm-6">
-            <a href="http://bto.or.kr/renewal/main/main.php">
+            <a href="http://bto.or.kr/renewal/main/main.php" target="_blank">
               <img class="img-fluid d-block mx-auto" src="resources/design/img/logos/l4.png" alt="" width="150" height="200">
             </a>
           </div>
@@ -403,151 +317,100 @@
 		</script><!-- 지도 스크립트 end -->
 	
 		<script> // Modal, moving, innerHTML(addDiv), map
+			//메인 준비되면 인기지역 불러오기
+			$(document).ready(function() {
+		 		localData('hotlocal');
+		 		fetch("psboard_hotPost",{method : 'POST'}).then(res => res.json()).then(data => data.forEach((item) => {postsArea(item,'#ps_posts')}));
+		 		fetch("fboard_hotPost",{method : 'POST'}).then(res => res.json()).then(data => data.forEach(item => postsArea(item,'#f_posts')));
+			});
 		
 			// 필요한 정보 불러오기
-         	function moving(local) {
+         	function localData(local) {
 				// 지역 초기화
 				$('#localData').empty();
 				// page 만드는 ajax
-         		$.ajax({
-	       			type : "POST",
-	       			url : "seg_Data",
-	       			dataType : "text",
-	       			contentType : "application/text; charset=UTF-8",
-	       			data : local,
-	       			success : function(data){
-	       				var seg_Data = JSON.parse(data);
-	       				console.log(seg_Data);
-	       				for(var i=0; i<seg_Data.length;i++){
-	       					callDiv(seg_Data[i].tour_name, seg_Data[i].div_seg_area);
-	       				}
-                 		document.getElementById('local_name').textContent = local;
-	       				$('#myModal').modal();
-	       			},
-	       			error : function(jqXHR, textStatus, errorThrown){
-	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-	       			}		
-	       		});
+				fetch('seg_Data', {method : 'POST', body : local}).then(res => res.json()).then(function(data){
+					data.forEach(item => tourSimpleArea(item, local));
+					if(local != 'hotlocal'){
+	   					$('#local_name').text(local);
+	       				$('#myModal').modal();	
+					};
+		   		});
 			}
-
-         	// 받은정보로 페이지 만들기
-         	function callDiv(tour_name, div_seg_area){
+			
+         	// 도 단위 관광지 페이지
+         	function tourSimpleArea(item, local){
 	      		// 첫번째 모달 페이지
 	         	var newDiv = document.createElement('div');
+	      		var enTour_name = encodeURI(item.tour_name);
+	      		var src = 'resources/img/tour/'+item.tour_name;
+	      		var git = 'https://github.com/joohohaha/image/blob/master/'+enTour_name;
 	      		newDiv.className = 'col-md-4 col-sm-6 portfolio-item';
-	      		newDiv.innerHTML = "<a class=\"portfolio-link\" onclick=\"call_tour_data('"+ tour_name + "')\">"+
-	     			"<img class='img-fluid' src='resources/design/img/portfolio/01-thumbnail.jpg'></a>"+
+	      		newDiv.innerHTML = "<a class=\"portfolio-link\" onclick=\"tourDetailData('"+ item.tour_name + "')\">"+
+	     			"<img class='img-fluid' src='"+ git +".jpg?raw=true' style='width:400px;height:300px;'></a>"+
 	     			"<div class='portfolio-caption'>"+
-	     				"<h4>"+tour_name+"</h4>"+
-	     				"<p class='text-muted'>"+div_seg_area+"</p>"+
+	     				"<h4>"+item.tour_name+"</h4>"+
+	     				"<p class='text-muted'>"+item.div_seg_area+"</p>"+
 	     			"</div>";
-	     			
-	      		document.getElementById('localData').prepend(newDiv);
-	     			
+	     		if(local != 'hotlocal')$('#localData').append(newDiv);else $('#hotlocal').append(newDiv);
 	      	}
          	
-         	function call_tour_data(tour_name) {
-         		// 관광지 초기화
-				$('#tour_Data').empty();
-				
-				// 관광지 정보 가져오기
-				$.ajax({
-	       			type : "POST",
-	       			url : "tour_data",
-	       			dataType : "text",
-	       			contentType : "application/text; charset=UTF-8",
-	       			data : tour_name,
-	       			success : function(data){
-	       				console.log("Data: " + data);
-	       				var tData = JSON.parse(data);
-	       				tour_data(tData.tour_info, tData.tour_com_tel, tData.tour_name, tData.div_seg_area, tData.location_x, tData.location_y, tData.st_date, tData.tour_com_name, tData.addr_street, tData.addr_location);
-	       				
-	       				call_tour_reply(tour_name);
-	       				
-	       				$('#seg_Data').modal();
-	       			},
-	       			error : function(jqXHR, textStatus, errorThrown){
-	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-	       			}		
-	       		});
+         	function postsArea(item,posts){
+         		var newli = document.createElement('li');
+         		newli.className = 'list-group-item';
+         		if(posts == '#ps_posts'){
+         			newli.innerHTML = "<a href='ps_view?b_num="+item.b_num+"&m_userid=${myID}'>"+item.b_title+"</a>";
+         		} else {
+         			newli.innerHTML = "<a href='f_view?f_id="+item.f_id+"&m_userid=${myID}'>"+item.f_title+"</a>";
+         		}
+         		$(posts).append(newli);
          	}
          	
-         	function call_tour_reply(tour_name) {
-         		// 덧글 초기화
-         		$('#reply').empty();
-	         	// 덧글 정보 가져오기
-				$.ajax({
-	       			type : "POST",
-	       			url : "tour_reply",
-	       			dataType : "text",
-	       			contentType : "application/text;charset=utf-8",
-	       			data : tour_name,
-	       			success : function(data){
-	       				var result = JSON.parse(data);
-	       				console.log("reply : " + result);
-	       				for(var i=0; i<result.length;i++){
-	       					applyReply(result[i].r_num, result[i].tour_name, result[i].m_userid, result[i].r_content);
-	       				}
-	       			},
-	       			error : function(jqXHR, textStatus, errorThrown){
-	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-	       			}
-	       		});
-			}
-         	
-        	// 관광지 소개페이지 댓글 최신화
-			function applyReply(r_num, tour_name, m_userid, r_content) {  //append 
-			    var replyDiv = document.createElement("div");
-			    var id = '${SessionNaver}';
-				if(id == '')id = '${SessionUser}';
-				
-				var img_tag = "";
-				if(id == m_userid){ // 본인 글 일 때 지울 수 있게 만들기
-					img_tag = "<a onclick=\"delbtn(" + r_num + ",'" + tour_name + "')\"><img class=\"d-flex mr-3 rounded-circle\" src=\"resources/img/clear.png\"></a>";	
-				} else {			// 남의 글 일 때
-					img_tag = "<img class='d-flex mr-3 rounded-circle' src='resources/img/reply.png'>";
-				}
-				
-				replyDiv.className = 'media mb-4';
-				replyDiv.innerHTML = "<div class='media mb-4'>"+img_tag+"<div class='media-body'><h5 class='mt-0'>" + m_userid + "</h5>" + r_content + "</div></div>";
-			    
-			    document.getElementById('reply').prepend(replyDiv); //appendChild(newDIv); 
-		  	}
-        
-         	function tour_data(tour_info, tour_com_tel, tour_name, div_seg_area, location_x, location_y, st_date, tour_com_name, addr_street, addr_location) {
-				var replybtn = '', addr = '';
-   			
+         	// 특정 관광지 정보 가져오기
+         	function tourDetailData(tour_name) {
+         		// 관광지 초기화
+				$('#tour_Data').empty();
+				// 관광지 정보 가져오기
+				fetch("tour_data",{method : 'POST', body : tour_name}).then(res => res.text()).then(function(data){
+					tourDetailArea(data);
+       				tourReply(tour_name);
+       				$('#seg_Data').modal();
+       			});
+         	}
+        	
+         	// 특정 관광지 페이지
+         	function tourDetailArea(tour_data) {
+				var data = JSON.parse(tour_data);
+         		var replybtn = '', addr = '';
 	   			// 세션 유효성 검사
 	   			<c:choose>
-					<c:when test='${empty SessionNaver and empty SessionUser}'>
+					<c:when test='${empty myID}'>
 						replybtn = "<input type='button' class='btn btn-primary' onclick='no_login()' value='submit'>";
 					</c:when>
 					<c:otherwise>
-						replybtn = "<input type=\"button\" class=\"btn btn-primary\" onclick=\"sendReply('"+tour_name+"')\" value=\"submit\">";
+						replybtn = "<input type=\"button\" class=\"btn btn-primary\" onclick=\"sendReply('"+data.tour_name+"')\" value=\"submit\">";
 					</c:otherwise>
 				</c:choose>
-					
-				// 주소 유효성 검사
-     			if(addr_street == ''){
-     				addr = "<p class='item-intro text-muted'>" + addr_street + "</p>";
-				} else {
-					addr = "<p class='item-intro text-muted'>" + addr_location + "</p>";
-				}
-		     			
+				
+				// 유효성 검사
+     			if(data.addr_street == '')addr = data.addr_street;else addr = data.addr_location;
 				// 두번째 모달 페이지(관광지 소개 페이지)
 	      		var tourData = document.createElement('div');
 	      		tourData.className = "col-lg-8 mx-auto";
 	      		tourData.innerHTML = "" + 
 					"<div class='modal-body'>"+
-						"<h2 class='text-uppercase'>"+tour_name+"</h2>" + addr +
-						"<div id='map_local' style='width: 500px; height: 500px; margin:0 auto;'></div>"+
-						"<p>"+tour_info+"</p>"+
+						"<h2 class='text-uppercase'>"+data.tour_name+"</h2>"+
+						"<p class='item-intro text-muted'>" + addr +"</p>"+
+							"<div id='map_local' style='width: 500px; height: 500px; margin:0 auto;'></div>"+
+						"<p>"+data.tour_info+"</p>"+
 						"<ul class='list-inline'>"+
-							"<li>등록 일자 : "+st_date+"</li>"+
-							"<li>관리기관 전화번호: "+tour_com_tel+"</li>"+
-							"<li>관리기관명: "+tour_com_name+"</li>"+
+							"<li>등록 일자 : "+data.st_date+"</li>"+
+							"<li>관리기관 전화번호: "+data.tour_com_tel+"</li>"+
+							"<li>관리기관명: "+data.tour_com_name+"</li>"+
+							"<li>수용인원 수: "+data.ca_peo+" 명</li>"+
+							"<li>주차가능 수: "+data.ca_car+" 대</li>"+
 						"</ul>"+
-						"<a class='btn btn-success' data-toggle='modal' href='#seg_Data' type='submit' >"+
+						"<a class='btn btn-success' data-toggle='modal' href='#seg_Data' type='submit'>"+
 							"<i class='fa fa-times'></i>Close Project"+
 						"</a>"+
 						"<div class='card my-4'>"+
@@ -560,86 +423,80 @@
 						"</div>"+
 						"<div id='reply'></div>"+
 					"</div>";
-				
 				//페이지 생성
 		      	document.getElementById('tour_Data').prepend(tourData);
 	      		
 	      		// 맵 선언
 				var map_local = new naver.maps.Map('map_local', {
-				    	center: new naver.maps.LatLng(location_x, location_y),
+				    	center: new naver.maps.LatLng(data.location_x, data.location_y),
 				    	mapTypeId: naver.maps.MapTypeId.HYBRID,
 				        zoom: 8
 				});
 				// 마커 선언
 		    	var marker_ch = new naver.maps.Marker({
-		            position: new naver.maps.LatLng(location_x,location_y),
+		            position: new naver.maps.LatLng(data.location_x, data.location_y),
 			    	map: map_local
 		        });
 			}
          	
          	function no_login(){
 				alert('로그인 후 사용 가능합니다.');
-				var cont = document.getElementById("replyData"); 
-				cont.value = '';
+				var cont = $('#replyData'); 
+				cont.val('');
+				cont.focus();
 			}
          	
-         </script>
-         
-         <script>
-         	function delbtn(r_num, tour_name){
-         		var data = {
-         			"r_num" : r_num,
-         			"tour_name" : tour_name
-         		};
-         		
-         		var result = JSON.stringify(data);
-         		
-         		$.ajax({
-	       			type : "POST",
-	       			url : "delete_reply",
-	       			dataType : "text",
-	       			contentType : "application/text;charset=utf-8",
-	       			data : result,
-	       			success : function(data){
-	       				if(data == 'success')call_tour_reply(tour_name);
-	       			},
-	       			error : function(jqXHR, textStatus, errorThrown){
-	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-	       			}
-	       		});
+         	// 특정 관광지의 덧글 삭제
+         	function delReply(r_num, tour_name){
+         		var data = { "r_num" : r_num, "tour_name" : tour_name };
+         		refreshReply('delete_reply', JSON.stringify(data), tour_name);
 			}
          	
+         	// 특정 관광지의 덧글 삽입
 			function sendReply(tour_name){
-         		var cont = document.getElementById("replyData");
-				var r_content = cont.value;
-				
-				var m_userid = '${SessionNaver}';
-				if(m_userid == '')m_userid = '${SessionUser}';
-				
+         		var cont = $('#replyData');
          		var data = {
          			"tour_name" : tour_name,
-         			"m_userid" : m_userid,
-         			"r_content" : r_content
+         			"m_userid" : '${myID}',
+         			"r_content" : cont.val()
          		};
-         		
-         		var result = JSON.stringify(data);
-         		
-         		cont.value = '';
-         		
-         		$.ajax({
-	       			type : "POST",
-	       			url : "send_reply",
-	       			dataType : "text",
-	       			contentType : "application/text;charset=utf-8",
-	       			data : result,
-	       			success : function(data){
-	       				if(data == 'success')call_tour_reply(tour_name);
-	       			},
-	       			error : function(jqXHR, textStatus, errorThrown){
-	       				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-	       			}
-				});
+         		cont.val('');
+         		refreshReply('send_reply', JSON.stringify(data), tour_name);
 			}
+         	
+         	// 특정 관광지의 덧글 삽입,삭제 -> 덧글호출 함수 실행
+         	function refreshReply(url, data, tour_name){
+         		fetch(url, {method : 'POST', body : data}).then(res => res.text()).then(function(data){
+       				if(data == 'success')tourReply(tour_name);
+       			});
+         	}
+         	
+         	// 특정 관광지의 덧글 호출
+         	function tourReply(tour_name) {
+         		// 덧글 초기화
+         		$('#reply').empty();
+	         	// 덧글 정보 가져오기
+	         	fetch("tour_reply",{method : 'POST', body : tour_name}).then(res => res.text()).then(function(data){
+	         		var result = JSON.parse(data);
+       				result.forEach(item => replyArea(item));
+       			});
+			}
+         	
+         	// 특정 관광지의 덧글
+			function replyArea(data) {  //append
+			    var replyDiv = document.createElement("div");
+				var img_tag = '';
+				if(data.m_userid == '${myID}'){ // 본인 글 일 때 지울 수 있게 만들기
+					img_tag = "<a onclick=\"delReply(" + data.r_num + ",'" + data.tour_name + "')\"><img class=\"d-flex mr-3 rounded-circle\" src=\"resources/img/clear.png\"></a>";	
+				} else {						// 남의 글 일 때
+					img_tag = "<img class='d-flex mr-3 rounded-circle' src='resources/img/reply.png'>";
+				}
+				
+				replyDiv.className = 'media mb-4';
+				replyDiv.innerHTML = "<div class='media mb-4'>"+img_tag+"<div class='media-body'><h5 class='mt-0'>" + data.m_userid + "</h5>" + data.r_content + "</div></div>";
+			    
+			    document.getElementById('reply').prepend(replyDiv); //appendChild(newDIv); 
+		  	}
 		</script>
 	</body>
 </html>

@@ -44,8 +44,16 @@ public class BReplyServiceImpl implements BReplyService {
 		return dao.select_max(b_num);
 	}
 	
+	@Transactional
 	@Override
 	public void delete_reply(BReplyVO rvo) throws Exception {
+		//덧글 삭제
 		dao.delete_reply(rvo);
+		// 갱신된 댓글의 갯수 가져옴
+		PSBoardVO pvo = dao.select_count(rvo.getB_num());
+		// b_num Set한다.
+		pvo.setB_num(rvo.getB_num());
+		// 게시판의 덧글수 갱신
+		pdao.reply_count(pvo);
 	}
 }

@@ -21,7 +21,7 @@
    	</insert>
 	
 	<update id="delete_reply">
-		UPDATE the_board_reply SET b_used = 0 WHERE b_num = #{b_num} and br_num = #{br_num}
+		UPDATE the_board_reply SET br_used = 0 WHERE b_num = #{b_num} and br_num = #{br_num}
 	</update>
 	
 	

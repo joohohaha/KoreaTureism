@@ -23,6 +23,8 @@
 	
    	<!-- Profile styles for this template -->
 	<link href="resources/memberDesign/css/member.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="resources/footer/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/footer/custom.css">
 	<link href="/favicon.ico?v=2" rel="shortcut icon">
 	
 </head>
@@ -99,5 +101,6 @@
 		}
 	}
 </script>
+	<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

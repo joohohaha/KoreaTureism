@@ -26,7 +26,7 @@
 									</h3>
 									<dl>
 										<dt>
-											<label for="certEmailName">이름</label>
+											<label for="findPassEmailName">이름</label>
 										</dt>
 										<dd>
 											<input type="text" id="findPassEmailName" name="m_Name" class="type_01 email_valid" style="width: 307px" maxlength="30" required>
@@ -43,8 +43,8 @@
 											<label for="userFrontEmail">이메일</label>
 										</dt>
 										<dd>
-											<input type="text" id="findPassFrontEmail" name="userFrontEmail" class="type_01 email_valid" style="width: 80px" title="이메일 아이디 입력"> @ 
-											<input type="text" id="findPassBackEmail" name="userBackEmail" class="type_01 email_valid" style="width: 80px" title="이메일 도메인 입력" required> 
+											<input type="text" id="findPassFrontEmail" name="findPassFrontEmail" class="type_01 email_valid" style="width: 80px" title="이메일 아이디 입력"> @ 
+											<input type="text" id="findPassBackEmail" name="findPassBackEmail" class="type_01 email_valid" style="width: 80px" title="이메일 도메인 입력" required> 
 											<select class="type_01" id="findPassEmailAddress" title="이메일 도메인 선텍" style="width: 105px">
 												<option value="1" selected>직접입력</option>
 												<option value="chol.com">chol.com</option>
@@ -86,61 +86,40 @@
 </div>
 <script>
 	function search_myPass() {
-		
-		var email1 = $('#findPassFrontEmail');
-		var email2 = $('#findPassBackEmail');
+		var email1 = $('#findPassFrontEmail'), email2 = $('#findPassBackEmail');
+		var m_userid =  $('#findPassYourID'), m_name = $('#findPassEmailName');
 		var resultEmail = email1.val() + '@' + email2.val();
 		
-		var jsonData = {
-				"m_name" : $('#findPassEmailName').val(),
-				"m_email" : resultEmail,
-				"m_userid" : $('#findPassYourID').val()
-		};
+		var jsonData = { "m_confirm" : "Default_user", "m_name" : m_name.val(), "m_email" : resultEmail, "m_userid" : m_userid.val() };
 		
 		if($('#findPassYourID').val() == '' || $('#findPassEmailName').val() == '' || email1 == '' || email2 == ''){
 			alert('정확한 정보를 입력해주세요');
 		} else {
-			$.ajax({
-	   			type : "POST",
-	   			url : "find_pass",
-	   			dataType : "text",
-	   			contentType : "application/text; charset=UTF-8",
-	   			data : JSON.stringify(jsonData),
-	   			success : function(data){
-	   				console.log("success : " + data);
-	   				
-   					$('#findPassEmailName').val("");
-   					$('#findPassYourID').val("");
-   					$('#findPassFrontEmail').val("");
-   					$('#findPassBackEmail').val("");
-   					
-	   				if(data == 'Not_Found'){
-	   					alert('입력하신 정보로 조회된 정보가 없습니다. 다시한번 입력해 주십시오.');
-	   					$('#certEmailName').focus();
-	   					email1.val("");
-	   					email2.val("");
-	   				} else {
-	   					$('updateNewPass_id').val(data);
-   						$('#find_userPass').modal('hide');
-   						$('#find_newPass').modal();
-	   				}
-	   			},
-	   			error : function(jqXHR, textStatus, errorThrown){
-	   				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-	   			}		
-	   		});
+			m_userid.val('');m_name.val('');email1.val('');email2.val('');<%-- 입력값 초기화 --%>
+			
+			fetch('find_pass', {method : 'POST', body : JSON.stringify(jsonData)}).then(res => res.text()).then(function(data) {
+				if(data == 'Not_Found'){
+   					alert('입력하신 정보로 조회된 정보가 없습니다. 다시한번 입력해 주십시오.');
+   					m_name.focus();
+   				} else if(data == 'error'){
+   					alert('error');
+   				} else {
+					$('#find_userPass').modal('hide');
+					$('#find_newPass').modal();
+   					$('#updateNewPass_id').val(data);
+   				}
+			});
 		}
-		
 	}
 	
-	$(function(){	
+	$(function(){
 		$(document).ready(function(){
-			$('select[id=certEmailAddress]').change(function() {
+			$('select[id=findPassEmailAddress]').change(function() {
 				if($(this).val()=="1"){
-					$('#userBackEmail').val("");
+					$('#findPassBackEmail').val('');
 				} else {
-					$('#userBackEmail').val($(this).val());
-					$("#userBackEmail").attr("readonly", true);
+					$('#findPassBackEmail').val($(this).val());
+					$("#findPassBackEmail").attr("readonly", true);
 				}
 			});
 		});

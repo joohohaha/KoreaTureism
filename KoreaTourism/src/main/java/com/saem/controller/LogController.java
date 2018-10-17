@@ -26,15 +26,16 @@ public class LogController {
 	
 	@RequestMapping(value = "/login_info", method = RequestMethod.GET)
 	public String login_info(Model model, LogVO lvo) throws Exception{
-		int pageNum = lvo.getPageNum();
-		
-		boolean prev = true, next = true;
-		
-		if (pageNum == 0)prev = false;
+
 		model.addAttribute("userLog", lService.selectList(lvo));
 		
-		lvo.setPageNum(pageNum+10); // LogVO lvo2 = lvo; lvo2.setPageNum(pageNum+10); ==> lvo.pageNum == +10; 왜지?
-		if (lService.selectNext(lvo) == null)next = false;
+		int pageNum = lvo.getPageNum();
+		boolean prev = true, next = true;
+		if (pageNum == 0)prev = false;
+		lvo.setPageNum(pageNum + 10); // LogVO lvo2 = lvo; lvo2.setPageNum(pageNum+10); ==> lvo.pageNum == +10; 왜지?
+		if (lService.selectList(lvo) == null) {
+			next = false;
+		}
 		
 		model.addAttribute("prev", prev);
 		model.addAttribute("next", next);

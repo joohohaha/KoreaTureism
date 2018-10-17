@@ -12,10 +12,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a href="fboard" class="nav-link">자유 게시판 가자</a>
+              <a href="fboard" class="nav-link">자유 게시판</a>
             </li>
             <li class="nav-item">
-              <a href="ps_board" class="nav-link">후기 게시판 가자</a>
+              <a href="ps_board" class="nav-link">여행후기 게시판</a>
             </li>
        		<c:choose>
        			<c:when test="${empty SessionNaver and empty SessionUser}">
@@ -33,7 +33,7 @@
 		            </li>
 		            <c:if test="${empty SessionNaver}"><!-- 네이버 아이디로 로그인하지 않았을때 표시 -->
 			            <li class="nav-item">
-			              <a class="nav-link" href="user_info?m_userid=${myID}">회원관리 가즈아</a>
+			              <a class="nav-link" href="user_info?m_userid=${myID}">회원관리</a>
 			            </li>
 		            </c:if>
 		    	</c:otherwise>
@@ -47,7 +47,12 @@
 	<!-- 모달 css -->
    	<link href="resources/design/css/agency.min.css" rel="stylesheet">
 	<!-- member link -->
+	<link href="resources/memberDesign/css/find_newPass.css" rel="stylesheet" type="text/css">
+	<link href="resources/memberDesign/css/find_pass.css" rel="stylesheet" type="text/css">
 	<link href="resources/memberDesign/css/find_id.css" rel="stylesheet" type="text/css">
 	<link href="resources/memberDesign/css/loginform.css" rel="stylesheet" type="text/css">
-    <jsp:include page="../loginForm.jsp"/>
+	
+    <jsp:include page="../findPage/find_newPass.jsp" />
+    <jsp:include page="../findPage/find_pass.jsp" />
     <jsp:include page="../findPage/find_id.jsp" />
+    <jsp:include page="../loginForm.jsp"/>

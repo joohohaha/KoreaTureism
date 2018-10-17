@@ -21,15 +21,23 @@ public class FreeBoardDAOImpl implements FreeBoardDAO {
    @Override
    public List<FreeBoardVO> select_list(int pageNum) throws Exception {
       return session.selectList(namespace + ".select_list", pageNum);
-
    }
-
+   
    @Override
    public FreeBoardVO select(int f_id) throws Exception {
       return session.selectOne(namespace + ".select", f_id);
-
    }
-
+   
+   @Override
+   public FreeBoardVO select_count() throws Exception {
+		return session.selectOne(namespace + ".select_count");
+   }
+   
+   @Override
+	public List<FreeBoardVO> select_hotpost() throws Exception {
+		return session.selectList(namespace + ".select_hotpost");
+   }
+   
    @Override
    public void insert(FreeBoardVO fboard) throws Exception {
       session.insert(namespace + ".insert", fboard);

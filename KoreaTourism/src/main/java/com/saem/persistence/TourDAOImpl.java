@@ -23,6 +23,11 @@ public class TourDAOImpl implements TourDAO{
 	}
 	
 	@Override
+	public List<TourVO> select_list(int pageNum) throws Exception {
+		return session.selectList(namespace+".select_list", pageNum);
+	}
+	
+	@Override
 	public List<TourVO> selectMain() throws Exception {
 		return session.selectList(namespace+".selectMain");
 	}
@@ -40,5 +45,10 @@ public class TourDAOImpl implements TourDAO{
 	@Override
 	public void update_count(TourVO tvo) throws Exception {
 		session.update(namespace+".update_count", tvo);
+	}
+	
+	@Override
+	public void new_tour(TourVO tvo) throws Exception {
+		session.insert(namespace+".new_tour", tvo);
 	}
 }

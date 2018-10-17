@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>회원가입 페이지</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="stylesheet" href="resources/memberDesign/css/join_n.css?_LM=1537334942000">
-<title>회원가입</title>
+	<title>회원가입 페이지</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="resources/memberDesign/css/join_n.css?_LM=1537334942000">
+	<title>회원가입</title>
 </head>
 <body id="join">
 	<div class="skip_navi">
@@ -223,60 +223,14 @@
 						</ul>
 					</div>
 					<div class="btn_bottom">
+						<button type="button" class="btn_submit" id="btnMain">가입취소</button>
 						<button type="submit" class="btn_submit" id="btnNext">가입하기</button>
 					</div>
 				</div>
 			</form>
-			<form id="frmNext">
-				<input type="hidden" id="targetUrl" name="targetUrl" value="http://zum.com/#!/home">
-				<input type="hidden" id="zumpage" name="zumpage" value="false">
-			</form>
-
-			<div id="layer" style="display: none;">
-				<span class="layer_bg"></span>
-
-				<!-- 14세 미만 회원가입 시 나오는 레이어 -->
-				<div id="layerCert"
-					class="layer layer_under_14 layer_under_14_cert"
-					style="display: none;">
-					<div class="layer_cont">
-						<p class="text">
-							<strong>14세 미만</strong> 회원가입시<br>보호자 인증절차가 필요합니다.
-						</p>
-						<div class="btn_bottom">
-							<a href="javascript:;" class="btn_cert">인증 받기</a>
-							<a href="javascript:;" class="btn_cancel">취소 하기</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- 14세 미만 회원가입 시 나오는 레이어 - 완료 -->
-				<div id="layerSuccess"
-					class="layer layer_under_14 layer_under_14_cert_complete"
-					style="display: none;">
-					<div class="layer_cont">
-						<p class="text">보호자 인증에 성공했습니다</p>
-						<div class="btn_bottom">
-							<a href="javascript:;" class="btn_confirm" id="btnConfirm">확인</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- 14세 미만 회원가입 시 나오는 레이어 - 에러 -->
-				<div id="layerError" class="layer layer_under_14 layer_under_14_cert_error" style="display: none;">
-					<div class="layer_cont">
-						<p class="text">
-							입력하신 정보가 일치하지 않습니다.<br>다시 한번 정확하게 입력해 주십시오.
-						</p>
-						<div class="btn_bottom">
-							<a href="javascript:;" class="btn_cert">인증 받기</a>
-							<a href="javascript:;" class="btn_cancel">취소 하기</a>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
+	
 	<script async="" src="//www.google-analytics.com/analytics.js"></script>
 	<script type="text/javascript" async="" src="//estat.zum.com/scripts/at.js"></script>
 	<script type="text/javascript" src="resources/memberDesign/js/plugin/jquery-1.8.2.min.js?_LM=1499327254000"></script>
@@ -340,9 +294,6 @@
 		};
 	});
 	</script>
-	
-	
-	
 	<script type="text/javascript">
 		//EST
 		(function() {

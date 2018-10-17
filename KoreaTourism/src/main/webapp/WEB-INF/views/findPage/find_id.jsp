@@ -82,58 +82,42 @@
 </div>
 <script>
 	function search_myID() {
-		
-		var email1 = $('#userFrontEmail');
-		var email2 = $('#userBackEmail');
+		var email1 = $('#userFrontEmail'), email2 =  $('#userBackEmail'), m_name = $('#certEmailName');
 		var resultEmail = email1.val() + '@' + email2.val();
 		
 		var jsonData = {
-				"m_name" : $('#certEmailName').val(),
-				"m_email" : resultEmail
+				"m_name" : m_name.val(),
+				"m_email" : resultEmail,
+				"m_confirm" : "Default_user"
 		};
 		
-		console.log('name : ' + $('#certEmailName').val() + ', email1 : ' + email1.val() + ', email2 : ' + email2.val() + ", resultEmail : " + resultEmail);
+		console.log('name : ' + m_name.val() + ', email1 : ' + email1.val() + ', email2 : ' + email2.val() + ", resultEmail : " + resultEmail);
 		
-		if($('#certEmailName').val() == '' || email1 == '' || email2 == ''){
+		if(m_name.val() == '' || email1 == '' || email2 == ''){
 			alert('정확한 정보를 입력해주세요');
 		} else {
-			$.ajax({
-	   			type : "POST",
-	   			url : "find_id",
-	   			dataType : "text",
-	   			contentType : "application/text; charset=UTF-8",
-	   			data : JSON.stringify(jsonData),
-	   			success : function(data){
-	   				console.log("success : " + data);
-	   				if(data == 'Not_Found'){
-	   					alert('입력하신 정보로 조회된 ID가 없습니다. 다시한번 입력해 주십시오.');
-	   					$('#certEmailName').val("");
-	   					$('#certEmailName').focus();
-	   					email1.val("");
-	   					email2.val("");
-	   				} else {
-	   					if(confirm('회원님의 아이디는 ' + data + ' 입니다. 로그인 창으로 이동하시겠습니까?') == true){
-	   						$('#find_userid').modal('hide');
-	   						$('#loginModal').modal();
-	   					}
-	   				}
-	   			},
-	   			error : function(jqXHR, textStatus, errorThrown){
-	   				console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-	   			}		
-	   		});
+			m_name.val('');m_name.focus();email1.val('');email2.val('');
+			fetch('find_id', {method : 'POST', body : JSON.stringify(jsonData)}).then(res => res.text()).then(function(data) {
+				if(data == 'Not_Found'){
+   					alert('입력하신 정보로 조회된 ID가 없습니다. 다시한번 입력해 주십시오.');
+   				} else {
+   					if(confirm('회원님의 아이디는 ' + data + ' 입니다.\n 로그인 창으로 이동하시겠습니까?') == true){
+   						$('#find_userid').modal('hide');
+   						$('#loginModal').modal();
+   					}
+   				}
+			});
 		}
-		
 	}
 	
 	$(function(){	
 		$(document).ready(function(){
 			$('select[id=certEmailAddress]').change(function() {
-				if($(this).val()=="1"){
-					$('#userBackEmail').val("");
+				if($(this).val() == '1'){
+					email2.val('');
 				} else {
-					$('#userBackEmail').val($(this).val());
-					$("#userBackEmail").attr("readonly", true);
+					email2.val($(this).val());
+					email2.attr("readonly", true);
 				}
 			});
 		});

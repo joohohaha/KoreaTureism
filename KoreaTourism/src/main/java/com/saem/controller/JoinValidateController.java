@@ -26,16 +26,19 @@ public class JoinValidateController {
 	
 	@RequestMapping(value = "/member/check", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	public @ResponseBody String check_userId(@RequestBody String data) throws Exception{
-		System.out.println(data)
-		;
+		System.out.println(data);
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject)parser.parse(data);
 		MemberVO mvo = new MemberVO();
 		
 		mvo.setM_confirm("Default_user");
+		
 		if(json.get("type").equals("userId")) {
+			if(mvo.getM_userid().equals("SAEM")) {
+				return "error";
+			}
 			mvo.setM_userid(json.get("data").toString());
-		} else if(json.get("type").equals("email")) {
+		} else if(json.get("type").equals("userEmail")) {
 			mvo.setM_email(json.get("data").toString());
 		} else if(json.get("type").equals("birth")) {
 			return "success";
@@ -45,14 +48,12 @@ public class JoinValidateController {
 		if(confirm == 0) {
 			return "success";
 		}
-		
 		return "error";
 	}
 	
 	@RequestMapping(value = "/member/sendEmail", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	public @ResponseBody String sendEmail(@RequestBody String data, HttpSession session) throws Exception{
 		GmailCheckAction gmail = new GmailCheckAction();
-		
 		String access = gmail.emailSendAction(data);
 		if(access != null) {
 			session.setAttribute("access_key", access);
@@ -70,7 +71,6 @@ public class JoinValidateController {
 	public @ResponseBody String checkEmail(@RequestBody String data, HttpSession session) throws Exception{
 		String access = session.getAttribute("access_key").toString();
 		boolean isTrue = access.equals(data) ? true : false;
-		System.out.println(isTrue);
 		if(isTrue)return "success";else return "not_success";
 	}
 	

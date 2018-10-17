@@ -15,8 +15,7 @@
 
 .aaaa {
     width: 50%;
-    float: left;
-    /* background: #d9d9d9; */
+    float: right;
 }
 
 body {
@@ -376,9 +375,8 @@ header.masthead .intro-text .intro-heading {
 
 #portfolio .portfolio-item .portfolio-caption {
 	max-width: 400px;
-	
 	margin: 0 auto;
-	padding: 25px;
+	padding: 10px;
 	text-align: center;
 	background-color: #f1d7d7
 }

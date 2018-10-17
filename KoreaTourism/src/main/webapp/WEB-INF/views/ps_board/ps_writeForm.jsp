@@ -12,6 +12,8 @@
 	<!-- Bootstrap file -->
 	<link rel="stylesheet" href="resources/ps_design/css/bootstrap.css">
 	<link rel="stylesheet" href="resources/ps_design/css/custom.css">
+	<link rel="stylesheet" href="resources/footer/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/footer/custom.css">
 	<link rel="shortcut icon" href="#">
 	
 	<!-- Google jQuery file -->
@@ -60,8 +62,8 @@
 							</div>
 						</fieldset>
 					</form>
-
 				</div>
+				<div class="col-lg-2"></div>
 			</div>
 			<!-- row(12분할) END -->
 		</div>
@@ -89,7 +91,7 @@
 	      try {
 	          elClickedObj.form.submit();
 	      } catch(e) {
-	      
+	    	  console.log(e);
 	      }
 	  }
 	   
@@ -100,6 +102,6 @@
 			oEditors.getById["textAreaContent"].exec("PASTE_HTML", [ sHTML ]);
 		}
 	</script>
-
+	<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

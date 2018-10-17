@@ -14,6 +14,8 @@
 <jsp:include page="../include/mainLink.jsp" />
    	<!-- Profile styles for this template -->
 	<link href="resources/memberDesign/css/member.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="resources/footer/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/footer/custom.css">
 <link href="/favicon.ico?v=2" rel="shortcut icon">
 </head>
 <body id="layout_body">
@@ -104,7 +106,6 @@
 	         update_withdrawal();
 	    }
 	}
-	
 	function update_withdrawal(){
 		var jsonData = {
 				"m_password" : $('#userPass').val(),
@@ -118,14 +119,8 @@
 		} else if($('#userPass').val() == ''){
 			alert('비밀번호를 입력해주세요');
 		} else {
-			$.ajax({
-				type : "POST",
-				url : "update_withdrawal",
-				dataType : "text",
-				contentType : "application/text; charset=UTF-8",
-				data : JSON.stringify(jsonData),
-				success : function(data){
-					console.log("success : " + data);
+			if(confirm('정말 회원탈퇴를 원하십니까?') == true) {
+				fetch('update_withdrawal', {method : 'POST', body : JSON.stringify(jsonData)}).then(res => res.text()).then(function(data) {
 					if(data == 'Not_Found') {
 						alert('입력하신 비밀번호가 틀렸습니다.');
 						$('#userPass').val("");
@@ -133,14 +128,9 @@
 					} else if(data == 'success') {
 						alert('회원탈퇴에 성공하였습니다.');
 						location.href='logout';
-					} else {
-						alert('error');
 					}
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-					console.log("에러 발생 ~~\n" + textStatus + " : " +  errorThrown);
-				}		
-			});
+				});
+			}
 		}
 	}
 	
@@ -153,5 +143,6 @@
 		}
 	}
 </script>
+	<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

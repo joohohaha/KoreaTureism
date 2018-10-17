@@ -20,7 +20,17 @@ public class PSBoardServiceImpl implements PSBoardService {
 	public List<PSBoardVO> select_list(int pageNum) throws Exception {
 		return dao.select_list(pageNum);
 	}
-
+	
+	@Override
+	public List<PSBoardVO> select_delete(int pageNum) throws Exception {
+		return dao.select_delete(pageNum);
+	}
+	
+	@Override
+	public List<PSBoardVO> select_notice() throws Exception {
+		return dao.select_notice();
+	}
+	
 	@Override
 	public List<PSBoardVO> select_search(PSBoardVO pvo) throws Exception {
 		return dao.select_search(pvo);
@@ -41,13 +51,15 @@ public class PSBoardServiceImpl implements PSBoardService {
 		return dao.select_count();
 	}
 	
-	@Transactional
 	@Override
 	public PSBoardVO view(int b_num) throws Exception {
-		dao.uphit(b_num);
 		return dao.select(b_num);
 	}
 	
+	@Override
+	public void uphit(int b_num) throws Exception {
+		dao.uphit(b_num);
+	}
 
 	@Override
 	public void insert(PSBoardVO sboard) throws Exception {
@@ -57,6 +69,11 @@ public class PSBoardServiceImpl implements PSBoardService {
 	@Override
 	public void delete(int b_num) throws Exception {
 		dao.delete(b_num);
+	}
+	
+	@Override
+	public void save(int b_num) throws Exception {
+		dao.save(b_num);
 	}
 
 	@Override

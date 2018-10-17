@@ -11,8 +11,8 @@
 	
 }
 .top-section #map{
-	width:40%;
-	height:380px;
+	width:48%;
+	height:446px;
 }
 .top-section #carouselExampleIndicators2{
 	width:58%;
@@ -30,4 +30,7 @@
 #reply .media.mb-4 .mb-4 {
     margin-bottom: 5px !important;
     border: none;
+}
+.mt-0, .media-body {
+    text-align: left;
 }

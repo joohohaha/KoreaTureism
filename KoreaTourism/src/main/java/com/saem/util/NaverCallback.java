@@ -15,7 +15,7 @@ public class NaverCallback {
 	public String CallBack(String code, String state) throws Exception {
 		String clientId = "xHnGDEiESs7O3i28j1Wl";//애플리케이션 클라이언트 아이디값";
 	    String clientSecret = "QvwIWephMB";//애플리케이션 클라이언트 시크릿값";
-	    String redirectURI = URLEncoder.encode("http://localhost:8000/tour/naver_login", "UTF-8");
+	    String redirectURI = URLEncoder.encode("http://192.168.0.58:8000/tour/naver_login", "UTF-8");
 	    String apiURL;
 	    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 	    apiURL += "client_id=" + clientId;

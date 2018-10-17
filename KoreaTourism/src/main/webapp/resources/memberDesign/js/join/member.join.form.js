@@ -727,6 +727,7 @@
 
     $authEmailButton.on('click', function() {
         //send email auth num
+    	alert('메일을 보내는데 시간이조금 걸립니다.');
         $.ajax({
             'url' : 'member/sendEmail',
             'type' : 'post',

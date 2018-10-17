@@ -6,8 +6,8 @@
 <%@ page import="java.security.SecureRandom"%>
 <%@ page import="java.math.BigInteger"%>
   <%
-    String clientId = "xHnGDEiESs7O3i28j1Wl";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://localhost:8000/tour/naver_login", "UTF-8");
+    String clientId = "xHnGDEiESs7O3i28j1Wl";
+    String redirectURI = URLEncoder.encode("http://192.168.0.58:8000/tour/naver_login", "UTF-8");
     SecureRandom random = new SecureRandom();
     String state = new BigInteger(130, random).toString();
     String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -85,6 +85,7 @@
 		</div>
 	</div>
 </div>
+
 <script>
 	function find_id(){
 		$('#loginModal').modal('hide');
@@ -286,25 +287,11 @@
 			"m_userid" : $('#id').val(),
 			"m_password" : $('#password').val(),
 		};
-
-		$.ajax({
-			type : "POST",
-			url : "user_login",
-			dataType : "text",
-			contentType : "application/text;charset=utf-8",
-			data : JSON.stringify(result),
-			success : function(data) { // 서버로부터 전송받은 데이터 
-				if (data == "success") {
-					location.href = "index";
-				} else if (data == "fail") {
-					alert('입력한 정보와 일치하는 정보가 없습니다. 다시한번 확인해 주세요');
-					$('#id').val("");
-					$('#password').val("");
-					$('#id').focus();
-				}
-			},
-			error : function() {
-				alert("서버에 일시적인 문제가 발생하였습니다. 잠시후 다시 시도해 주세요.");
+		$('#id').val('');
+		$('#password').val('');
+		fetch('user_login', {method : 'POST', body : JSON.stringify(result)}).then(res => res.text()).then(function(data) {
+			if (data == 'success')location.href = 'index';else if (data == 'fail')alert('입력한 정보와 일치하는 정보가 없습니다.\n다시한번 확인해 주세요.');else if(data == 'withdrawal'){
+				alert('이미 탈퇴한 회원입니다.');
 			}
 		});
 	}
