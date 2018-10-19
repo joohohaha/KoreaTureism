@@ -34,7 +34,7 @@ public class JoinValidateController {
 		mvo.setM_confirm("Default_user");
 		
 		if(json.get("type").equals("userId")) {
-			if(mvo.getM_userid().equals("SAEM")) {
+			if(json.get("data").equals("SAEM")) {
 				return "error";
 			}
 			mvo.setM_userid(json.get("data").toString());
@@ -43,6 +43,7 @@ public class JoinValidateController {
 		} else if(json.get("type").equals("birth")) {
 			return "success";
 		}
+		
 		int confirm = mService.select_User(mvo).getM_count();
 		
 		if(confirm == 0) {

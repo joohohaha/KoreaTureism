@@ -32,8 +32,8 @@ public class LogController {
 		int pageNum = lvo.getPageNum();
 		boolean prev = true, next = true;
 		if (pageNum == 0)prev = false;
-		lvo.setPageNum(pageNum + 10); // LogVO lvo2 = lvo; lvo2.setPageNum(pageNum+10); ==> lvo.pageNum == +10; 왜지?
-		if (lService.selectList(lvo) == null) {
+		lvo.setPageNum(pageNum + 10);
+		if (lService.selectList(lvo).size() == 0) {
 			next = false;
 		}
 		
@@ -41,6 +41,7 @@ public class LogController {
 		model.addAttribute("next", next);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("login_info", "on");
+		
 		return "profile/login_info";
 	}
 	

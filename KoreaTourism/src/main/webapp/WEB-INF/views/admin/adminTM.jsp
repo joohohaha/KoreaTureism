@@ -29,16 +29,7 @@
 	
 	<body>
 	<!-- Navbar goes here -->
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#" class="brand-logo">Logo</a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<c:if test="${!empty admin}">
-					<li><a href="admin/logout">logout</a></li>
-				</c:if>
-			</ul>
-		</div>
-	</nav>
+	<jsp:include page="header.jsp"/>
     <!-- Page Layout here -->
     <div class="row">
     	<div id="menubar">

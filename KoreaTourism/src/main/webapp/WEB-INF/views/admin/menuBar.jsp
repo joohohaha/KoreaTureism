@@ -4,7 +4,7 @@
 <c:set var="path" value="<%= request.getContextPath()%>"/>
 <ul id="nav-mobile" class="sidenav sidenav-fixed" style="transform: translateX(0px);">
 	<li class="logo">
-	<a id="logo-container" href="/" class="brand-logo">
+	<a id="logo-container" href="${path}/admin" class="brand-logo">
 	<object id="front-page-logo" type="image/svg+xml" data="resources/img/travel.svg">KoreanTourism Management Page</object>
 	</a>
 	</li>

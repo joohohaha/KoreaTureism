@@ -27,6 +27,7 @@
   </head>
 
   <body id="page-top">
+  	<c:set var="path" value="<%=request.getContextPath() %>"/>
 	<c:set var="myID" value="${SessionNaver}${SessionUser}"/>
     <!-- 여백 -->
     <jsp:include page="loginForm.jsp" />
@@ -279,9 +280,14 @@
 			//------------------------클러스터 기법 foreach사용
 			function onLoad() {
 			    <c:forEach var="item" items="${selectAll}" varStatus="val">
-			    	<c:set var="i" value="${val.index}"/>
+			    <c:set var="i" value="${val.index}"/>
 			        var marker${i} = new naver.maps.Marker({
-			            position: new naver.maps.LatLng(${item.location_x}, ${item.location_y})
+			            position: new naver.maps.LatLng(${item.location_x}, ${item.location_y}),
+			            icon: {
+			                url: '${path}/resources/img/marker.png',
+			                origin: new naver.maps.Point(0, 0),
+			                anchor: new naver.maps.Point(11, 35)
+			            }
 			        });
 		  			// 마크 클릭시 인포윈도우 오픈
 					var infowindow${i} = new naver.maps.InfoWindow({
@@ -341,13 +347,13 @@
          	// 도 단위 관광지 페이지
          	function tourSimpleArea(item, local){
 	      		// 첫번째 모달 페이지
-	         	var newDiv = document.createElement('div');
-	      		var enTour_name = encodeURI(item.tour_name);
+	         	var newDiv = document.createElement('div');//내부 경로
+	      		var enTour_name = encodeURI(item.tour_name);//git 경로
 	      		var src = 'resources/img/tour/'+item.tour_name;
 	      		var git = 'https://github.com/joohohaha/image/blob/master/'+enTour_name;
 	      		newDiv.className = 'col-md-4 col-sm-6 portfolio-item';
 	      		newDiv.innerHTML = "<a class=\"portfolio-link\" onclick=\"tourDetailData('"+ item.tour_name + "')\">"+
-	     			"<img class='img-fluid' src='"+ git +".jpg?raw=true' style='width:400px;height:300px;'></a>"+
+	     			"<img class='img-fluid' src='"+ src +".jpg?raw=true' style='width:400px;height:300px;'></a>"+
 	     			"<div class='portfolio-caption'>"+
 	     				"<h4>"+item.tour_name+"</h4>"+
 	     				"<p class='text-muted'>"+item.div_seg_area+"</p>"+
@@ -383,15 +389,12 @@
 				var data = JSON.parse(tour_data);
          		var replybtn = '', addr = '';
 	   			// 세션 유효성 검사
-	   			<c:choose>
-					<c:when test='${empty myID}'>
-						replybtn = "<input type='button' class='btn btn-primary' onclick='no_login()' value='submit'>";
-					</c:when>
-					<c:otherwise>
-						replybtn = "<input type=\"button\" class=\"btn btn-primary\" onclick=\"sendReply('"+data.tour_name+"')\" value=\"submit\">";
-					</c:otherwise>
-				</c:choose>
-				
+	   			var myID = '${myID}';
+	   			if(myID == ''){
+	   				replybtn = "<input type='button' class='btn btn-primary' onclick='no_login()' value='submit'>";
+	   			} else {
+	   				replybtn = "<input type=\"button\" class=\"btn btn-primary\" onclick=\"sendReply('"+data.tour_name+"')\" value=\"submit\">";
+	   			}
 				// 유효성 검사
      			if(data.addr_street == '')addr = data.addr_street;else addr = data.addr_location;
 				// 두번째 모달 페이지(관광지 소개 페이지)

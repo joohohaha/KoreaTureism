@@ -19,7 +19,7 @@
 	               <div class="cont">
 	                    <p>[ 사진관련 문의 ] </p>
 	                 	<p>아래 버튼을 눌러 글을 확인하신 후,<br>CONTACT 의 E-mail을 확인하시고 연락을 주십시오.</p>
-	                 	<p class="mt"><a href="#" class="btn-pack gray rv label" target="_blank">[ 사진이용에 관하여 ]</a></p>
+	                 	<p class="mt"><a href="ps_view?b_num=4" class="btn-pack gray rv label">[ 사진이용에 관하여 ]</a></p>
 	              </div>
 	            </div>
 	        </div>

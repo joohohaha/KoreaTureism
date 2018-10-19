@@ -72,10 +72,10 @@
 			<!-- UI Object -->
 			<div class="paginate">
 				<c:if test="${prev}">
-					<a href="login_info?m_userid=${SessionUser}&pageNum=${paegNum-10}" style="border: 0">이전</a>
+					<a href="login_info?m_userid=${SessionUser}&pageNum=${pageNum-10}" style="border: 0">이전</a>
 				</c:if>
 				<c:if test="${next}">
-					<a href="login_info?m_userid=${SessionUser}&pageNum=${paegNum+10}" style="border: 0">다음</a>
+					<a href="login_info?m_userid=${SessionUser}&pageNum=${pageNum+10}" style="border: 0">다음</a>
 				</c:if>
 			</div>
 			<!-- //UI Object -->
